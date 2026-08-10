@@ -24,8 +24,8 @@ export const uiConstants = {
   },
 
   social: {
-    facebook: 'https://www.facebook.com',
-    instagram: 'https://www.instagram.com',
+    facebook: 'https://www.facebook.com/SteefoEngineeringCorporation/',
+    instagram: 'https://www.instagram.com/steefoengineering/',
   },
 
   routes: {
