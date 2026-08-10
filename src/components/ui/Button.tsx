@@ -166,6 +166,7 @@ export const Button = forwardRef<
     controlBaseClass,
     sizeClass[size],
     styles.control,
+    hasBorderShell && 'w-full',
     !hasBorderShell && className,
   )
 

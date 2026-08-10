@@ -1,53 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Container } from '../common'
+import { icons } from '../../resources/icons'
 import { productsStrings } from '../../resources/products_strings'
 
 function cn(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(' ')
-}
-
-function ChevronLeftIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <path
-        d="M12.5 15.833 6.667 10 12.5 4.167"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function ChevronRightIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <path
-        d="M7.5 4.167 13.333 10 7.5 15.833"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
 }
 
 export type ProductRelatedItem = {
@@ -86,16 +43,28 @@ export function ProductRelated({
           <button
             type="button"
             aria-label={productsStrings.relatedPrevAriaLabel}
-            className="flex size-10 items-center justify-center text-brand transition-opacity hover:opacity-70"
+            className="flex size-10 items-center justify-center transition-opacity hover:opacity-70"
           >
-            <ChevronLeftIcon className="size-5" />
+            <img
+              src={icons.left}
+              alt=""
+              width={18}
+              height={32}
+              className="h-8 w-[18px]"
+            />
           </button>
           <button
             type="button"
             aria-label={productsStrings.relatedNextAriaLabel}
-            className="flex size-10 items-center justify-center text-brand transition-opacity hover:opacity-70"
+            className="flex size-10 items-center justify-center transition-opacity hover:opacity-70"
           >
-            <ChevronRightIcon className="size-5" />
+            <img
+              src={icons.right}
+              alt=""
+              width={18}
+              height={32}
+              className="h-8 w-[18px]"
+            />
           </button>
         </div>
       </div>
