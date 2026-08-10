@@ -1,10 +1,7 @@
 import { Container } from '../common'
 import { Button } from '../ui'
 import { productsStrings } from '../../resources/products_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type ProductInterestCtaProps = {
   title: string

@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom'
 import { projectsStrings } from '../../resources/projects_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn, mediaPlaceholderProps } from '../../utils'
 
 export type ProjectCardProps = {
   location: string
@@ -31,8 +28,7 @@ export function ProjectCard({
     <article className={cn('flex min-w-0 flex-col gap-5', className)}>
       <Link to={href} className="group flex flex-col gap-5">
         <div
-          role="img"
-          aria-label={projectsStrings.cardMediaAriaLabel}
+          {...mediaPlaceholderProps(projectsStrings.cardMediaAriaLabel)}
           className="h-[220px] w-full bg-surface-placeholder transition-opacity group-hover:opacity-90 md:h-[340px]"
         />
         <div className="flex flex-col gap-3">

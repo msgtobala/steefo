@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom'
 import { images, type ImageKey } from '../../resources/images'
 import { insightsStrings } from '../../resources/insights_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type InsightCardSize = 'third' | 'twoThirds'
 

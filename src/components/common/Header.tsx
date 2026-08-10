@@ -5,6 +5,7 @@ import { commonStrings } from '../../resources/common_strings'
 import { images } from '../../resources/images'
 import { Button } from '../ui'
 import { Container } from './Container'
+import { cn } from '../../utils/cn'
 
 const { routes } = uiConstants
 const { brand, nav, cta } = commonStrings
@@ -15,10 +16,6 @@ const navItems = [
   { to: routes.projects, label: nav.projects },
   { to: routes.insights, label: nav.insights },
 ] as const
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
 
 function MenuIcon({ open }: { open: boolean }) {
   return (

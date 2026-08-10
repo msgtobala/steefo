@@ -1,9 +1,6 @@
 import { Container } from '../common'
 import { productsStrings } from '../../resources/products_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn, mediaPlaceholderProps } from '../../utils'
 
 export type ProductHeroProps = {
   productNumber: string
@@ -37,8 +34,7 @@ export function ProductHero({
         {subtitle}
       </p>
       <div
-        role="img"
-        aria-label={productsStrings.heroMediaAriaLabel}
+        {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
         className="mt-8 h-[280px] w-full bg-surface-placeholder md:mt-10 md:h-[460px] lg:h-[566px]"
       />
     </Container>

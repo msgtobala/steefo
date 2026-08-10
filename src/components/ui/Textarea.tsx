@@ -1,5 +1,6 @@
 import { forwardRef, type TextareaHTMLAttributes, useId } from 'react'
-import { FieldShell, fieldControlClass, getDescribedBy, cn } from './field'
+import { cn } from '../../utils'
+import { FieldShell, fieldControlClass, getDescribedBy } from './field'
 
 export type TextareaProps = Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,

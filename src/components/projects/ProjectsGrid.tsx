@@ -1,8 +1,5 @@
 import { ProjectCard } from './ProjectCard'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type ProjectsGridItem = {
   id: string

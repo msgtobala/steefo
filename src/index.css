@@ -423,3 +423,13 @@
   text-transform: uppercase;
   color: var(--color-brand-label);
 }
+
+/* Hide scrollbars while keeping programmatic / overflow scroll */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

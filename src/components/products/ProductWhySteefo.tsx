@@ -1,9 +1,13 @@
 import { Container } from '../common'
 import { icons } from '../../resources/icons'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import {
+  cn,
+  PLUS_GRID_H_LINES,
+  PLUS_GRID_V_LINES,
+  plusGridHLineStyle,
+  plusGridPlusStyle,
+  plusGridVLineStyle,
+} from '../../utils'
 
 /** Crossed design mark — Figma design_services on Why Choose Us cards */
 function FeatureIcon({ className }: { className?: string }) {
@@ -45,9 +49,6 @@ function FeatureIcon({ className }: { className?: string }) {
  */
 const LINE_OVERHANG_PX = 116
 
-const V_LINES = ['0%', '33.333%', '66.666%', '100%'] as const
-const H_LINES = ['0%', '50%', '100%'] as const
-
 export type ProductWhyItemProps = {
   id: string
   title: string
@@ -86,41 +87,33 @@ export function ProductWhySteefo({
           </h2>
         </div>
 
-        <div className="relative mt-12 lg:mt-36">
+        <div className="relative mt-12 mb-12 lg:mt-36 lg:mb-16">
           <div className="relative hidden overflow-visible lg:block">
             <div className="relative min-h-[560px] overflow-visible xl:min-h-[628px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 overflow-visible"
               >
-                {H_LINES.map((top) => (
+                {PLUS_GRID_H_LINES.map((top) => (
                   <img
                     key={`h-${top}`}
                     src={icons.gridLine}
                     alt=""
                     className="absolute h-px max-w-none -translate-y-1/2"
-                    style={{
-                      top,
-                      left: -LINE_OVERHANG_PX,
-                      width: `calc(100% + ${LINE_OVERHANG_PX * 2}px)`,
-                    }}
+                    style={plusGridHLineStyle(top, LINE_OVERHANG_PX)}
                   />
                 ))}
-                {V_LINES.map((left) => (
+                {PLUS_GRID_V_LINES.map((left) => (
                   <img
                     key={`v-${left}`}
                     src={icons.gridLineV}
                     alt=""
                     className="absolute w-px max-w-none -translate-x-1/2"
-                    style={{
-                      left,
-                      top: -LINE_OVERHANG_PX,
-                      height: `calc(100% + ${LINE_OVERHANG_PX * 2}px)`,
-                    }}
+                    style={plusGridVLineStyle(left, LINE_OVERHANG_PX)}
                   />
                 ))}
-                {H_LINES.flatMap((top) =>
-                  V_LINES.map((left) => (
+                {PLUS_GRID_H_LINES.flatMap((top) =>
+                  PLUS_GRID_V_LINES.map((left) => (
                     <img
                       key={`plus-${left}-${top}`}
                       src={icons.plus}
@@ -128,7 +121,7 @@ export function ProductWhySteefo({
                       width={13.64}
                       height={13.64}
                       className="absolute z-10 size-[13.64px] -translate-x-1/2 -translate-y-1/2"
-                      style={{ left, top }}
+                      style={plusGridPlusStyle(left, top)}
                     />
                   )),
                 )}

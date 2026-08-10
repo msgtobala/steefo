@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom'
 import { projectsStrings } from '../../resources/projects_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn, mediaPlaceholderProps } from '../../utils'
 
 export type FeaturedProjectProps = {
   location: string
@@ -31,8 +28,7 @@ export function FeaturedProject({
   return (
     <article className={cn('flex flex-col gap-8 md:gap-10', className)}>
       <div
-        role="img"
-        aria-label={projectsStrings.featuredMediaAriaLabel}
+        {...mediaPlaceholderProps(projectsStrings.featuredMediaAriaLabel)}
         className="h-[280px] w-full bg-surface-placeholder md:h-[460px] lg:h-[566px]"
       />
 

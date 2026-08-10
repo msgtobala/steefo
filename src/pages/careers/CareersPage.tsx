@@ -1,6 +1,7 @@
 import { Container, PageHero } from '../../components/common'
 import { OpeningCard } from '../../components/careers'
 import { careersStrings } from '../../resources/careers_strings'
+import { mediaPlaceholderProps } from '../../utils'
 import { careerOpenings } from './openings.config'
 
 /**
@@ -23,8 +24,7 @@ export function CareersPage() {
       >
         {/* Banner placeholder — Figma #d9d9d9 1320×460 */}
         <div
-          role="img"
-          aria-label={careersStrings.bannerAriaLabel}
+          {...mediaPlaceholderProps(careersStrings.bannerAriaLabel)}
           className="mt-8 h-[280px] w-full bg-surface-placeholder md:mt-10 md:h-[460px]"
         />
       </PageHero>

@@ -1,24 +1,12 @@
 import { type FormEvent } from 'react'
-import { uiConstants } from '../../constants/ui_constants'
 import { commonStrings } from '../../resources/common_strings'
 import { images } from '../../resources/images'
+import { buildMailto, cn } from '../../utils'
 import { Button } from '../ui'
 import { Container } from './Container'
 
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
-
 export type SubscribeBannerProps = {
   className?: string
-}
-
-function buildMailto(email: string) {
-  const params = new URLSearchParams({
-    subject: commonStrings.subscribe.mailSubject,
-    body: `Email: ${email}`,
-  })
-  return `mailto:${uiConstants.contact.email}?${params.toString()}`
 }
 
 /**
@@ -33,7 +21,10 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
     const data = new FormData(event.currentTarget)
     const email = String(data.get('email') ?? '').trim()
     if (!email) return
-    window.location.href = buildMailto(email)
+    window.location.href = buildMailto({
+      subject: commonStrings.subscribe.mailSubject,
+      body: `Email: ${email}`,
+    })
   }
 
   return (

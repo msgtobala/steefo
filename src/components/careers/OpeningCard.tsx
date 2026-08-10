@@ -1,9 +1,6 @@
 import { Button } from '../ui'
 import { careersStrings } from '../../resources/careers_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type OpeningCardProps = {
   title: string

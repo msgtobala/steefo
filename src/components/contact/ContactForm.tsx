@@ -6,14 +6,17 @@ import {
   Textarea,
   type FieldOption,
 } from '../ui'
-import { uiConstants } from '../../constants/ui_constants'
 import { contactStrings } from '../../resources/contact_strings'
+import { buildMailto } from '../../utils'
 
 export type ContactFormProps = {
   projectTypeOptions: FieldOption[]
 }
 
-function buildMailto(form: HTMLFormElement, projectTypeOptions: FieldOption[]) {
+function contactFormMailto(
+  form: HTMLFormElement,
+  projectTypeOptions: FieldOption[],
+) {
   const data = new FormData(form)
   const fullName = String(data.get('fullName') ?? '').trim()
   const email = String(data.get('email') ?? '').trim()
@@ -26,23 +29,19 @@ function buildMailto(form: HTMLFormElement, projectTypeOptions: FieldOption[]) {
     projectTypeOptions.find((option) => option.value === projectType)?.label ??
     projectType
 
-  const body = [
-    `Full Name: ${fullName}`,
-    `Email: ${email}`,
-    `Phone: ${phone}`,
-    `Company: ${company}`,
-    `Project Type: ${projectLabel}`,
-    '',
-    'Message:',
-    message,
-  ].join('\n')
-
-  const params = new URLSearchParams({
+  return buildMailto({
     subject: contactStrings.mailSubject,
-    body,
+    body: [
+      `Full Name: ${fullName}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Company: ${company}`,
+      `Project Type: ${projectLabel}`,
+      '',
+      'Message:',
+      message,
+    ].join('\n'),
   })
-
-  return `mailto:${uiConstants.contact.email}?${params.toString()}`
 }
 
 /**
@@ -54,7 +53,10 @@ export function ContactForm({ projectTypeOptions }: ContactFormProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    window.location.href = buildMailto(event.currentTarget, projectTypeOptions)
+    window.location.href = contactFormMailto(
+      event.currentTarget,
+      projectTypeOptions,
+    )
   }
 
   return (

@@ -1,9 +1,6 @@
 import type { ReactNode } from 'react'
 import { Container } from './Container'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type PageHeroProps = {
   /** Small uppercase label above the title (e.g. “Careers”). */

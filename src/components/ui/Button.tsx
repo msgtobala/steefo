@@ -12,6 +12,7 @@ import {
   normalizeCorners,
   type ButtonCorner,
 } from './button-clip'
+import { cn } from '../../utils/cn'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
 
@@ -56,10 +57,6 @@ const VARIANT_DEFAULT_CORNERS: Record<ButtonVariant, ButtonCorner[]> = {
   primary: ['top-right'],
   secondary: ['bottom-left'],
   tertiary: ['top-right'],
-}
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
 }
 
 function ArrowRightIcon({ className }: { className?: string }) {

@@ -1,9 +1,6 @@
 import { Container } from '../common'
 import { productsStrings } from '../../resources/products_strings'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn, mediaPlaceholderProps } from '../../utils'
 
 export type ProductSpecItem = {
   id: string
@@ -62,8 +59,7 @@ export function ProductFeatures({
         </div>
 
         <div
-          role="img"
-          aria-label={productsStrings.featuresMediaAriaLabel}
+          {...mediaPlaceholderProps(productsStrings.featuresMediaAriaLabel)}
           className="h-[320px] w-full bg-surface-placeholder md:h-[420px] lg:h-[477px]"
           style={{
             // Top-right diagonal cut — Figma Mask group 1:3331

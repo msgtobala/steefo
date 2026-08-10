@@ -1,9 +1,6 @@
 import type { InsightArticle } from '../../pages/insights/insights.config'
 import { InsightCard } from './InsightCard'
-
-function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
+import { cn } from '../../utils/cn'
 
 export type InsightsGridProps = {
   articles: InsightArticle[]

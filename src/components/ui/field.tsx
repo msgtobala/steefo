@@ -1,10 +1,7 @@
 import type { ReactNode } from 'react'
+import { cn } from '../../utils/cn'
 
 /** Shared underline field styles — Figma Contact form inputs (14:3340–14:3342). */
-export function cn(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(' ')
-}
-
 export const fieldControlClass = cn(
   'w-full bg-transparent font-display text-sm font-light leading-[1.3]',
   'text-foreground placeholder:text-placeholder-faint',

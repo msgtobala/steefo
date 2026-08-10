@@ -7,11 +7,11 @@ import {
   type KeyboardEvent,
   type Ref,
 } from 'react'
+import { cn } from '../../utils'
 import {
   FieldShell,
   fieldControlClass,
   getDescribedBy,
-  cn,
   type FieldOption,
 } from './field'
 

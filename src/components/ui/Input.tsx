@@ -1,5 +1,6 @@
 import { forwardRef, type InputHTMLAttributes, useId } from 'react'
-import { FieldShell, fieldControlClass, getDescribedBy, cn } from './field'
+import { cn } from '../../utils'
+import { FieldShell, fieldControlClass, getDescribedBy } from './field'
 
 export type InputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
