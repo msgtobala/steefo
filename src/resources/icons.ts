@@ -1,4 +1,6 @@
 import footerNotch from '../assets/icons/layout/footer-notch.svg'
+import gridLine from '../assets/icons/layout/grid-line.svg'
+import gridLineV from '../assets/icons/layout/grid-line-v.svg'
 import plus from '../assets/icons/layout/plus.svg'
 import facebook from '../assets/icons/social/facebook.svg'
 import instagram from '../assets/icons/social/instagram.svg'
@@ -12,6 +14,8 @@ export const icons = {
   instagram,
   footerNotch,
   plus,
+  gridLine,
+  gridLineV,
 } as const
 
 export type IconKey = keyof typeof icons

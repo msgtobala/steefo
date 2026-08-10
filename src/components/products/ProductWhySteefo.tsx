@@ -38,8 +38,12 @@ function FeatureIcon({ className }: { className?: string }) {
   )
 }
 
-/** How far grid hairlines extend past the card grid edges. */
-const LINE_OVERHANG_PX = 48
+/**
+ * Figma Line 28 (21:3465) fades over the first/last ~8% of stroke length.
+ * Overhang keeps outer “+” markers outside that near-zero tip zone (~8% of
+ * ~1414px ≈ 116px).
+ */
+const LINE_OVERHANG_PX = 116
 
 const V_LINES = ['0%', '33.333%', '66.666%', '100%'] as const
 const H_LINES = ['0%', '50%', '100%'] as const
@@ -59,7 +63,7 @@ export type ProductWhySteefoProps = {
 
 /**
  * Why Choose Us — Figma grid 1:3395
- * Continuous hairlines (with overhang) + `icons.plus` at every junction.
+ * Gradient hairlines from Figma 21:3465 + `icons.plus` at every junction.
  */
 export function ProductWhySteefo({
   eyebrow,
@@ -84,21 +88,17 @@ export function ProductWhySteefo({
 
         <div className="relative mt-12 lg:mt-16">
           <div className="relative hidden overflow-visible lg:block">
-            <div
-              className="relative min-h-[560px] overflow-visible xl:min-h-[628px]"
-              style={{
-                marginInline: LINE_OVERHANG_PX,
-                marginBlock: LINE_OVERHANG_PX,
-              }}
-            >
+            <div className="relative min-h-[560px] overflow-visible xl:min-h-[628px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 overflow-visible"
               >
                 {H_LINES.map((top) => (
-                  <span
+                  <img
                     key={`h-${top}`}
-                    className="absolute h-px -translate-y-1/2 bg-white/20"
+                    src={icons.gridLine}
+                    alt=""
+                    className="absolute h-px max-w-none -translate-y-1/2"
                     style={{
                       top,
                       left: -LINE_OVERHANG_PX,
@@ -107,9 +107,11 @@ export function ProductWhySteefo({
                   />
                 ))}
                 {V_LINES.map((left) => (
-                  <span
+                  <img
                     key={`v-${left}`}
-                    className="absolute w-px -translate-x-1/2 bg-white/20"
+                    src={icons.gridLineV}
+                    alt=""
+                    className="absolute w-px max-w-none -translate-x-1/2"
                     style={{
                       left,
                       top: -LINE_OVERHANG_PX,
