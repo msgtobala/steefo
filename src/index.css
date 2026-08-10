@@ -1,0 +1,425 @@
+@import 'tailwindcss';
+
+/* -------------------------------------------------------------------------- */
+/* Plus Jakarta Sans — local (assets/fonts/plus_jakarta_sans)                  */
+/* -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus_jakarta_sans/PlusJakartaSans-Light.ttf')
+    format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus_jakarta_sans/PlusJakartaSans-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus_jakarta_sans/PlusJakartaSans-Medium.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus_jakarta_sans/PlusJakartaSans-SemiBold.ttf')
+    format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus_jakarta_sans/PlusJakartaSans-Bold.ttf')
+    format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Space Grotesk — local (assets/fonts/space_grotesk)                         */
+/* -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/space_grotesk/SpaceGrotesk-Light.ttf')
+    format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/space_grotesk/SpaceGrotesk-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/space_grotesk/SpaceGrotesk-Medium.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/space_grotesk/SpaceGrotesk-SemiBold.ttf')
+    format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/space_grotesk/SpaceGrotesk-Bold.ttf')
+    format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Design tokens from Figma (Steefo — 1440 artboards)                          */
+/* Home 2:45 · About 1:2976 · Products 1:3251 · Insights 1:3684               */
+/* Contact 1:3890 · Careers 1:4045                                            */
+/* Validated via Figma MCP get_design_context (Aug 2026)                      */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  /* Fonts
+   * Space Grotesk = page UI (headlines, body, nav, buttons)
+   * Plus Jakarta Sans = footer columns / legal only
+   */
+  --font-sans:
+    'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-display:
+    'Space Grotesk', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand — Figma uses two reds:
+   * #DB251C = primary CTAs, accent words in headlines, badges
+   * #EB1C24 = section eyebrows / labels (uppercase)
+   */
+  --color-brand: #db251c;
+  --color-brand-hover: #c21f18;
+  --color-brand-label: #eb1c24;
+  --color-brand-foreground: #ffffff;
+
+  /* Surfaces */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f5f5;
+  --color-surface-muted-96: rgb(245 245 245 / 0.96); /* Products stat cards */
+  --color-surface-subtle: #f3f3f3;
+  --color-surface-placeholder: #d9d9d9;
+  --color-surface-dark: #000000;
+  --color-surface-near-black: #080808; /* About dark band */
+  --color-surface-dark-elevated: #111111;
+  --color-surface-dark-foreground: #ffffff;
+
+  /* Text */
+  --color-body: #272727;
+  --color-ink: #1b1b1b; /* Insights card titles */
+  --color-muted-foreground: #818181; /* form borders / email placeholder */
+  --color-subtle-foreground: #8f8f8f; /* Light_Gray — meta / captions */
+  --color-label-muted: #bcbcbc; /* role labels, stat labels */
+  --color-muted-on-dark: #a3a3a3; /* feature copy on black */
+  --color-placeholder-faint: rgb(129 129 129 / 0.4); /* Contact form hints */
+  --color-inverse: #ffffff;
+
+  /* Borders / lines */
+  --color-border: #e5e5e5;
+  --color-border-strong: #d4d4d4;
+  --color-border-input: #818181;
+  --color-border-dark: #2a2a2a;
+  --color-ring: #db251c;
+
+  /* Overlays — About product/capability cards */
+  --color-overlay: rgb(0 0 0 / 0.4);
+  --color-overlay-strong: rgb(0 0 0 / 0.65);
+  --color-overlay-light: rgb(243 243 243 / 0.6);
+  --color-overlay-mid: rgb(34 34 34 / 0.5);
+  --color-overlay-brand: rgb(219 37 28 / 0.5);
+
+  /* Header glass (Desktop Header — identical on all 6 pages) */
+  --color-header: rgb(0 0 0 / 0.3);
+  --color-header-foreground: #ffffff;
+  --blur-header: 19.1px;
+
+  /* Typography scale — measured from About / Products / Insights / Careers / Contact */
+  --text-eyebrow: 0.875rem; /* 14px Space Grotesk Medium, uppercase */
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0;
+  --text-eyebrow--font-weight: 500;
+
+  --text-meta: 0.75rem; /* 12px uppercase meta (Blog · 5 Min) */
+  --text-meta--line-height: 1.1;
+  --text-meta--font-weight: 400;
+
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-sm--line-height: 1.3;
+
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.3;
+
+  --text-lead: 1.25rem; /* 20px page subheads */
+  --text-lead--line-height: 1.2;
+
+  --text-button: 0.875rem; /* 14px primary CTAs */
+  --text-button--line-height: 1.2;
+  --text-button--font-weight: 500;
+
+  --text-button-sm: 0.75rem; /* 12px header / Apply Now */
+  --text-button-sm--line-height: 1.2;
+  --text-button-sm--font-weight: 400;
+
+  --text-nav: 0.875rem; /* 14px Space Grotesk Regular */
+  --text-nav--line-height: 1.25;
+  --text-nav--font-weight: 400;
+
+  --text-h6: 1.125rem;
+  --text-h6--line-height: 1.3;
+  --text-h6--font-weight: 500;
+
+  --text-h5: 1.5rem; /* 24px card / feature titles */
+  --text-h5--line-height: 1.2;
+  --text-h5--font-weight: 500;
+
+  --text-h4: 1.75rem; /* 28px */
+  --text-h4--line-height: 1.2;
+  --text-h4--font-weight: 400;
+
+  --text-h3: 2rem; /* 32px careers job titles */
+  --text-h3--line-height: 1.1;
+  --text-h3--font-weight: 400;
+
+  --text-h2: 2.5rem; /* 40px section titles */
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2--font-weight: 400;
+
+  --text-h1: 4.5rem; /* 72px page heroes */
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.0556em; /* -4px at 72px */
+  --text-h1--font-weight: 400;
+
+  --text-display: 4.5rem; /* 72px */
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.0556em;
+  --text-display--font-weight: 400;
+
+  --text-display-sm: 4rem; /* 64px footer CTA (some pages) */
+  --text-display-sm--line-height: 1.1;
+  --text-display-sm--letter-spacing: -0.03125em; /* -2px */
+  --text-display-sm--font-weight: 500;
+
+  --text-stat: 4.5rem; /* 72px stat numbers */
+  --text-stat--line-height: 1.1;
+  --text-stat--letter-spacing: 0;
+  --text-stat--font-weight: 400;
+
+  /* Spacing — consistent across all 6 pages (1440 artboard) */
+  --spacing-gutter: 3.75rem; /* 60px content inset (left-[60px]) */
+  --spacing-gutter-md: 2.5rem; /* 40px */
+  --spacing-gutter-sm: 1.25rem; /* 20px */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+  --spacing-section-lg: 7.5rem;
+  --spacing-page-hero: 15rem; /* ~240px eyebrow from artboard top */
+  --spacing-header-top: 2.5rem; /* header y=40 */
+  --spacing-header-pad-left: 4.75rem; /* 76px inside header bar */
+  --spacing-header-pad-right: 2.375rem; /* 38px inside header bar */
+
+  /* Radii — cards / inputs slightly rounded; CTAs use clip, not radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Shadows */
+  --shadow-card: 0 8px 24px rgb(0 0 0 / 0.08);
+  --shadow-elevated: 0 16px 40px rgb(0 0 0 / 0.12);
+
+  /* Layout — Home Page 2:45 */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
+
+  --container-page: 90rem; /* 1440px artboard */
+  --container-content: 82.5rem; /* 1320px = 1440 − 60 − 60 */
+  --container-header: 70.625rem; /* 1130px floating header bar */
+}
+
+/* -------------------------------------------------------------------------- */
+/* Base                                                                       */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: clip;
+    /* Page UI is Space Grotesk; footer keeps Plus Jakarta via font-sans */
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    color: var(--color-body);
+    background-color: var(--color-background);
+  }
+
+  #root {
+    min-height: 100svh;
+    width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-brand) 25%, white);
+    color: var(--color-foreground);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Utilities                                                                  */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Page content column — Figma Home 2:45
+ * Content width 1320px; on a 1440 artboard that yields 60px side gutters.
+ * Full-bleed sections stay outside this utility.
+ */
+@utility container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter-sm);
+
+  @media (width >= 48rem) {
+    padding-inline: var(--spacing-gutter-md);
+  }
+
+  @media (width >= 90rem) {
+    /* 1320 centered in ≥1440 → exact 60px+ outer margins */
+    padding-inline: 0;
+  }
+}
+
+/*
+ * Floating header bar — Figma Desktop Header 1130×80 at x=155 on 1440.
+ */
+@utility container-header {
+  width: 100%;
+  max-width: var(--container-header);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter-sm);
+  position: relative;
+
+  @media (width >= 48rem) {
+    padding-inline: var(--spacing-gutter-md);
+  }
+
+  @media (width >= 70.625rem) {
+    padding-inline: 0;
+  }
+}
+
+/* Chamfered CTA shape from Figma button Subtract (e.g. “Let’s talk”) */
+@utility clip-cta {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% 100%,
+    0 100%
+  );
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+/* Section eyebrow — Space Grotesk Medium 14px uppercase #EB1C24 */
+@utility text-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+  color: var(--color-brand-label);
+}

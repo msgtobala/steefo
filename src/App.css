@@ -1,0 +1,31 @@
+.page h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, var(--text-h2));
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+  color: var(--color-foreground);
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+
+.page p {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+  color: var(--color-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+.product-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.product-list li {
+  margin-bottom: 0.5rem;
+}
+
+.product-list a {
+  color: var(--color-brand);
+}
