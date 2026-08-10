@@ -86,7 +86,7 @@ export function ProductWhySteefo({
           </h2>
         </div>
 
-        <div className="relative mt-12 lg:mt-16">
+        <div className="relative mt-12 lg:mt-36">
           <div className="relative hidden overflow-visible lg:block">
             <div className="relative min-h-[560px] overflow-visible xl:min-h-[628px]">
               <div
