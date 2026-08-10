@@ -71,3 +71,14 @@ export function getButtonClipPath(
 
   return `polygon(${points.join(', ')})`
 }
+
+/**
+ * Inner cut for a bordered (padded) shell so the 45° edge stays the same
+ * thickness as the straight sides. Same cut on both layers makes the diagonal
+ * ≈ borderWidth × √2.
+ *
+ * With outer cut S and border B: inner cut = S − B(2 − √2).
+ */
+export function getInnerCutSize(cutSize: number, borderWidth = 1): number {
+  return Math.max(0, cutSize - borderWidth * (2 - Math.SQRT2))
+}

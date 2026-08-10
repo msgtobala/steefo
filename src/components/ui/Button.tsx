@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom'
 import {
   getButtonClipPath,
+  getInnerCutSize,
   normalizeCorners,
   type ButtonCorner,
 } from './button-clip'
@@ -145,10 +146,13 @@ export const Button = forwardRef<
     cutCorners,
     VARIANT_DEFAULT_CORNERS[variant],
   )
-  const clipPath = getButtonClipPath(corners, cutSize)
   const showArrow = withArrow ?? variant === 'tertiary'
   const styles = variantClass[variant]
   const hasBorderShell = variant === 'secondary' || variant === 'tertiary'
+  const shellClipPath = getButtonClipPath(corners, cutSize)
+  const controlClipPath = hasBorderShell
+    ? getButtonClipPath(corners, getInnerCutSize(cutSize))
+    : shellClipPath
   const isLink = 'to' in props && typeof props.to === 'string'
 
   const content = (
@@ -179,7 +183,7 @@ export const Button = forwardRef<
         ref={ref as Ref<HTMLAnchorElement>}
         to={to}
         className={controlClass}
-        style={{ clipPath }}
+        style={{ clipPath: controlClipPath }}
         {...linkRest}
       >
         {content}
@@ -192,7 +196,7 @@ export const Button = forwardRef<
         ref={ref as Ref<HTMLButtonElement>}
         type={buttonRest.type ?? 'button'}
         className={controlClass}
-        style={{ clipPath }}
+        style={{ clipPath: controlClipPath }}
         {...buttonRest}
       >
         {content}
@@ -205,7 +209,7 @@ export const Button = forwardRef<
   return (
     <span
       className={cn('inline-flex p-px', styles.shell, className)}
-      style={{ clipPath }}
+      style={{ clipPath: shellClipPath }}
     >
       {control}
     </span>
