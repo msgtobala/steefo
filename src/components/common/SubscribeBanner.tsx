@@ -1,4 +1,7 @@
-import { type FormEvent } from 'react'
+import { type FormEvent, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
+import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
 import { commonStrings } from '../../resources/common_strings'
 import { images } from '../../resources/images'
 import { buildMailto, cn } from '../../utils'
@@ -12,9 +15,77 @@ export type SubscribeBannerProps = {
 /**
  * Shared “Ready to Build” CTA — Figma Insights 1:3684 / Projects 1:3574
  * Full-bleed black band with email capture (15:3455) + subscribeBanner visual.
+ *
+ * Lives in Layout (stays mounted across routes), so animations re-bind on pathname.
  */
 export function SubscribeBanner({ className }: SubscribeBannerProps) {
+  const rootRef = useRef<HTMLElement>(null)
+  const { pathname } = useLocation()
   const { subscribe } = commonStrings
+
+  useGSAP(
+    () => {
+      registerGsap()
+      if (prefersReducedMotion()) return
+
+      const copy = gsap.utils.toArray<HTMLElement>('[data-subscribe-copy]')
+      const form = gsap.utils.toArray<HTMLElement>('[data-subscribe-form]')
+      const visual = gsap.utils.toArray<HTMLElement>('[data-subscribe-visual]')
+
+      gsap.fromTo(
+        copy,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        form,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          delay: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        visual,
+        { opacity: 0, x: 56, scale: 0.94 },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 1.1,
+          delay: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+    },
+    { scope: rootRef, dependencies: [pathname] },
+  )
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -29,15 +100,22 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
 
   return (
     <section
+      ref={rootRef}
       className={cn('w-full overflow-hidden bg-black text-white', className)}
     >
       <Container className="grid grid-cols-1 items-center gap-10 py-12 md:gap-12 md:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,480px)] lg:gap-16 lg:py-0">
         <div className="flex max-w-[560px] flex-col gap-6 py-4 lg:py-16">
-          <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.15] tracking-[-0.02em] text-balance">
+          <h2
+            className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.15] tracking-[-0.02em] text-balance"
+            data-subscribe-copy
+          >
             {subscribe.titleBefore}
             <span className="text-brand">{subscribe.titleHighlight}</span>
           </h2>
-          <p className="max-w-[420px] font-display text-base leading-[1.3] text-white/80">
+          <p
+            className="max-w-[420px] font-display text-base leading-[1.3] text-white/80"
+            data-subscribe-copy
+          >
             {subscribe.body}
           </p>
 
@@ -45,6 +123,7 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
             className="mt-2 flex h-10 w-full max-w-[460px] items-stretch"
             onSubmit={handleSubmit}
             noValidate
+            data-subscribe-form
           >
             {/* Figma 15:3455 — 335×40 bordered field flush to 126×40 Submit */}
             <input
@@ -75,7 +154,10 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
           </form>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[420px] lg:max-w-none lg:justify-self-end">
+        <div
+          className="relative mx-auto w-full max-w-[420px] lg:max-w-none lg:justify-self-end"
+          data-subscribe-visual
+        >
           <img
             src={images.subscribeBanner}
             alt={subscribe.bannerAriaLabel}

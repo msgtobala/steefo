@@ -47,10 +47,13 @@ export function AboutCapabilities({
   }
 
   return (
-    <section className={cn('mt-16 md:mt-24', className)}>
+    <section
+      className={cn('mt-16 md:mt-24', className)}
+      data-animate-section
+    >
       <Container>
         <div className="mb-8 flex items-end justify-between gap-6 md:mb-10">
-          <div className="max-w-[475px]">
+          <div className="max-w-[475px]" data-animate="left">
             <p className="text-eyebrow">{eyebrow}</p>
             <h2 className="mt-3 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-foreground">
               {titleBefore}
@@ -58,18 +61,21 @@ export function AboutCapabilities({
               {titleAfter}
             </h2>
           </div>
-          <CarouselNav
-            prevAriaLabel={aboutStrings.capabilities.prevAriaLabel}
-            nextAriaLabel={aboutStrings.capabilities.nextAriaLabel}
-            onPrev={() => scrollByCard(-1)}
-            onNext={() => scrollByCard(1)}
-          />
+          <div data-animate="right">
+            <CarouselNav
+              prevAriaLabel={aboutStrings.capabilities.prevAriaLabel}
+              nextAriaLabel={aboutStrings.capabilities.nextAriaLabel}
+              onPrev={() => scrollByCard(-1)}
+              onNext={() => scrollByCard(1)}
+            />
+          </div>
         </div>
       </Container>
 
       <div
         ref={scrollerRef}
         className="scrollbar-none overflow-x-auto overscroll-x-contain touch-pan-y"
+        data-animate-stagger
       >
         <div className="container-content flex w-max gap-5">
           {items.map((item) => (
@@ -78,6 +84,7 @@ export function AboutCapabilities({
               icon={item.icon}
               title={item.title}
               body={item.body}
+              data-animate="up"
             />
           ))}
         </div>

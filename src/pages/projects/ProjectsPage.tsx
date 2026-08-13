@@ -3,6 +3,7 @@ import {
   FeaturedProject,
   ProjectsGrid,
 } from '../../components/projects'
+import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { projectsStrings } from '../../resources/projects_strings'
 import { projectsConfig } from './projects.config'
 
@@ -11,10 +12,11 @@ import { projectsConfig } from './projects.config'
  * Hero + featured project + 3×2 grid. SubscribeBanner lives in Layout.
  */
 export function ProjectsPage() {
+  const rootRef = usePageRevealRef({ withHero: true })
   const { featured, projects } = projectsConfig
 
   return (
-    <>
+    <div ref={rootRef}>
       <PageHero
         eyebrow={projectsStrings.eyebrow}
         title={
@@ -39,6 +41,6 @@ export function ProjectsPage() {
       <Container className="mt-14 md:mt-20">
         <ProjectsGrid projects={projects} />
       </Container>
-    </>
+    </div>
   )
 }

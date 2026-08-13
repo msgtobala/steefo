@@ -26,16 +26,25 @@ export function ProductHero({
         className,
       )}
     >
-      <p className="text-eyebrow">{productNumber}</p>
-      <h1 className="mt-3 max-w-[711px] font-display text-[clamp(2rem,5vw,4.5rem)] font-normal leading-none tracking-[-0.0556em] text-balance text-foreground">
+      <p className="text-eyebrow" data-animate-hero>
+        {productNumber}
+      </p>
+      <h1
+        className="mt-3 max-w-[711px] font-display text-[clamp(2rem,5vw,4.5rem)] font-normal leading-none tracking-[-0.0556em] text-balance text-foreground"
+        data-animate-hero
+      >
         {title}
       </h1>
-      <p className="mt-6 max-w-[608px] font-display text-base leading-[1.3] text-body md:mt-8 md:text-lg">
+      <p
+        className="mt-6 max-w-[608px] font-display text-base leading-[1.3] text-body md:mt-8 md:text-lg"
+        data-animate-hero
+      >
         {subtitle}
       </p>
       <div
         {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
         className="mt-8 h-[280px] w-full bg-surface-placeholder md:mt-10 md:h-[460px] lg:h-[566px]"
+        data-animate-hero
       />
     </Container>
   )

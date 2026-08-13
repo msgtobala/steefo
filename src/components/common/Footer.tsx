@@ -1,5 +1,8 @@
-import { Link } from 'react-router-dom'
+import { useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
 import { uiConstants } from '../../constants/ui_constants'
+import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
 import { commonStrings } from '../../resources/common_strings'
 import { icons } from '../../resources/icons'
 import { images } from '../../resources/images'
@@ -31,10 +34,113 @@ export type FooterProps = {
 /**
  * Site footer — Figma node 2:2373.
  * Desktop keeps 851px rhythm; mobile/tablet stack and shrink spacing.
+ *
+ * Lives in Layout (stays mounted across routes), so animations re-bind on pathname.
  */
 export function Footer({ className }: FooterProps) {
+  const rootRef = useRef<HTMLElement>(null)
+  const { pathname } = useLocation()
+
+  useGSAP(
+    () => {
+      registerGsap()
+      if (prefersReducedMotion()) return
+
+      const headline = gsap.utils.toArray<HTMLElement>('[data-footer-headline]')
+      const ctaLink = gsap.utils.toArray<HTMLElement>('[data-footer-cta]')
+      const cols = gsap.utils.toArray<HTMLElement>('[data-footer-col]')
+      const rule = gsap.utils.toArray<HTMLElement>('[data-footer-rule]')
+      const bar = gsap.utils.toArray<HTMLElement>('[data-footer-bar]')
+
+      gsap.fromTo(
+        headline,
+        { opacity: 0, y: 48 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        ctaLink,
+        { opacity: 0, y: 16 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        cols,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: cols[0] ?? rootRef.current,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        rule,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          transformOrigin: '0% 50%',
+          scrollTrigger: {
+            trigger: rule[0] ?? rootRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      gsap.fromTo(
+        bar,
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: rule[0] ?? rootRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+    },
+    { scope: rootRef, dependencies: [pathname] },
+  )
+
   return (
     <footer
+      ref={rootRef}
       className={cn(
         'relative isolate mt-auto w-full overflow-hidden bg-black text-white',
         className,
@@ -64,7 +170,10 @@ export function Footer({ className }: FooterProps) {
       <div className="relative z-10 flex min-h-0 flex-col md:min-h-[851px]">
         {/* CTA */}
         <Container className="flex flex-col items-center pt-16 text-center md:pt-[120px]">
-          <h2 className="max-w-[560px] font-display text-[clamp(1.75rem,6vw,4rem)] font-medium leading-[1.15] tracking-[-0.03em] text-balance text-white md:leading-[1.2] md:tracking-[-2px]">
+          <h2
+            className="max-w-[560px] font-display text-[clamp(1.75rem,6vw,4rem)] font-medium leading-[1.15] tracking-[-0.03em] text-balance text-white md:leading-[1.2] md:tracking-[-2px]"
+            data-footer-headline
+          >
             {footerCopy.headline.before}
             <span className="text-brand">{footerCopy.headline.highlight}</span>
             <br />
@@ -73,6 +182,7 @@ export function Footer({ className }: FooterProps) {
           <Link
             to={routes.contact}
             className="mt-5 font-sans text-sm font-semibold leading-[1.2] text-white underline decoration-solid underline-offset-4 transition-colors hover:text-brand md:mt-7"
+            data-footer-cta
           >
             {cta.getAQuote}
           </Link>
@@ -81,7 +191,7 @@ export function Footer({ className }: FooterProps) {
         {/* Columns */}
         <Container className="mt-auto flex flex-col gap-10 pt-14 pb-10 font-sans sm:pt-20 md:pt-[180px] md:pb-12 lg:flex-row lg:justify-between lg:gap-8 lg:pb-14">
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-12 md:gap-[103px]">
-            <div className="max-w-[280px] sm:max-w-[238px]">
+            <div className="max-w-[280px] sm:max-w-[238px]" data-footer-col>
               <Link to={routes.home} aria-label={brand.homeAriaLabel}>
                 <img
                   src={images.logo}
@@ -99,7 +209,10 @@ export function Footer({ className }: FooterProps) {
               </div>
             </div>
 
-            <div className="min-w-0 text-sm leading-[1.2] text-white sm:w-[126px]">
+            <div
+              className="min-w-0 text-sm leading-[1.2] text-white sm:w-[126px]"
+              data-footer-col
+            >
               <p className="font-semibold">{footerCopy.phoneLabel}</p>
               {contact.phones.map((phone) => (
                 <p key={phone}>
@@ -127,6 +240,7 @@ export function Footer({ className }: FooterProps) {
             <nav
               aria-label={footerCopy.primaryNavAriaLabel}
               className="flex min-w-0 flex-col text-sm leading-[2.37] text-white sm:min-w-[75px]"
+              data-footer-col
             >
               {primaryLinks.map(({ to, label }) => (
                 <Link
@@ -142,6 +256,7 @@ export function Footer({ className }: FooterProps) {
             <nav
               aria-label={footerCopy.legalNavAriaLabel}
               className="flex min-w-0 flex-col text-sm leading-[2.37] text-white sm:w-[91px]"
+              data-footer-col
             >
               {secondaryLinks.map(({ to, label }) => (
                 <Link
@@ -158,12 +273,18 @@ export function Footer({ className }: FooterProps) {
 
         {/* Bottom bar */}
         <div className="mx-auto w-full max-w-[var(--container-page)] px-5 pb-5 font-sans sm:px-8 md:px-10">
-          <div className="h-px w-full bg-white" />
+          <div
+            className="h-px w-full origin-left bg-white"
+            data-footer-rule
+          />
           <div className="flex flex-col items-start justify-between gap-4 pt-4 sm:flex-row sm:items-center">
-            <p className="text-sm leading-[1.2] text-white">
+            <p
+              className="text-sm leading-[1.2] text-white"
+              data-footer-bar
+            >
               {footerCopy.copyright}
             </p>
-            <div className="flex items-center gap-[14px] text-white">
+            <div className="flex items-center gap-[14px] text-white" data-footer-bar>
               <a
                 href={social.facebook}
                 target="_blank"

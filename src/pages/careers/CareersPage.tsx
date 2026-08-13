@@ -1,5 +1,6 @@
 import { Container, PageHero } from '../../components/common'
 import { OpeningCard } from '../../components/careers'
+import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { careersStrings } from '../../resources/careers_strings'
 import { mediaPlaceholderProps } from '../../utils'
 import { careerOpenings } from './openings.config'
@@ -9,8 +10,10 @@ import { careerOpenings } from './openings.config'
  * Hero + placeholder banner + openings list (cards from config).
  */
 export function CareersPage() {
+  const rootRef = usePageRevealRef({ withHero: true })
+
   return (
-    <div>
+    <div ref={rootRef}>
       <PageHero
         eyebrow={careersStrings.eyebrow}
         title={
@@ -30,8 +33,8 @@ export function CareersPage() {
       </PageHero>
 
       {/* Openings */}
-      <Container className="mt-14 md:mt-20">
-        <div className="mb-6 md:mb-8">
+      <Container className="mt-14 md:mt-20" data-animate-section>
+        <div className="mb-6 md:mb-8" data-animate="up">
           <p className="text-eyebrow">{careersStrings.openingsEyebrow}</p>
           <h2 className="mt-1 max-w-[487px] font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.1] text-foreground">
             {careersStrings.openingsTitleBefore}
@@ -41,7 +44,7 @@ export function CareersPage() {
           </h2>
         </div>
 
-        <div className="border-t border-border">
+        <div className="border-t border-border" data-animate-stagger>
           {careerOpenings.map((opening) => (
             <OpeningCard
               key={opening.id}
@@ -49,6 +52,7 @@ export function CareersPage() {
               location={opening.location}
               employmentType={opening.employmentType}
               applyTo={opening.applyTo}
+              data-animate="up"
             />
           ))}
         </div>

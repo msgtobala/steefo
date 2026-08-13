@@ -2,6 +2,8 @@ import logo from '../assets/images/brand/logo.svg'
 import pattern from '../assets/images/brand/pattern.png'
 import subscribeBanner from '../assets/images/common/subscribe_banner.svg'
 import heroBanner from '../assets/images/home/hero_banner.png'
+import heroIntroBg from '../assets/images/home/hero_intro_bg.svg'
+import homeStatsBg from '../assets/images/home/home_stats_bg.svg'
 import insight01 from '../assets/images/insights/insight_01.png'
 import insight02 from '../assets/images/insights/insight_02.png'
 import insight03 from '../assets/images/insights/insight_03.png'
@@ -18,6 +20,8 @@ export const images = {
   logo,
   pattern,
   heroBanner,
+  heroIntroBg,
+  homeStatsBg,
   subscribeBanner,
   insight01,
   insight02,

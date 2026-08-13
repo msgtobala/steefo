@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Container } from '../common'
+import { usePlusPulse } from '../../hooks/usePlusPulse'
 import { icons } from '../../resources/icons'
 import {
   cn,
@@ -72,17 +74,27 @@ export function ProductWhySteefo({
   items,
   className,
 }: ProductWhySteefoProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+  usePlusPulse(sectionRef)
+
   return (
     <section
+      ref={sectionRef}
       className={cn(
         'relative mt-16 w-full bg-black text-white md:mt-24',
         className,
       )}
+      data-animate-section
     >
       <Container className="relative overflow-visible py-14 md:py-20 lg:py-24">
         <div className="mx-auto max-w-[560px] text-center">
-          <p className="text-eyebrow">{eyebrow}</p>
-          <h2 className="mt-2 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.1] text-white">
+          <p className="text-eyebrow" data-animate="up">
+            {eyebrow}
+          </p>
+          <h2
+            className="mt-2 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.1] text-white"
+            data-animate="up"
+          >
             {title}
           </h2>
         </div>
@@ -93,6 +105,7 @@ export function ProductWhySteefo({
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 overflow-visible"
+                data-animate="scale"
               >
                 {PLUS_GRID_H_LINES.map((top) => (
                   <img
@@ -114,24 +127,33 @@ export function ProductWhySteefo({
                 ))}
                 {PLUS_GRID_H_LINES.flatMap((top) =>
                   PLUS_GRID_V_LINES.map((left) => (
-                    <img
+                    <div
                       key={`plus-${left}-${top}`}
-                      src={icons.plus}
-                      alt=""
-                      width={13.64}
-                      height={13.64}
-                      className="absolute z-10 size-[13.64px] -translate-x-1/2 -translate-y-1/2"
+                      className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
                       style={plusGridPlusStyle(left, top)}
-                    />
+                    >
+                      <img
+                        data-plus-pulse
+                        src={icons.plus}
+                        alt=""
+                        width={13.64}
+                        height={13.64}
+                        className="block size-[13.64px] max-w-none"
+                      />
+                    </div>
                   )),
                 )}
               </div>
 
-              <div className="relative z-[1] grid h-full min-h-[560px] grid-cols-3 grid-rows-2 xl:min-h-[628px]">
+              <div
+                className="relative z-[1] grid h-full min-h-[560px] grid-cols-3 grid-rows-2 xl:min-h-[628px]"
+                data-animate-stagger
+              >
                 {items.map((item) => (
                   <article
                     key={item.id}
                     className="flex flex-col justify-center gap-4 px-10 py-10"
+                    data-animate="up"
                   >
                     <FeatureIcon className="size-10 shrink-0 text-brand" />
                     <div className="flex max-w-[327px] flex-col gap-4">
@@ -148,9 +170,16 @@ export function ProductWhySteefo({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:hidden">
+          <div
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:hidden"
+            data-animate-stagger
+          >
             {items.map((item) => (
-              <article key={item.id} className="flex flex-col gap-4">
+              <article
+                key={item.id}
+                className="flex flex-col gap-4"
+                data-animate="up"
+              >
                 <FeatureIcon className="size-10 text-brand" />
                 <div className="flex flex-col gap-3">
                   <h3 className="font-display text-xl font-medium leading-[1.25] text-white">

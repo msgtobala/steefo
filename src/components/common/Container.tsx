@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from 'react'
+import type { ElementType, HTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/cn'
 
 export type ContainerProps = {
@@ -7,7 +7,7 @@ export type ContainerProps = {
   variant?: 'content' | 'header'
   className?: string
   children?: ReactNode
-}
+} & Omit<HTMLAttributes<HTMLElement>, 'className' | 'children'>
 
 /**
  * Shared horizontal layout wrapper aligned to Figma Home Page (2:45).
@@ -17,6 +17,7 @@ export function Container({
   variant = 'content',
   className,
   children,
+  ...rest
 }: ContainerProps) {
   return (
     <Comp
@@ -24,6 +25,7 @@ export function Container({
         variant === 'header' ? 'container-header' : 'container-content',
         className,
       )}
+      {...rest}
     >
       {children}
     </Comp>

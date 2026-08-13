@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { Link } from 'react-router-dom'
 import { projectsStrings } from '../../resources/projects_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
@@ -8,7 +9,7 @@ export type ProjectCardProps = {
   title: string
   href: string
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Project grid card — Figma 1:3599
@@ -20,12 +21,13 @@ export function ProjectCard({
   title,
   href,
   className,
+  ...rest
 }: ProjectCardProps) {
   const meta =
     `${location}${projectsStrings.metaSeparator}${year}`.toUpperCase()
 
   return (
-    <article className={cn('flex min-w-0 flex-col gap-5', className)}>
+    <article className={cn('flex min-w-0 flex-col gap-5', className)} {...rest}>
       <Link to={href} className="group flex flex-col gap-5">
         <div
           {...mediaPlaceholderProps(projectsStrings.cardMediaAriaLabel)}

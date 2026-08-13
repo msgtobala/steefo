@@ -1,5 +1,5 @@
-import { cn } from '../../utils/cn'
-
+import type { HTMLAttributes } from 'react'
+import { cn } from '../../utils'
 
 export type AwardCardProps = {
   pill: string
@@ -7,7 +7,7 @@ export type AwardCardProps = {
   body: string
   tone?: 'dark' | 'brand'
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Certification / award card — Figma About 1:3181–1:3183
@@ -18,6 +18,7 @@ export function AwardCard({
   body,
   tone = 'dark',
   className,
+  ...rest
 }: AwardCardProps) {
   const isBrand = tone === 'brand'
 
@@ -28,6 +29,7 @@ export function AwardCard({
         isBrand ? 'bg-brand' : 'bg-black',
         className,
       )}
+      {...rest}
     >
       <span
         className={cn(

@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { Button } from '../ui'
 import { careersStrings } from '../../resources/careers_strings'
 import { cn } from '../../utils/cn'
@@ -8,7 +9,7 @@ export type OpeningCardProps = {
   employmentType: string
   applyTo: string
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Careers opening row — Figma 13:3336
@@ -20,6 +21,7 @@ export function OpeningCard({
   employmentType,
   applyTo,
   className,
+  ...rest
 }: OpeningCardProps) {
   const meta = `${location}${careersStrings.metaSeparator}${employmentType}`
 
@@ -30,6 +32,7 @@ export function OpeningCard({
         'md:flex-row md:items-center md:justify-between md:gap-10 md:py-10',
         className,
       )}
+      {...rest}
     >
       <div className="flex min-w-0 flex-col gap-4 md:gap-5 md:max-w-[607px]">
         <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-normal leading-[1.1] text-foreground">

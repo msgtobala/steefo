@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { SubscribeBanner } from './SubscribeBanner'
@@ -9,8 +10,15 @@ import { SubscribeBanner } from './SubscribeBanner'
  * - Pages own their own Container / section layout
  * - Shared SubscribeBanner + footer gap on every page
  * - Footer is full-bleed and stacks on mobile/tablet
+ * - Scroll resets to top on every route change
  */
 export function Layout() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
   return (
     <div className="relative flex min-h-svh flex-col overflow-x-clip font-display">
       <Header />

@@ -433,3 +433,22 @@
     display: none;
   }
 }
+
+/* Home partners logo marquee — seamless loop over a duplicated track */
+@keyframes partner-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility animate-partner-marquee {
+  animation: partner-marquee 28s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+

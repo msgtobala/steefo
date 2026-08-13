@@ -1,6 +1,7 @@
 import { Container, PageHero } from '../../components/common'
 import { ContactForm } from '../../components/contact'
 import { uiConstants } from '../../constants/ui_constants'
+import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { contactStrings } from '../../resources/contact_strings'
 import { projectTypeOptions } from './projectTypes.config'
 import { reachOutItems } from './reachOut.config'
@@ -10,22 +11,26 @@ import { reachOutItems } from './reachOut.config'
  * Hero + reach-out/office column + inquiry form.
  */
 export function ContactPage() {
+  const rootRef = usePageRevealRef({ withHero: true })
   const { contact } = uiConstants
   const officePhone = contact.phones[0]
 
   return (
-    <div>
+    <div ref={rootRef}>
       <PageHero
         eyebrow={contactStrings.eyebrow}
         title={contactStrings.heroTitle}
       />
 
-      <Container className="mt-10 md:mt-14">
+      <Container className="mt-10 md:mt-14" data-animate-section>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,315px)_minmax(0,650px)] lg:justify-between lg:gap-16">
           {/* Left — reach out + office */}
           <aside className="flex flex-col gap-12 md:gap-14">
-            <section>
-              <p className="font-display text-xs font-normal uppercase leading-[1.1] text-subtle-foreground">
+            <section data-animate-stagger>
+              <p
+                className="font-display text-xs font-normal uppercase leading-[1.1] text-subtle-foreground"
+                data-animate="up"
+              >
                 {contactStrings.reachOutHeading}
               </p>
               <ul className="mt-5 flex flex-col">
@@ -33,6 +38,7 @@ export function ContactPage() {
                   <li
                     key={item.id}
                     className="border-b border-border py-3 font-display text-base leading-[1.3] text-body"
+                    data-animate="up"
                   >
                     {item.label}
                   </li>
@@ -40,7 +46,7 @@ export function ContactPage() {
               </ul>
             </section>
 
-            <section>
+            <section data-animate="left">
               <p className="font-display text-xs font-normal uppercase leading-[1.1] text-subtle-foreground">
                 {contactStrings.officeHeading}
               </p>
@@ -71,7 +77,7 @@ export function ContactPage() {
           </aside>
 
           {/* Right — form */}
-          <section className="min-w-0">
+          <section className="min-w-0" data-animate="right">
             <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-normal leading-none tracking-[-0.04em] text-foreground">
               {contactStrings.formHeading}
             </h2>

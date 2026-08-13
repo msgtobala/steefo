@@ -27,26 +27,35 @@ export function ProductRelated({
   className,
 }: ProductRelatedProps) {
   return (
-    <Container className={cn('pb-4 md:pb-8', className)}>
+    <Container
+      className={cn('pb-4 md:pb-8', className)}
+      data-animate-section
+    >
       <div className="mb-8 flex items-end justify-between gap-6 md:mb-10">
-        <div>
+        <div data-animate="left">
           <p className="text-eyebrow">{eyebrow}</p>
           <h2 className="mt-2 max-w-[475px] font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.1] text-foreground">
             {title}
           </h2>
         </div>
-        <CarouselNav
-          prevAriaLabel={productsStrings.relatedPrevAriaLabel}
-          nextAriaLabel={productsStrings.relatedNextAriaLabel}
-        />
+        <div data-animate="right">
+          <CarouselNav
+            prevAriaLabel={productsStrings.relatedPrevAriaLabel}
+            nextAriaLabel={productsStrings.relatedNextAriaLabel}
+          />
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        data-animate-stagger
+      >
         {items.map((item) => (
           <Link
             key={item.id}
             to={item.href}
             className="group flex flex-col gap-5"
+            data-animate="up"
           >
             <div
               {...mediaPlaceholderProps(productsStrings.relatedMediaAriaLabel)}

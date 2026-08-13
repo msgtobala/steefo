@@ -6,6 +6,7 @@ import {
   ProductRelated,
   ProductWhySteefo,
 } from '../../components/products'
+import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { productsStrings } from '../../resources/products_strings'
 import {
   productGallerySlots,
@@ -20,6 +21,8 @@ import {
  * Copy from products_strings; order/links from products.config.
  */
 export function ProductsPage() {
+  const rootRef = usePageRevealRef({ withHero: true })
+
   const {
     hero,
     features,
@@ -50,7 +53,7 @@ export function ProductsPage() {
   }))
 
   return (
-    <>
+    <div ref={rootRef}>
       <ProductHero
         productNumber={hero.productNumber}
         title={hero.title}
@@ -86,6 +89,6 @@ export function ProductsPage() {
         title={related.title}
         items={relatedItems}
       />
-    </>
+    </div>
   )
 }

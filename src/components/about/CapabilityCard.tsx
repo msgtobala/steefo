@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { icons, type IconKey } from '../../resources/icons'
 import { aboutStrings } from '../../resources/about_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
@@ -7,7 +8,7 @@ export type CapabilityCardProps = {
   title: string
   body: string
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Capability showcase card — Figma About Component 1–4
@@ -18,6 +19,7 @@ export function CapabilityCard({
   title,
   body,
   className,
+  ...rest
 }: CapabilityCardProps) {
   return (
     <article
@@ -26,6 +28,7 @@ export function CapabilityCard({
         'relative flex h-[480px] w-[min(100%,427px)] shrink-0 flex-col justify-end overflow-hidden p-10',
         className,
       )}
+      {...rest}
     >
       <div
         {...mediaPlaceholderProps(aboutStrings.capabilityMediaAriaLabel)}

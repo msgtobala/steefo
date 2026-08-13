@@ -26,19 +26,32 @@ export function AboutStory({
   className,
 }: AboutStoryProps) {
   return (
-    <section className={cn('mt-10 md:mt-14', className)}>
+    <section
+      className={cn('mt-10 md:mt-14', className)}
+      data-animate-section
+    >
       <Container>
         <div className="bg-[#080808] px-6 py-16 sm:px-10 md:py-[78px]">
           <div className="flex flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-16">
-            <h2 className="max-w-[385px] shrink-0 font-display text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[1.1] tracking-[-0.0556em] text-white">
+            <h2
+              className="max-w-[385px] shrink-0 font-display text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[1.1] tracking-[-0.0556em] text-white"
+              data-animate="left"
+            >
               {titleLine1}
               <br />
               {titleLine2}
             </h2>
 
-            <div className="flex w-full max-w-[538px] flex-col gap-10 md:gap-12">
+            <div
+              className="flex w-full max-w-[538px] flex-col gap-10 md:gap-12"
+              data-animate-stagger
+            >
               {values.map((item) => (
-                <div key={item.id} className="flex flex-col gap-2">
+                <div
+                  key={item.id}
+                  className="flex flex-col gap-2"
+                  data-animate="right"
+                >
                   <span className="inline-flex w-fit items-center rounded bg-brand px-3 py-1.5 font-display text-sm font-medium uppercase leading-[1.2] text-white">
                     {item.pill}
                   </span>

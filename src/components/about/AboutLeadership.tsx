@@ -1,5 +1,7 @@
+import { useRef } from 'react'
 import { Container } from '../common'
 import { TeamMemberCard } from './TeamMemberCard'
+import { usePlusPulse } from '../../hooks/usePlusPulse'
 import { icons } from '../../resources/icons'
 import {
   cn,
@@ -38,11 +40,23 @@ export function AboutLeadership({
   members,
   className,
 }: AboutLeadershipProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+  usePlusPulse(sectionRef)
+
   return (
-    <section className={cn('mt-16 md:mt-24', className)}>
+    <section
+      ref={sectionRef}
+      className={cn('mt-16 md:mt-24', className)}
+      data-animate-section
+    >
       <Container className="flex flex-col items-center text-center">
-        <p className="text-eyebrow">{eyebrow}</p>
-        <h2 className="mt-2 max-w-[1030px] font-display text-[clamp(2rem,5vw,4.5rem)] font-normal leading-[1.1] tracking-[-0.0556em] text-foreground">
+        <p className="text-eyebrow" data-animate="up">
+          {eyebrow}
+        </p>
+        <h2
+          className="mt-2 max-w-[1030px] font-display text-[clamp(2rem,5vw,4.5rem)] font-normal leading-[1.1] tracking-[-0.0556em] text-foreground"
+          data-animate="up"
+        >
           {titleBefore}
           <br />
           {titleMid}
@@ -56,6 +70,7 @@ export function AboutLeadership({
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 overflow-visible"
+              data-animate="scale"
             >
               {PLUS_GRID_H_LINES.map((top) => (
                 <img
@@ -77,37 +92,50 @@ export function AboutLeadership({
               ))}
               {PLUS_GRID_H_LINES.flatMap((top) =>
                 PLUS_GRID_V_LINES.map((left) => (
-                  <img
+                  <div
                     key={`plus-${left}-${top}`}
-                    src={icons.plus}
-                    alt=""
-                    width={13.64}
-                    height={13.64}
-                    className="absolute z-10 size-[13.64px] -translate-x-1/2 -translate-y-1/2"
+                    className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
                     style={plusGridPlusStyle(left, top)}
-                  />
+                  >
+                    <img
+                      data-plus-pulse
+                      src={icons.plus}
+                      alt=""
+                      width={13.64}
+                      height={13.64}
+                      className="block size-[13.64px] max-w-none"
+                    />
+                  </div>
                 )),
               )}
             </div>
 
-            <div className="relative z-[1] grid grid-cols-3 gap-x-12 gap-y-16 px-8 py-12">
+            <div
+              className="relative z-[1] grid grid-cols-3 gap-x-12 gap-y-16 px-8 py-12"
+              data-animate-stagger
+            >
               {members.map((member) => (
                 <TeamMemberCard
                   key={member.id}
                   name={member.name}
                   role={member.role}
+                  data-animate="up"
                 />
               ))}
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:hidden">
+        <div
+          className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:hidden"
+          data-animate-stagger
+        >
           {members.map((member) => (
             <TeamMemberCard
               key={member.id}
               name={member.name}
               role={member.role}
+              data-animate="up"
             />
           ))}
         </div>

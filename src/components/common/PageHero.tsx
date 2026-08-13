@@ -18,6 +18,7 @@ export type PageHeroProps = {
 /**
  * Centered page hero — Figma pattern used on Careers, About, Insights, Contact, etc.
  * Eyebrow (brand-label) → display title → body description.
+ * Uses `data-animate-hero` when the page opts into `usePageReveal({ withHero: true })`.
  */
 export function PageHero({
   eyebrow,
@@ -35,12 +36,15 @@ export function PageHero({
         className,
       )}
     >
-      <p className="text-eyebrow">{eyebrow}</p>
+      <p className="text-eyebrow" data-animate-hero>
+        {eyebrow}
+      </p>
       <h1
         className={cn(
           'mt-3 max-w-[711px] font-display text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-none tracking-[-0.0556em] text-balance text-foreground',
           titleClassName,
         )}
+        data-animate-hero
       >
         {title}
       </h1>
@@ -50,11 +54,12 @@ export function PageHero({
             'mt-6 max-w-[392px] font-display text-base leading-[1.3] text-body md:mt-8',
             descriptionClassName,
           )}
+          data-animate-hero
         >
           {description}
         </p>
       ) : null}
-      {children}
+      {children ? <div data-animate-hero>{children}</div> : null}
     </Container>
   )
 }

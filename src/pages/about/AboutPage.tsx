@@ -7,6 +7,7 @@ import {
   AboutQuote,
   AboutStory,
 } from '../../components/about'
+import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { aboutStrings } from '../../resources/about_strings'
 import {
   aboutAwards,
@@ -22,6 +23,8 @@ import {
  * SubscribeBanner + Footer come from Layout.
  */
 export function AboutPage() {
+  const rootRef = usePageRevealRef({ withHero: true })
+
   const stats = aboutStats.map((stat) => ({
     id: stat.id,
     variant: stat.variant,
@@ -51,7 +54,7 @@ export function AboutPage() {
   }))
 
   return (
-    <div>
+    <div ref={rootRef}>
       <AboutHero
         eyebrow={aboutStrings.hero.eyebrow}
         titleLine1={aboutStrings.hero.titleLine1}

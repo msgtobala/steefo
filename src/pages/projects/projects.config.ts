@@ -12,6 +12,7 @@ export type ProjectItem = {
   location: string
   year: string
   title: string
+  description: string
   href: string
 }
 
@@ -23,6 +24,7 @@ export type ProjectsConfig = {
 /**
  * Projects page data — Figma 1:3515
  * Images are placeholders in UI until assets are registered.
+ * Home “top 5” = featured + first 4 grid items.
  */
 export const projectsConfig: ProjectsConfig = {
   featured: {
@@ -40,6 +42,8 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Saudi Arabia',
       year: '2022',
       title: 'Wire Rod Line',
+      description:
+        'High-speed wire rod production with consistent metallurgical quality across diameters.',
       href: '#',
     },
     {
@@ -47,6 +51,8 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Ghana',
       year: '2024',
       title: 'Induction Furnace Plant',
+      description:
+        'Energy-efficient melting with precision temperature control and seamless casting integration.',
       href: '#',
     },
     {
@@ -54,6 +60,8 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Sri Lanka',
       year: '2023',
       title: 'Section Mill',
+      description:
+        'Flexible section rolling configured for regional demand and long-term plant performance.',
       href: '#',
     },
     {
@@ -61,6 +69,8 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Ethiopia',
       year: '2021',
       title: 'TMT Rolling Mill',
+      description:
+        'High-yield TMT line engineered for reliable throughput and European-standard build quality.',
       href: '#',
     },
     {
@@ -68,6 +78,8 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Qatar',
       year: '2022',
       title: 'Turnkey Steel Plant',
+      description:
+        'End-to-end plant delivery — layout, manufacture, installation, and commissioning.',
       href: '#',
     },
     {
@@ -75,7 +87,15 @@ export const projectsConfig: ProjectsConfig = {
       location: 'Rwanda',
       year: '2024',
       title: 'Continuous Casting',
+      description:
+        'Precision casting systems built for uptime, quality, and easy integration with melt shop flow.',
       href: '#',
     },
   ],
+}
+
+/** Featured + first four grid projects for the home showcase carousel. */
+export function getTopProjects(count = 5) {
+  const { featured, projects } = projectsConfig
+  return [featured, ...projects].slice(0, count)
 }

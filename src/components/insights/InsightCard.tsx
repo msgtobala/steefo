@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { Link } from 'react-router-dom'
 import { images, type ImageKey } from '../../resources/images'
 import { insightsStrings } from '../../resources/insights_strings'
@@ -19,7 +20,7 @@ export type InsightCardProps = {
   href: string
   size: InsightCardSize
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Insights article card — Figma 14:3343
@@ -34,11 +35,12 @@ export function InsightCard({
   href,
   size,
   className,
+  ...rest
 }: InsightCardProps) {
   const meta = `${category}${insightsStrings.metaSeparator}${readTime}`.toUpperCase()
 
   return (
-    <article className={cn('flex min-w-0 flex-col gap-4', className)}>
+    <article className={cn('flex min-w-0 flex-col gap-4', className)} {...rest}>
       <div
         className={cn(
           'w-full overflow-hidden bg-surface-placeholder',

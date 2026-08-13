@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { aboutStrings } from '../../resources/about_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
 
@@ -5,15 +6,21 @@ export type TeamMemberCardProps = {
   name: string
   role: string
   className?: string
-}
+} & HTMLAttributes<HTMLElement>
 
 /**
  * Leadership member card — Figma About team grid
  */
-export function TeamMemberCard({ name, role, className }: TeamMemberCardProps) {
+export function TeamMemberCard({
+  name,
+  role,
+  className,
+  ...rest
+}: TeamMemberCardProps) {
   return (
     <article
       className={cn('flex flex-col items-center gap-10 text-center', className)}
+      {...rest}
     >
       <div
         {...mediaPlaceholderProps(aboutStrings.teamMediaAriaLabel)}

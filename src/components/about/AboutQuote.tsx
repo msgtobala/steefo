@@ -1,5 +1,5 @@
 import { Container } from '../common'
-import { cn } from '../../utils/cn'
+import { cn } from '../../utils'
 
 export type AboutQuoteProps = {
   before: string
@@ -22,16 +22,25 @@ export function AboutQuote({
   className,
 }: AboutQuoteProps) {
   return (
-    <section className={cn('mt-16 md:mt-24', className)}>
+    <section
+      className={cn('mt-16 md:mt-24', className)}
+      data-animate-section
+    >
       <Container className="flex flex-col items-center text-center">
-        <blockquote className="max-w-[1139px] font-display text-[clamp(1.5rem,3.5vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-body">
+        <blockquote
+          className="max-w-[1139px] font-display text-[clamp(1.5rem,3.5vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-body"
+          data-animate="scale"
+        >
           <span className="text-brand">&ldquo;</span>
           {before}
           <span className="text-brand">{highlight}</span>
           {after}
           <span className="text-brand">&rdquo;</span>
         </blockquote>
-        <footer className="mt-8 font-display text-xl leading-[1.2] text-body md:mt-10">
+        <footer
+          className="mt-8 font-display text-xl leading-[1.2] text-body md:mt-10"
+          data-animate="up"
+        >
           <p className="font-normal">{role}</p>
           <p className="font-medium">{company}</p>
         </footer>
