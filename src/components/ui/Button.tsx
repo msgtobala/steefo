@@ -158,7 +158,7 @@ export const Button = forwardRef<
       {children}
       {endIcon}
       {showArrow && !endIcon ? (
-        <ArrowRightIcon className="size-5 shrink-0" />
+        <ArrowRightIcon className="size-5 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1" />
       ) : null}
     </>
   )
@@ -168,6 +168,7 @@ export const Button = forwardRef<
     sizeClass[size],
     styles.control,
     hasBorderShell && 'w-full',
+    !hasBorderShell && 'group',
     !hasBorderShell && className,
   )
 
@@ -205,7 +206,7 @@ export const Button = forwardRef<
 
   return (
     <span
-      className={cn('inline-flex p-px', styles.shell, className)}
+      className={cn('group inline-flex p-px', styles.shell, className)}
       style={{ clipPath: shellClipPath }}
     >
       {control}

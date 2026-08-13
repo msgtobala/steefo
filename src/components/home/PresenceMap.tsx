@@ -11,6 +11,7 @@ import { cn } from '../../utils'
 
 type CountryProperties = {
   name?: string
+  claim?: string
 }
 
 type CountryFeature = Feature<Geometry, CountryProperties> & {
@@ -35,8 +36,14 @@ export type PresenceMapProps = {
 const MAP_WIDTH = 880
 const MAP_HEIGHT = 571
 const GEO_URL = '/geo/countries-50m.json'
+/** PoK / CoK (+ related) overlays claimed as India on this site */
+const INDIA_CLAIMED_URL = '/geo/india-claimed-areas.json'
 /** Antarctica — omit so the fit matches the Figma crop */
 const ANTARCTICA_ID = '10'
+const INDIA_NUMERIC = '356'
+const INDIA_ISO2 = 'IN'
+/** Features in world-atlas without a numeric id that belong with India */
+const INDIA_BY_NAME = new Set(['Siachen Glacier'])
 
 /**
  * Figma World map (1:58) path paints — from exported SVG:
@@ -55,12 +62,31 @@ function numericKey(id: string | number | undefined) {
   return String(Number(id))
 }
 
+function isIndiaBaseFeature(geo: CountryFeature) {
+  if (numericKey(geo.id) === INDIA_NUMERIC) return true
+  const name = geo.properties?.name
+  return name != null && INDIA_BY_NAME.has(name)
+}
+
+function resolveIso2(
+  geo: CountryFeature,
+  activeIsoByNumeric: ReadonlyMap<string, string>,
+): string | null {
+  const numeric = numericKey(geo.id)
+  if (numeric && activeIsoByNumeric.has(numeric)) {
+    return activeIsoByNumeric.get(numeric) ?? null
+  }
+  if (geo.properties?.claim === INDIA_ISO2) return INDIA_ISO2
+  if (isIndiaBaseFeature(geo)) return INDIA_ISO2
+  return null
+}
+
 /**
  * Data-driven world map — flat Mercator (Figma 1:58), ISO-driven fills.
- * No curved / Natural-Earth silhouette; Antarctica omitted from the fit.
+ * India includes PoK / CoK fills without internal claim borders.
  */
 export function PresenceMap({
-  activeNumericIds,
+  activeNumericIds: _activeNumericIds,
   activeIsoByNumeric,
   hoveredIso2,
   onHoverIso2,
@@ -68,28 +94,56 @@ export function PresenceMap({
   ariaLabel,
 }: PresenceMapProps) {
   const [countries, setCountries] = useState<CountryFeature[] | null>(null)
+  const [indiaClaims, setIndiaClaims] = useState<CountryFeature[]>([])
+
+  const indiaActive = useMemo(() => {
+    for (const iso of activeIsoByNumeric.values()) {
+      if (iso === INDIA_ISO2) return true
+    }
+    return false
+  }, [activeIsoByNumeric])
+
+  const activeIsos = useMemo(
+    () => new Set(activeIsoByNumeric.values()),
+    [activeIsoByNumeric],
+  )
 
   useEffect(() => {
     let cancelled = false
 
     async function load() {
       try {
-        const res = await fetch(GEO_URL)
-        if (!res.ok) return
-        const topo = (await res.json()) as CountriesTopology
+        const [countriesRes, claimsRes] = await Promise.all([
+          fetch(GEO_URL),
+          fetch(INDIA_CLAIMED_URL),
+        ])
+        if (!countriesRes.ok) return
+
+        const topo = (await countriesRes.json()) as CountriesTopology
         const fc = feature(topo, topo.objects.countries) as unknown as FeatureCollection<
           Geometry,
           CountryProperties
         >
+        const claimFc = claimsRes.ok
+          ? ((await claimsRes.json()) as FeatureCollection<
+              Geometry,
+              CountryProperties
+            >)
+          : { type: 'FeatureCollection' as const, features: [] }
+
         if (!cancelled) {
           setCountries(
             (fc.features as CountryFeature[]).filter(
               (geo) => numericKey(geo.id) !== ANTARCTICA_ID,
             ),
           )
+          setIndiaClaims(claimFc.features as CountryFeature[])
         }
       } catch {
-        if (!cancelled) setCountries([])
+        if (!cancelled) {
+          setCountries([])
+          setIndiaClaims([])
+        }
       }
     }
 
@@ -116,6 +170,44 @@ export function PresenceMap({
     return geoPath(projection)
   }, [countries])
 
+  function renderPath(
+    geo: CountryFeature,
+    key: string,
+    { fillOnly = false }: { fillOnly?: boolean } = {},
+  ) {
+    if (!pathGen) return null
+    const iso2 = resolveIso2(geo, activeIsoByNumeric)
+    const active = iso2 != null && activeIsos.has(iso2)
+    const hovered = iso2 != null && iso2 === hoveredIso2
+    const d = pathGen(geo as GeoPermissibleObjects)
+    if (!d) return null
+
+    return (
+      <path
+        key={key}
+        d={d}
+        fill={hovered ? FILL_HOVER : active ? FILL_ACTIVE : FILL_DEFAULT}
+        fillOpacity={active || hovered ? 1 : FILL_DEFAULT_OPACITY}
+        stroke={fillOnly ? 'none' : STROKE}
+        strokeWidth={fillOnly ? 0 : STROKE_WIDTH}
+        strokeMiterlimit={10}
+        className={cn(
+          'outline-none transition-colors duration-200',
+          active && 'cursor-pointer',
+        )}
+        onMouseEnter={() => {
+          if (iso2) onHoverIso2(iso2)
+        }}
+        onMouseLeave={() => onHoverIso2(null)}
+        onFocus={() => {
+          if (iso2) onHoverIso2(iso2)
+        }}
+        onBlur={() => onHoverIso2(null)}
+        tabIndex={active ? 0 : undefined}
+      />
+    )
+  }
+
   return (
     <div
       className={cn('relative w-full', className)}
@@ -130,45 +222,35 @@ export function PresenceMap({
       ) : (
         <svg
           viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
-          className="block h-auto w-full overflow-visible"
+          className="block h-auto w-full overflow-hidden"
           aria-hidden
         >
           {pathGen
-            ? countries.map((geo) => {
-                const numeric = numericKey(geo.id)
-                const iso2 = activeIsoByNumeric.get(numeric) ?? null
-                const active = activeNumericIds.has(numeric)
-                const hovered = iso2 != null && iso2 === hoveredIso2
-                const d = pathGen(geo as GeoPermissibleObjects)
-                if (!d) return null
-
-                return (
-                  <path
-                    key={numeric || geo.properties?.name}
-                    d={d}
-                    fill={
-                      hovered ? FILL_HOVER : active ? FILL_ACTIVE : FILL_DEFAULT
-                    }
-                    fillOpacity={active || hovered ? 1 : FILL_DEFAULT_OPACITY}
-                    stroke={STROKE}
-                    strokeWidth={STROKE_WIDTH}
-                    strokeMiterlimit={10}
-                    className={cn(
-                      'outline-none transition-colors duration-200',
-                      active && 'cursor-pointer',
-                    )}
-                    onMouseEnter={() => {
-                      if (iso2) onHoverIso2(iso2)
-                    }}
-                    onMouseLeave={() => onHoverIso2(null)}
-                    onFocus={() => {
-                      if (iso2) onHoverIso2(iso2)
-                    }}
-                    onBlur={() => onHoverIso2(null)}
-                    tabIndex={active ? 0 : undefined}
-                  />
+            ? countries.map((geo, index) => {
+                // Siachen is also in the claim layer — skip its separate stroke.
+                const fillOnly =
+                  indiaActive &&
+                  geo.properties?.name != null &&
+                  INDIA_BY_NAME.has(geo.properties.name)
+                return renderPath(
+                  geo,
+                  numericKey(geo.id) ||
+                    geo.properties?.name ||
+                    `country-${index}`,
+                  { fillOnly },
                 )
               })
+            : null}
+
+          {/* PoK / CoK fills on top — no strokes, so no internal gray lines */}
+          {pathGen && indiaActive
+            ? indiaClaims.map((geo, index) =>
+                renderPath(
+                  geo,
+                  `in-claim-${geo.properties?.name ?? index}`,
+                  { fillOnly: true },
+                ),
+              )
             : null}
         </svg>
       )}

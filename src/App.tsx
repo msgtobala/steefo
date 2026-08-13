@@ -4,8 +4,10 @@ import { uiConstants } from './constants/ui_constants'
 import { AboutPage } from './pages/about/AboutPage'
 import { CareersPage } from './pages/careers/CareersPage'
 import { ContactPage } from './pages/contact/ContactPage'
+import { DisclaimerPage } from './pages/disclaimer/DisclaimerPage'
 import { HomePage } from './pages/home/HomePage'
 import { InsightsPage } from './pages/insights/InsightsPage'
+import { PrivacyPage } from './pages/privacy/PrivacyPage'
 import { ProductDetailsPage } from './pages/products/ProductDetailsPage'
 import { ProductsPage } from './pages/products/ProductsPage'
 import { ProjectsPage } from './pages/projects/ProjectsPage'
@@ -28,6 +30,8 @@ function App() {
           <Route path="careers" element={<CareersPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="terms" element={<TermsPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="disclaimer" element={<DisclaimerPage />} />
           <Route path="*" element={<Navigate to={routes.home} replace />} />
         </Route>
       </Routes>
