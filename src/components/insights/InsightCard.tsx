@@ -19,6 +19,8 @@ export type InsightCardProps = {
   image: ImageKey
   href: string
   size: InsightCardSize
+  /** Overrides default size-based image height (e.g. home staggered strip). */
+  imageClassName?: string
   className?: string
 } & HTMLAttributes<HTMLElement>
 
@@ -34,6 +36,7 @@ export function InsightCard({
   image,
   href,
   size,
+  imageClassName,
   className,
   ...rest
 }: InsightCardProps) {
@@ -44,7 +47,7 @@ export function InsightCard({
       <div
         className={cn(
           'w-full overflow-hidden bg-surface-placeholder',
-          IMAGE_HEIGHT[size],
+          imageClassName ?? IMAGE_HEIGHT[size],
         )}
       >
         <img

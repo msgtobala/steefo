@@ -82,6 +82,25 @@ export const homeStrings = {
     titleBefore: 'Trusted by steel manufacturers',
     titleHighlight: 'across 4 continents.',
   },
+  presence: {
+    eyebrow: 'GLOBAL PRESENCE',
+    titleLine1: 'From Ahmedabad',
+    titleHighlight: 'to the world.',
+    mapAriaLabel: 'World map of Steefo market presence',
+  },
+  insights: {
+    eyebrow: 'FROM THE FLOOR',
+    titleBefore: 'Insights from the',
+    titleHighlight: 'rolling mill industry.',
+    viewAll: 'View All',
+    prevAriaLabel: 'Previous insights',
+    nextAriaLabel: 'Next insights',
+  },
+  testimonials: {
+    eyebrow: 'CLIENT TESTIMONIALS',
+    title: 'What Our Clients Say',
+    body: 'Trusted by leading steel manufacturers across the globe for over four decades.',
+  },
 } as const
 
 export type HomeStrings = typeof homeStrings

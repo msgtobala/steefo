@@ -18,3 +18,13 @@ export {
   type HomePartnersProps,
   type HomePartnerItem,
 } from './HomePartners'
+export {
+  HomePresence,
+  type HomePresenceProps,
+  type HomePresenceMarket,
+} from './HomePresence'
+export { HomeInsights, type HomeInsightsProps } from './HomeInsights'
+export {
+  HomeTestimonials,
+  type HomeTestimonialsProps,
+} from './HomeTestimonials'

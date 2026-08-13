@@ -1,8 +1,10 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useGSAP } from '@gsap/react'
 import { CarouselNav, Container } from '../common'
 import { Button } from '../ui'
 import { uiConstants } from '../../constants/ui_constants'
+import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
 import { homeStrings } from '../../resources/home_strings'
 import { projectsStrings } from '../../resources/projects_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
@@ -32,6 +34,7 @@ const mediaClip =
  * Top projects row with View All → /projects and shared arrow controls.
  */
 export function HomeProjects({ projects, className }: HomeProjectsProps) {
+  const rootRef = useRef<HTMLElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
   const {
     eyebrow,
@@ -46,6 +49,55 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
     mediaAriaLabel,
   } = homeStrings.projects
 
+  useGSAP(
+    () => {
+      registerGsap()
+      if (prefersReducedMotion()) return
+
+      const header = gsap.utils.toArray<HTMLElement>(
+        '[data-home-projects-header]',
+      )
+      const cards = gsap.utils.toArray<HTMLElement>('[data-home-project-card]')
+
+      gsap.fromTo(
+        header,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+
+      if (cards.length) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 36 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.95,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: scrollerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          },
+        )
+      }
+    },
+    { scope: rootRef },
+  )
+
   function scrollByCard(direction: -1 | 1) {
     const scroller = scrollerRef.current
     if (!scroller) return
@@ -56,12 +108,13 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
 
   return (
     <section
+      ref={rootRef}
       className={cn('my-[120px] w-full bg-white', className)}
       aria-label={eyebrow}
     >
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="max-w-[400px] shrink-0">
+          <div className="max-w-[400px] shrink-0" data-home-projects-header>
             <p className="text-eyebrow">{eyebrow}</p>
             <h2 className="mt-2 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-[1.1] text-foreground">
               {titleBefore}
@@ -70,7 +123,10 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
             </h2>
           </div>
 
-          <div className="flex max-w-[538px] flex-col gap-6 lg:items-end">
+          <div
+            className="flex max-w-[538px] flex-col gap-6 lg:items-end"
+            data-home-projects-header
+          >
             <p className="font-display text-base leading-[1.3] text-body lg:text-right">
               {body}
             </p>
@@ -175,12 +231,9 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
         </div>
       </div>
 
-      {/* Figma 47:4052 — 1px dashed black hairline under the carousel */}
+      {/* Figma 47:4052 — 1px solid black hairline under the carousel */}
       <Container className="mt-20">
-        <div
-          className="w-full border-t border-dashed border-black"
-          aria-hidden
-        />
+        <div className="w-full border-t border-black" aria-hidden />
       </Container>
     </section>
   )

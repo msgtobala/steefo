@@ -34,7 +34,10 @@ export function HomeHero({ className }: HomeHeroProps) {
       />
 
       <div className="relative z-[1] flex h-full flex-col items-center justify-end px-6 pb-[22vh] text-center md:pb-[26vh]">
-        <h1 className="max-w-[1006px] font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-none tracking-[-0.0556em] text-balance text-white">
+        <h1
+          className="max-w-[1006px] font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-none tracking-[-0.0556em] text-balance text-white"
+          data-animate-hero
+        >
           {titleLine1}
           <br />
           {titleLine2}
