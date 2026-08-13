@@ -6,7 +6,7 @@ import {
 } from 'd3-geo'
 import { feature } from 'topojson-client'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
-import type { Topology } from 'topojson-specification'
+import type { GeometryCollection, Topology } from 'topojson-specification'
 import { cn } from '../../utils'
 
 type CountryProperties = {
@@ -18,15 +18,7 @@ type CountryFeature = Feature<Geometry, CountryProperties> & {
 }
 
 type CountriesTopology = Topology<{
-  countries: {
-    type: 'GeometryCollection'
-    geometries: Array<{
-      type: string
-      id?: string | number
-      properties?: CountryProperties
-      arcs: unknown
-    }>
-  }
+  countries: GeometryCollection<CountryProperties>
 }>
 
 export type PresenceMapProps = {
@@ -85,10 +77,10 @@ export function PresenceMap({
         const res = await fetch(GEO_URL)
         if (!res.ok) return
         const topo = (await res.json()) as CountriesTopology
-        const fc = feature(
-          topo,
-          topo.objects.countries,
-        ) as FeatureCollection<Geometry, CountryProperties>
+        const fc = feature(topo, topo.objects.countries) as unknown as FeatureCollection<
+          Geometry,
+          CountryProperties
+        >
         if (!cancelled) {
           setCountries(
             (fc.features as CountryFeature[]).filter(

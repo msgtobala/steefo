@@ -9,6 +9,7 @@ import { InsightsPage } from './pages/insights/InsightsPage'
 import { ProductDetailsPage } from './pages/products/ProductDetailsPage'
 import { ProductsPage } from './pages/products/ProductsPage'
 import { ProjectsPage } from './pages/projects/ProjectsPage'
+import { TermsPage } from './pages/terms/TermsPage'
 import './App.css'
 
 const { routes } = uiConstants
@@ -26,6 +27,7 @@ function App() {
           <Route path="insights" element={<InsightsPage />} />
           <Route path="careers" element={<CareersPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="terms" element={<TermsPage />} />
           <Route path="*" element={<Navigate to={routes.home} replace />} />
         </Route>
       </Routes>

@@ -27,7 +27,7 @@ import {
  * Sections added component-by-component; Header / Subscribe / Footer from Layout.
  */
 export function HomePage() {
-  const rootRef = usePageRevealRef({ withHero: true })
+  const rootRef = usePageRevealRef({ withHero: false })
 
   const deliverItems = homeDeliverItems.map((item) => ({
     id: item.id,

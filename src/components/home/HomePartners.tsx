@@ -53,16 +53,16 @@ export function HomePartners({ logos, className }: HomePartnersProps) {
       const items = gsap.utils.toArray<HTMLElement>('[data-home-partners]')
       gsap.fromTo(
         items,
-        { opacity: 0, y: 28 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
-          stagger: 0.12,
-          ease: 'power3.out',
+          duration: 1.4,
+          stagger: 0.2,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: rootRef.current,
-            start: 'top 78%',
+            start: 'top 70%',
             toggleActions: 'play none none none',
           },
         },

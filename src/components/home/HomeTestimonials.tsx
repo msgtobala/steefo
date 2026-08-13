@@ -59,16 +59,16 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
 
       gsap.fromTo(
         header,
-        { opacity: 0, y: 28 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
-          stagger: 0.1,
-          ease: 'power3.out',
+          duration: 1.4,
+          stagger: 0.18,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: rootRef.current,
-            start: 'top 78%',
+            start: 'top 70%',
             toggleActions: 'play none none none',
           },
         },
@@ -77,16 +77,16 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
       if (cards.length) {
         gsap.fromTo(
           cards,
-          { opacity: 0, y: 36 },
+          { opacity: 0, y: 48 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.95,
-            stagger: 0.1,
-            ease: 'power3.out',
+            duration: 1.35,
+            stagger: 0.2,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: scrollerRef.current,
-              start: 'top 85%',
+              start: 'top 78%',
               toggleActions: 'play none none none',
             },
           },
