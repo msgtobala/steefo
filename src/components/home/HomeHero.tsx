@@ -90,6 +90,10 @@ export function HomeHero({ className }: HomeHeroProps) {
       <img
         src={images.heroBanner}
         alt=""
+        width={2560}
+        height={1390}
+        fetchPriority="high"
+        decoding="async"
         className="absolute inset-0 size-full object-cover object-center"
       />
       <div

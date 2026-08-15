@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { uiConstants } from '../../constants/ui_constants'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { IntroReveal } from './IntroReveal'
 import { SubscribeBanner } from './SubscribeBanner'
 
 /**
@@ -14,6 +16,7 @@ import { SubscribeBanner } from './SubscribeBanner'
  */
 export function Layout() {
   const { pathname } = useLocation()
+  const introPlayed = useRef(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -21,6 +24,9 @@ export function Layout() {
 
   return (
     <div className="relative flex min-h-svh flex-col overflow-x-clip font-display">
+      {pathname === uiConstants.routes.home && !introPlayed.current ? (
+        <IntroReveal onComplete={() => { introPlayed.current = true }} />
+      ) : null}
       <Header />
       <main className="w-full flex-1 pt-20 md:pt-[120px]">
         <Outlet />

@@ -1,7 +1,8 @@
 import logo from '../assets/images/brand/logo.svg'
 import pattern from '../assets/images/brand/pattern.png'
+import patternDark from '../assets/images/brand/pattern_dark.png'
 import subscribeBanner from '../assets/images/common/subscribe_banner.svg'
-import heroBanner from '../assets/images/home/hero_banner.png'
+import heroBanner from '../assets/images/home/hero_banner.webp'
 import heroIntroBg from '../assets/images/home/hero_intro_bg.svg'
 import homePresenceBg from '../assets/images/home/home_presence_bg.svg'
 import homeStatsBg from '../assets/images/home/home_stats_bg.svg'
@@ -24,6 +25,7 @@ import insight07 from '../assets/images/insights/insight_07.png'
 export const images = {
   logo,
   pattern,
+  patternDark,
   heroBanner,
   heroIntroBg,
   homePresenceBg,
