@@ -25,14 +25,14 @@ export function CapabilityCard({
     <article
       data-capability-card
       className={cn(
-        'relative flex h-[480px] w-[min(100%,427px)] shrink-0 flex-col justify-end overflow-hidden p-10',
+        'group relative flex h-[480px] w-[min(100%,427px)] shrink-0 flex-col justify-end overflow-hidden p-10',
         className,
       )}
       {...rest}
     >
       <div
         {...mediaPlaceholderProps(aboutStrings.capabilityMediaAriaLabel)}
-        className="absolute inset-0 bg-surface-placeholder"
+        className="motion-zoom absolute inset-0 bg-surface-placeholder"
       />
 
       <img

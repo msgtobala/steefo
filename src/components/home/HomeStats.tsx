@@ -1,6 +1,7 @@
 import { Fragment, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
+import { useCountUp } from '../../hooks/useCountUp'
 import { homeStrings } from '../../resources/home_strings'
 import { images } from '../../resources/images'
 import { cn } from '../../utils'
@@ -16,6 +17,7 @@ export type HomeStatsProps = {
 export function HomeStats({ className }: HomeStatsProps) {
   const rootRef = useRef<HTMLElement>(null)
   const { ariaLabel, items } = homeStrings.stats
+  useCountUp(rootRef)
 
   useGSAP(
     () => {
@@ -76,7 +78,10 @@ export function HomeStats({ className }: HomeStatsProps) {
                   className="flex flex-col items-center text-center leading-[1.2] md:min-w-39"
                   data-home-stat
                 >
-                  <p className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-medium text-white">
+                  <p
+                    className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-medium text-white"
+                    data-count-up={item.value}
+                  >
                     {item.value}
                   </p>
                   <p className="mt-1 font-display text-sm font-normal text-[#8d8d8d] md:mt-0 md:text-base">

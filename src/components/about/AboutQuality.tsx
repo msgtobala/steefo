@@ -44,10 +44,14 @@ export function AboutQuality({
           {body}
         </p>
         <div
-          {...mediaPlaceholderProps(aboutStrings.qualityMediaAriaLabel)}
-          className="mt-10 h-[280px] w-full bg-surface-placeholder md:mt-12 md:h-[480px] lg:h-[600px]"
+          className="motion-media mt-10 h-[280px] w-full md:mt-12 md:h-[480px] lg:h-[600px]"
           data-animate="scale"
-        />
+        >
+          <div
+            {...mediaPlaceholderProps(aboutStrings.qualityMediaAriaLabel)}
+            className="motion-zoom size-full bg-surface-placeholder"
+          />
+        </div>
       </Container>
     </section>
   )

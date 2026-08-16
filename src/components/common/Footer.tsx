@@ -7,6 +7,7 @@ import { commonStrings } from '../../resources/common_strings'
 import { icons } from '../../resources/icons'
 import { images } from '../../resources/images'
 import { Container } from './Container'
+import { TypewriterCta } from './TypewriterCta'
 import { cn } from '../../utils/cn'
 
 const { routes, contact, social } = uiConstants
@@ -179,13 +180,11 @@ export function Footer({ className }: FooterProps) {
             <br />
             {footerCopy.headline.after}
           </h2>
-          <Link
+          <TypewriterCta
             to={routes.contact}
-            className="mt-5 font-sans text-sm font-semibold leading-[1.2] text-white underline decoration-solid underline-offset-4 transition-colors hover:text-brand md:mt-7"
-            data-footer-cta
-          >
-            {cta.getAQuote}
-          </Link>
+            text={cta.getAQuote}
+            className="mt-5 md:mt-7"
+          />
         </Container>
 
         {/* Columns */}

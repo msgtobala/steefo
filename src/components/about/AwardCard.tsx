@@ -25,7 +25,7 @@ export function AwardCard({
   return (
     <article
       className={cn(
-        'flex min-h-[460px] flex-col px-10 py-9 text-white',
+        'motion-lift flex min-h-[460px] flex-col px-10 py-9 text-white',
         isBrand ? 'bg-brand' : 'bg-black',
         className,
       )}

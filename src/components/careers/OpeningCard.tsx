@@ -28,8 +28,8 @@ export function OpeningCard({
   return (
     <article
       className={cn(
-        'flex flex-col gap-6 border-b border-border py-8',
-        'md:flex-row md:items-center md:justify-between md:gap-10 md:py-10',
+        'flex flex-col gap-6 border-b border-border py-8 transition-colors hover:bg-surface-subtle',
+        'md:flex-row md:items-center md:justify-between md:gap-10 md:py-10 md:px-4',
         className,
       )}
       {...rest}

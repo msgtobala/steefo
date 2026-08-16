@@ -34,10 +34,14 @@ export function FeaturedProject({
       {...rest}
     >
       <div
-        {...mediaPlaceholderProps(projectsStrings.featuredMediaAriaLabel)}
-        className="h-[280px] w-full bg-surface-placeholder md:h-[460px] lg:h-[566px]"
+        className="motion-media h-[280px] w-full md:h-[460px] lg:h-[566px]"
         data-animate="scale"
-      />
+      >
+        <div
+          {...mediaPlaceholderProps(projectsStrings.featuredMediaAriaLabel)}
+          className="motion-zoom size-full bg-surface-placeholder"
+        />
+      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start lg:gap-16">
         <div

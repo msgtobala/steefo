@@ -57,11 +57,13 @@ export function ProductRelated({
             className="group flex flex-col gap-5"
             data-animate="up"
           >
-            <div
-              {...mediaPlaceholderProps(productsStrings.relatedMediaAriaLabel)}
-              className="h-[220px] w-full bg-surface-placeholder transition-opacity group-hover:opacity-90 md:h-[340px]"
-            />
-            <h3 className="font-display text-xl font-medium leading-[1.3] text-foreground md:text-[26px] md:leading-[26px]">
+            <div className="motion-media h-[220px] w-full md:h-[340px]">
+              <div
+                {...mediaPlaceholderProps(productsStrings.relatedMediaAriaLabel)}
+                className="motion-zoom size-full bg-surface-placeholder"
+              />
+            </div>
+            <h3 className="font-display text-xl font-medium leading-[1.3] text-foreground transition-colors group-hover:text-brand md:text-[26px] md:leading-[26px]">
               {item.title}
             </h3>
           </Link>

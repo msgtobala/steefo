@@ -22,10 +22,12 @@ export function TeamMemberCard({
       className={cn('flex flex-col items-center gap-10 text-center', className)}
       {...rest}
     >
-      <div
-        {...mediaPlaceholderProps(aboutStrings.teamMediaAriaLabel)}
-        className="aspect-[330/270] w-full max-w-[330px] bg-surface-placeholder"
-      />
+      <div className="motion-media aspect-[330/270] w-full max-w-[330px]">
+        <div
+          {...mediaPlaceholderProps(aboutStrings.teamMediaAriaLabel)}
+          className="motion-zoom size-full bg-surface-placeholder"
+        />
+      </div>
       <div className="flex flex-col gap-2">
         <h3 className="font-display text-2xl font-normal leading-[1.1] text-foreground">
           {name}

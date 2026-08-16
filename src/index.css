@@ -452,3 +452,45 @@
   }
 }
 
+@utility animate-testimonial-marquee {
+  animation: partner-marquee 40s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Card / media micro-interactions */
+@utility motion-media {
+  overflow: hidden;
+}
+
+@utility motion-zoom {
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .motion-zoom,
+.motion-zoom:hover {
+  transform: translateZ(0) scale(1.06);
+}
+
+@utility motion-lift {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-lift:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-zoom,
+  .motion-lift {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

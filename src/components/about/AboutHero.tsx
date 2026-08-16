@@ -1,5 +1,7 @@
+import { useRef } from 'react'
 import { Container } from '../common'
 import { AboutStatCard } from './AboutStatCard'
+import { useCountUp } from '../../hooks/useCountUp'
 import { aboutStrings } from '../../resources/about_strings'
 import { images } from '../../resources/images'
 import { cn } from '../../utils'
@@ -35,8 +37,11 @@ export function AboutHero({
   stats,
   className,
 }: AboutHeroProps) {
+  const rootRef = useRef<HTMLElement>(null)
+  useCountUp(rootRef)
+
   return (
-    <section className={cn('relative', className)}>
+    <section ref={rootRef} className={cn('relative', className)}>
       <Container className="flex flex-col items-center pt-10 text-center md:pt-16">
         <p className="text-eyebrow" data-animate-hero>
           {eyebrow}
@@ -69,12 +74,13 @@ export function AboutHero({
       </Container>
 
       <div className="relative mt-10 md:mt-12">
-        <img
-          src={images.aboutBanner}
-          alt={aboutStrings.heroMediaAriaLabel}
-          className="h-[320px] w-full object-cover object-center md:h-[520px] lg:h-[688px]"
-          data-animate-hero
-        />
+        <div className="motion-media group h-[320px] w-full md:h-[520px] lg:h-[688px]" data-animate-hero>
+          <img
+            src={images.aboutBanner}
+            alt={aboutStrings.heroMediaAriaLabel}
+            className="motion-zoom size-full object-cover object-center"
+          />
+        </div>
         {/* Figma 1:3061/1:3064 — equal 315×160 cards, 22px gap, ~47px above media bottom */}
         <Container className="pointer-events-none absolute inset-x-0 bottom-8 md:bottom-12">
           <div className="pointer-events-auto flex flex-col items-stretch gap-[22px] sm:flex-row sm:items-end sm:justify-end">

@@ -43,6 +43,14 @@ export function HomePresence({ markets, className }: HomePresenceProps) {
     return map
   }, [markets])
 
+  const labelByIso2 = useMemo(() => {
+    const map = new Map<string, string>()
+    for (const market of markets) {
+      map.set(market.iso2, market.label)
+    }
+    return map
+  }, [markets])
+
   const row1 = markets.slice(0, ROW1_COUNT)
   const row2 = markets.slice(ROW1_COUNT)
 
@@ -109,6 +117,7 @@ export function HomePresence({ markets, className }: HomePresenceProps) {
             className="w-full"
             activeNumericIds={activeNumericIds}
             activeIsoByNumeric={activeIsoByNumeric}
+            labelByIso2={labelByIso2}
             hoveredIso2={hoveredIso2}
             onHoverIso2={setHoveredIso2}
             ariaLabel={mapAriaLabel}

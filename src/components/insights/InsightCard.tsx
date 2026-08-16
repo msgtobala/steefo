@@ -43,17 +43,17 @@ export function InsightCard({
   const meta = `${category}${insightsStrings.metaSeparator}${readTime}`.toUpperCase()
 
   return (
-    <article className={cn('flex min-w-0 flex-col gap-4', className)} {...rest}>
+    <article className={cn('group flex min-w-0 flex-col gap-4', className)} {...rest}>
       <div
         className={cn(
-          'w-full overflow-hidden bg-surface-placeholder',
+          'motion-media w-full bg-surface-placeholder',
           imageClassName ?? IMAGE_HEIGHT[size],
         )}
       >
         <img
           src={images[image]}
           alt=""
-          className="size-full object-cover"
+          className="motion-zoom size-full object-cover"
         />
       </div>
 

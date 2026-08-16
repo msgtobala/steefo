@@ -68,17 +68,20 @@ export function ProductFeatures({
           </div>
         </div>
 
-        <img
-          src={images.featureImage}
-          alt={productsStrings.featuresMediaAriaLabel}
-          className="h-[320px] w-full object-cover object-center md:h-[420px] lg:h-[477px]"
+        <div
+          className="motion-media group h-[320px] w-full md:h-[420px] lg:h-[477px]"
           style={{
-            // Top-right diagonal cut — Figma Mask group 1:3331
             clipPath:
               'polygon(0 0, calc(100% - 56px) 0, 100% 48px, 100% 100%, 0 100%)',
           }}
           data-animate="right"
-        />
+        >
+          <img
+            src={images.featureImage}
+            alt={productsStrings.featuresMediaAriaLabel}
+            className="motion-zoom size-full object-cover object-center"
+          />
+        </div>
       </div>
     </Container>
   )

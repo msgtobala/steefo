@@ -38,12 +38,13 @@ const THEME_CLASS: Record<
 
 /**
  * Home client testimonials — Figma 55:5759
- * Centered header + horizontal themed quote cards.
+ * Centered header + infinite horizontal quote marquee (pauses on hover).
  */
 export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
   const rootRef = useRef<HTMLElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
   const { eyebrow, title, body } = homeStrings.testimonials
+  const track = [...items, ...items]
 
   useGSAP(
     () => {
@@ -52,9 +53,6 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
 
       const header = gsap.utils.toArray<HTMLElement>(
         '[data-home-testimonials-header]',
-      )
-      const cards = gsap.utils.toArray<HTMLElement>(
-        '[data-home-testimonial-card]',
       )
 
       gsap.fromTo(
@@ -74,15 +72,14 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
         },
       )
 
-      if (cards.length) {
+      if (scrollerRef.current) {
         gsap.fromTo(
-          cards,
+          scrollerRef.current,
           { opacity: 0, y: 48 },
           {
             opacity: 1,
             y: 0,
             duration: 1.35,
-            stagger: 0.2,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: scrollerRef.current,
@@ -119,15 +116,17 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
 
       <div
         ref={scrollerRef}
-        className="scrollbar-none mt-10 overflow-x-auto overscroll-x-contain touch-pan-y md:mt-12"
+        className="group mt-10 w-full overflow-hidden md:mt-12 motion-reduce:overflow-x-auto motion-reduce:scrollbar-none"
       >
-        <div className="container-content flex w-max gap-5 pb-1">
-          {items.map((item) => {
+        <div className="animate-testimonial-marquee flex w-max gap-5 pr-5 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {track.map((item, index) => {
             const theme = THEME_CLASS[item.theme]
+            const duplicate = index >= items.length
             return (
               <article
-                key={item.id}
+                key={`${item.id}-${index}`}
                 data-home-testimonial-card
+                aria-hidden={duplicate || undefined}
                 className={cn(
                   'flex h-[293px] w-[min(26.25rem,85vw)] shrink-0 flex-col justify-between px-6 py-7',
                   theme.card,

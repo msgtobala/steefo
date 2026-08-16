@@ -26,9 +26,11 @@ export function ProductGallery({ slots = 6, className }: ProductGalleryProps) {
         >
           <div
             {...mediaProps}
-            className="h-[280px] w-full bg-surface-placeholder md:h-[460px]"
+            className="motion-media group h-[280px] w-full bg-surface-placeholder md:h-[460px]"
             data-animate="scale"
-          />
+          >
+            <div className="motion-zoom size-full bg-surface-placeholder" />
+          </div>
         </div>
 
         <div
@@ -38,14 +40,18 @@ export function ProductGallery({ slots = 6, className }: ProductGalleryProps) {
         >
           <div
             {...mediaProps}
-            className="h-[280px] w-full bg-surface-placeholder md:h-[500px]"
+            className="motion-media group h-[280px] w-full bg-surface-placeholder md:h-[500px]"
             data-animate="scale"
-          />
+          >
+            <div className="motion-zoom size-full bg-surface-placeholder" />
+          </div>
           <div
             {...mediaProps}
-            className="h-[280px] w-full bg-surface-placeholder md:h-[500px]"
+            className="motion-media group h-[280px] w-full bg-surface-placeholder md:h-[500px]"
             data-animate="scale"
-          />
+          >
+            <div className="motion-zoom size-full bg-surface-placeholder" />
+          </div>
         </div>
 
         <div
@@ -57,9 +63,11 @@ export function ProductGallery({ slots = 6, className }: ProductGalleryProps) {
             <div
               key={index}
               {...mediaProps}
-              className="h-[280px] w-full bg-surface-placeholder md:h-[500px]"
+              className="motion-media group h-[280px] w-full bg-surface-placeholder md:h-[500px]"
               data-animate="scale"
-            />
+            >
+              <div className="motion-zoom size-full bg-surface-placeholder" />
+            </div>
           ))}
         </div>
       </div>

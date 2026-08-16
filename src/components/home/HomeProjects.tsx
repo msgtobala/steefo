@@ -1,10 +1,14 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useGSAP } from '@gsap/react'
 import { CarouselNav, Container } from '../common'
 import { Button } from '../ui'
 import { uiConstants } from '../../constants/ui_constants'
-import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
+import {
+  gsap,
+  prefersReducedMotion,
+  registerGsap,
+} from '../../lib/gsap'
 import { homeStrings } from '../../resources/home_strings'
 import { projectsStrings } from '../../resources/projects_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
@@ -24,18 +28,35 @@ export type HomeProjectsProps = {
 }
 
 const CARD_GAP_PX = 20
+const INACTIVE_MAX_PX = 744
+const ACTIVE_MAX_PX = 1015
+const INACTIVE_H_PX = 458
+const ACTIVE_H_PX = 540
+const TWEEN_DURATION = 0.75
+const TWEEN_EASE = 'power3.inOut'
 
 /** Top-right diagonal cut — Figma mask on carousel media. */
 const mediaClip =
   'polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%)'
 
+function inactiveWidthPx() {
+  return Math.min(INACTIVE_MAX_PX, window.innerWidth * 0.78)
+}
+
+function activeWidthPx() {
+  return Math.min(ACTIVE_MAX_PX, window.innerWidth * 0.88)
+}
+
 /**
  * Home projects carousel — Figma 42:4051
- * Top projects row with View All → /projects and shared arrow controls.
+ * Active card grows while the track scrolls with the same tween (no layout jump).
  */
 export function HomeProjects({ projects, className }: HomeProjectsProps) {
   const rootRef = useRef<HTMLElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const activeIndexRef = useRef(0)
+  const tweenRef = useRef<gsap.core.Tween | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
   const {
     eyebrow,
     titleBefore,
@@ -98,12 +119,71 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
     { scope: rootRef },
   )
 
-  function scrollByCard(direction: -1 | 1) {
+  function goToIndex(nextIndex: number) {
     const scroller = scrollerRef.current
     if (!scroller) return
-    const card = scroller.querySelector<HTMLElement>('[data-home-project-card]')
-    const amount = (card?.offsetWidth ?? 744) + CARD_GAP_PX
-    scroller.scrollBy({ left: direction * amount, behavior: 'smooth' })
+    const to = Math.min(projects.length - 1, Math.max(0, nextIndex))
+    if (to === activeIndexRef.current) return
+
+    const cards = Array.from(
+      scroller.querySelectorAll<HTMLElement>('[data-home-project-card]'),
+    )
+    const startW = cards.map((card) => card.offsetWidth)
+    const endW = cards.map((_, i) =>
+      i === to ? activeWidthPx() : inactiveWidthPx(),
+    )
+    const startH = cards.map((card) => {
+      const media = card.querySelector<HTMLElement>('[data-home-project-media]')
+      return media?.offsetHeight ?? INACTIVE_H_PX
+    })
+    const endH = cards.map((_, i) => (i === to ? ACTIVE_H_PX : INACTIVE_H_PX))
+
+    const offsetBefore = (index: number, t: number) => {
+      let offset = 0
+      for (let i = 0; i < index; i += 1) {
+        offset += gsap.utils.interpolate(startW[i], endW[i], t) + CARD_GAP_PX
+      }
+      return offset
+    }
+
+    const startScroll = scroller.scrollLeft
+
+    const apply = (t: number) => {
+      cards.forEach((card, i) => {
+        const width = gsap.utils.interpolate(startW[i], endW[i], t)
+        const height = gsap.utils.interpolate(startH[i], endH[i], t)
+        card.style.width = `${width}px`
+        const media = card.querySelector<HTMLElement>('[data-home-project-media]')
+        if (media) media.style.height = `${height}px`
+      })
+      scroller.scrollLeft = gsap.utils.interpolate(
+        startScroll,
+        offsetBefore(to, t),
+        t,
+      )
+    }
+
+    activeIndexRef.current = to
+    setActiveIndex(to)
+    tweenRef.current?.kill()
+
+    if (prefersReducedMotion()) {
+      apply(1)
+      return
+    }
+
+    const state = { t: 0 }
+    tweenRef.current = gsap.to(state, {
+      t: 1,
+      duration: TWEEN_DURATION,
+      ease: TWEEN_EASE,
+      overwrite: 'auto',
+      onUpdate: () => apply(state.t),
+    })
+  }
+
+  function scrollByCard(direction: -1 | 1) {
+    goToIndex(activeIndexRef.current + direction)
   }
 
   return (
@@ -153,9 +233,9 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
         ref={scrollerRef}
         className="scrollbar-none mt-10 overflow-x-auto overscroll-x-contain touch-pan-y md:mt-12"
       >
-        <div className="container-content flex w-max gap-5 pb-1">
+        <div className="container-content flex w-max items-start gap-5 pb-1">
           {projects.map((project, index) => {
-            const featured = index === 0
+            const featured = index === activeIndex
             const meta =
               `${project.location}${projectsStrings.metaSeparator}${project.year}`.toUpperCase()
 
@@ -164,18 +244,17 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
                 key={project.id}
                 data-home-project-card
                 className={cn(
-                  'flex shrink-0 flex-col',
+                  'flex shrink-0 flex-col gap-5',
                   featured
-                    ? 'w-[min(1015px,88vw)] gap-[29px]'
-                    : 'w-[min(744px,78vw)] gap-5',
+                    ? 'w-[min(1015px,88vw)]'
+                    : 'w-[min(744px,78vw)]',
                 )}
               >
                 <div
+                  data-home-project-media
                   className={cn(
                     'relative w-full overflow-hidden bg-surface-placeholder',
-                    featured
-                      ? 'aspect-[1015/540] md:h-[540px] md:aspect-auto'
-                      : 'aspect-[744/458] md:h-[458px] md:aspect-auto',
+                    featured ? 'h-[540px] max-md:h-[54vw]' : 'h-[458px] max-md:h-[48vw]',
                   )}
                   style={{ clipPath: mediaClip }}
                   {...mediaPlaceholderProps(mediaAriaLabel)}
@@ -231,7 +310,6 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
         </div>
       </div>
 
-      {/* Figma 47:4052 — 1px solid black hairline under the carousel */}
       <Container className="mt-20">
         <div className="w-full border-t border-black" aria-hidden />
       </Container>

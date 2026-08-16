@@ -30,7 +30,10 @@ export function AboutStatCard({
       {...rest}
     >
       <p className="font-display text-xl font-normal leading-[1.1]">{label}</p>
-      <p className="mt-1 font-display text-[4.5rem] font-normal leading-[1.1]">
+      <p
+        className="mt-1 font-display text-[4.5rem] font-normal leading-[1.1]"
+        data-count-up={value}
+      >
         {value}
       </p>
     </div>

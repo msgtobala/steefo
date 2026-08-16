@@ -29,15 +29,17 @@ export function ProjectCard({
   return (
     <article className={cn('flex min-w-0 flex-col gap-5', className)} {...rest}>
       <Link to={href} className="group flex flex-col gap-5">
-        <div
-          {...mediaPlaceholderProps(projectsStrings.cardMediaAriaLabel)}
-          className="h-[220px] w-full bg-surface-placeholder transition-opacity group-hover:opacity-90 md:h-[340px]"
-        />
+        <div className="motion-media h-[220px] w-full md:h-[340px]">
+          <div
+            {...mediaPlaceholderProps(projectsStrings.cardMediaAriaLabel)}
+            className="motion-zoom size-full bg-surface-placeholder"
+          />
+        </div>
         <div className="flex flex-col gap-3">
           <p className="font-display text-xs font-normal uppercase leading-[1.25] tracking-[0.02em] text-subtle-foreground">
             {meta}
           </p>
-          <h3 className="font-display text-xl font-medium leading-[1.3] text-foreground md:text-[26px] md:leading-[26px]">
+          <h3 className="font-display text-xl font-medium leading-[1.3] text-foreground transition-colors group-hover:text-brand md:text-[26px] md:leading-[26px]">
             {title}
           </h3>
         </div>
