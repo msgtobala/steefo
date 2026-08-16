@@ -81,9 +81,10 @@ export function Header({ className }: HeaderProps) {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'font-display text-[14px] font-normal leading-normal text-white',
+      'font-display text-nav font-normal text-white',
       'transition-colors hover:text-white/80',
-      isActive && 'text-brand hover:text-brand',
+      isActive &&
+        'font-medium text-brand hover:text-brand underline decoration-brand decoration-2 underline-offset-4 lg:underline-offset-8',
     )
 
   return (

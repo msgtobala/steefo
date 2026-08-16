@@ -1,7 +1,8 @@
 import { Container } from '../common'
 import { AboutStatCard } from './AboutStatCard'
 import { aboutStrings } from '../../resources/about_strings'
-import { cn, mediaPlaceholderProps } from '../../utils'
+import { images } from '../../resources/images'
+import { cn } from '../../utils'
 
 export type AboutHeroStat = {
   id: string
@@ -68,9 +69,10 @@ export function AboutHero({
       </Container>
 
       <div className="relative mt-10 md:mt-12">
-        <div
-          {...mediaPlaceholderProps(aboutStrings.heroMediaAriaLabel)}
-          className="h-[320px] w-full bg-surface-placeholder md:h-[520px] lg:h-[688px]"
+        <img
+          src={images.aboutBanner}
+          alt={aboutStrings.heroMediaAriaLabel}
+          className="h-[320px] w-full object-cover object-center md:h-[520px] lg:h-[688px]"
           data-animate-hero
         />
         {/* Figma 1:3061/1:3064 — equal 315×160 cards, 22px gap, ~47px above media bottom */}

@@ -1,6 +1,7 @@
 import { Container } from '../common'
+import { images } from '../../resources/images'
 import { productsStrings } from '../../resources/products_strings'
-import { cn, mediaPlaceholderProps } from '../../utils'
+import { cn } from '../../utils'
 
 export type ProductSpecItem = {
   id: string
@@ -67,9 +68,10 @@ export function ProductFeatures({
           </div>
         </div>
 
-        <div
-          {...mediaPlaceholderProps(productsStrings.featuresMediaAriaLabel)}
-          className="h-[320px] w-full bg-surface-placeholder md:h-[420px] lg:h-[477px]"
+        <img
+          src={images.featureImage}
+          alt={productsStrings.featuresMediaAriaLabel}
+          className="h-[320px] w-full object-cover object-center md:h-[420px] lg:h-[477px]"
           style={{
             // Top-right diagonal cut — Figma Mask group 1:3331
             clipPath:

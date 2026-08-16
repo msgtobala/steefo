@@ -5,7 +5,7 @@ export const productsStrings = {
     subtitle: 'High speed, automated lines for premium TMT bars production.',
   },
   features: {
-    eyebrow: 'Features',
+    eyebrow: 'OVERVIEW',
     titleBefore: 'Built for scale. ',
     titleHighlight: 'Engineered for precision.',
     body: 'Designed for high throughput and consistent metallurgical quality across bar sizes. Every line is engineered for reliability, efficiency, and long-term plant performance.',
@@ -60,7 +60,7 @@ export const productsStrings = {
     'continuous-casting': { title: 'Continuous Casting Machines' },
   },
   heroMediaAriaLabel: 'Product hero image placeholder',
-  featuresMediaAriaLabel: 'Product features image placeholder',
+  featuresMediaAriaLabel: 'Product features image',
   galleryMediaAriaLabel: 'Product gallery image placeholder',
   relatedMediaAriaLabel: 'Related product image placeholder',
   relatedPrevAriaLabel: 'Previous related products',

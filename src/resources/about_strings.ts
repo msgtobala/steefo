@@ -102,7 +102,7 @@ export const aboutStrings = {
     role: 'Founder & CEO',
     company: 'Steefo Engineering Corporation',
   },
-  heroMediaAriaLabel: 'About Steefo hero image placeholder',
+  heroMediaAriaLabel: 'Steefo Engineering manufacturing facility',
   qualityMediaAriaLabel: 'Quality section media placeholder',
   teamMediaAriaLabel: 'Team member photo placeholder',
   capabilityMediaAriaLabel: 'Capability image placeholder',
