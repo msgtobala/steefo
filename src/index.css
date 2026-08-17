@@ -285,6 +285,9 @@
   }
 
   html {
+    /* Keep macOS rubber-band overscroll above the dark home hero from flashing white. */
+    background-color: #000;
+    overscroll-behavior-y: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

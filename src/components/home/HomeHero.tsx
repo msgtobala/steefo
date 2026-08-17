@@ -82,7 +82,7 @@ export function HomeHero({ className }: HomeHeroProps) {
     <section
       ref={rootRef}
       className={cn(
-        'relative -mt-20 h-svh w-full overflow-hidden md:-mt-[120px]',
+        'relative h-svh w-full overflow-hidden bg-black',
         className,
       )}
       aria-label={mediaAriaLabel}

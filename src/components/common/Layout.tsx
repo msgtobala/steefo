@@ -5,6 +5,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import { IntroReveal } from './IntroReveal'
 import { SubscribeBanner } from './SubscribeBanner'
+import { cn } from '../../utils/cn'
 
 /**
  * App shell aligned to Figma Home Page 2:45 (1440 artboard).
@@ -28,7 +29,14 @@ export function Layout() {
         <IntroReveal onComplete={() => { introPlayed.current = true }} />
       ) : null}
       <Header />
-      <main className="w-full flex-1 pt-20 md:pt-[120px]">
+      <main
+        className={cn(
+          'w-full flex-1',
+          pathname === uiConstants.routes.home
+            ? 'pt-0'
+            : 'pt-20 md:pt-[120px]',
+        )}
+      >
         <Outlet />
         {/* Figma mid-page CTA + ~100px white gap before footer */}
         <div className="mt-16 pb-20 md:mt-24 md:pb-[100px]">
