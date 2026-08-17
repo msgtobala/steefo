@@ -6,6 +6,7 @@ import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
 import { commonStrings } from '../../resources/common_strings'
 import { icons } from '../../resources/icons'
 import { images } from '../../resources/images'
+import { CircuitFlow } from './CircuitFlow'
 import { Container } from './Container'
 import { TypewriterCta } from './TypewriterCta'
 import { cn } from '../../utils/cn'
@@ -152,12 +153,20 @@ export function Footer({ className }: FooterProps) {
         aria-hidden
         className="pointer-events-none absolute inset-0 top-10 h-[min(647px,70%)] w-full opacity-60 md:top-[58px] md:h-[647px] md:opacity-100"
         style={{
-          backgroundImage: `url(${images.pattern})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          backgroundRepeat: 'no-repeat',
+          // backgroundImage: `url(${images.pattern})`,
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'center top',
+          // backgroundRepeat: 'no-repeat',
         }}
       />
+
+      {/* Traveling dashes on SVG traces — same overlay as /svg-test */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-10 h-[min(647px,70%)] w-full md:top-[58px] md:h-[647px]"
+      >
+        <CircuitFlow />
+      </div>
 
       {/* Notch — Figma Rectangle 40328: 1060×40 white trapezoid, centered */}
       <img

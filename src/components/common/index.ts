@@ -1,3 +1,4 @@
+export { CircuitFlow, type CircuitFlowProps } from './CircuitFlow'
 export { CarouselNav, type CarouselNavProps } from './CarouselNav'
 export { Container, type ContainerProps } from './Container'
 export { Footer, type FooterProps } from './Footer'

@@ -11,6 +11,7 @@ import { PrivacyPage } from './pages/privacy/PrivacyPage'
 import { ProductDetailsPage } from './pages/products/ProductDetailsPage'
 import { ProductsPage } from './pages/products/ProductsPage'
 import { ProjectsPage } from './pages/projects/ProjectsPage'
+import { SvgTestPage } from './pages/svg-test/SvgTestPage'
 import { TermsPage } from './pages/terms/TermsPage'
 import './App.css'
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/svg-test" element={<SvgTestPage />} />
         <Route path={routes.home} element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />

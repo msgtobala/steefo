@@ -437,6 +437,29 @@
   }
 }
 
+/* Circuit overlay — short dash travels the full path, then repeats */
+@keyframes circuit-flow-dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.circuit-flow-dash {
+  stroke-dasharray: 1.4 98.6;
+  animation-name: circuit-flow-dash;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circuit-flow-dash {
+    animation: none;
+  }
+}
+
 /* Home partners logo marquee — seamless loop over a duplicated track */
 @keyframes partner-marquee {
   from {

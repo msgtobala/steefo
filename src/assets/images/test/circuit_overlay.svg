@@ -1,0 +1,107 @@
+<svg width="1710" height="250" viewBox="0 0 1710 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="circuit-glow" x="0" y="0" width="155" height="89" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="17" />
+    </filter>
+  </defs>
+
+  <!-- Top-left path + glow -->
+  <path
+    fill="#A2A2A2"
+    fill-opacity="0.06"
+    filter="url(#circuit-glow)"
+    d="M55.1257 34C40.6277 34 34 36.52 34 44.5C34 54.16 38.9708 55 55.1257 55C78.4606 55 121.817 45.34 120.988 44.5C119.817 43.312 78.4606 34 55.1257 34Z"
+    transform="matrix(-1,0,0,-1,725.74607,82.01001)"
+  />
+  <path
+    d="M 684,0 L 684,18.75 A 18.75,18.75 0 0 1 665.25,37.5 L 477.5,37.5 L 221,37.5 A 50,50 0 0 0 171,87.5 L 171,87.5 A 38.54,38.54 0 0 1 122.65,124.78 L 0,92.5"
+    stroke="#A2A2A2"
+    fill="none"
+    stroke-opacity="0.15"
+    stroke-width="1"
+  />
+  <path
+    d="M 684,0 L 684,18.75 A 18.75,18.75 0 0 1 665.25,37.5 L 477.5,37.5 L 221,37.5 A 50,50 0 0 0 171,87.5 L 171,87.5 A 38.54,38.54 0 0 1 122.65,124.78 L 0,92.5"
+    fill="none"
+    stroke="#A2A2A2"
+    stroke-width="1"
+    stroke-linecap="round"
+    stroke-dashoffset="-64.5553"
+    stroke-dasharray="7.683 760.719"
+  />
+
+  <!-- Top-right path + glow -->
+  <path
+    fill="#A2A2A2"
+    fill-opacity="0.06"
+    filter="url(#circuit-glow)"
+    d="M55.1257 34C40.6277 34 34 36.52 34 44.5C34 54.16 38.9708 55 55.1257 55C78.4606 55 121.817 45.34 120.988 44.5C119.817 43.312 78.4606 34 55.1257 34Z"
+    transform="matrix(1,0,0,1,1501.03465,68)"
+  />
+  <path
+    d="M 1026,0 L 1026,28.75 A 28.75,28.75 0 0 0 1054.75,57.5 L 1511.5,57.5 A 27.5,27.5 0 0 1 1539,85 L 1539,85 A 27.5,27.5 0 0 0 1566.5,112.5 L 1710,112.5"
+    stroke="#A2A2A2"
+    fill="none"
+    stroke-opacity="0.15"
+    stroke-width="1"
+  />
+  <path
+    d="M 1026,0 L 1026,28.75 A 28.75,28.75 0 0 0 1054.75,57.5 L 1511.5,57.5 A 27.5,27.5 0 0 1 1539,85 L 1539,85 A 27.5,27.5 0 0 0 1566.5,112.5 L 1710,112.5"
+    fill="none"
+    stroke="#A2A2A2"
+    stroke-width="1"
+    stroke-linecap="round"
+    stroke-dashoffset="-622.801"
+    stroke-dasharray="7.6057 753.068"
+  />
+
+  <!-- Bottom-right path + glow -->
+  <path
+    fill="#A2A2A2"
+    fill-opacity="0.06"
+    filter="url(#circuit-glow)"
+    d="M55.1257 34C40.6277 34 34 36.52 34 44.5C34 54.16 38.9708 55 55.1257 55C78.4606 55 121.817 45.34 120.988 44.5C119.817 43.312 78.4606 34 55.1257 34Z"
+    transform="matrix(-0.97678,-0.21424,0.21424,-0.97678,1720.54228,247.87788)"
+  />
+  <path
+    d="M 1710,200 L 1558.54,166.78 A 184.57,184.57 0 0 0 1519,162.5 L 1155.25,162.5 A 43.75,43.75 0 0 0 1111.5,206.25 L 1111.5,250"
+    stroke="#A2A2A2"
+    fill="none"
+    stroke-opacity="0.15"
+    stroke-width="1"
+  />
+  <path
+    d="M 1710,200 L 1558.54,166.78 A 184.57,184.57 0 0 0 1519,162.5 L 1155.25,162.5 A 43.75,43.75 0 0 0 1111.5,206.25 L 1111.5,250"
+    fill="none"
+    stroke="#A2A2A2"
+    stroke-width="1"
+    stroke-linecap="round"
+    stroke-dashoffset="-56.3915"
+    stroke-dasharray="6.7114 664.529"
+  />
+
+  <!-- Bottom-left path + glow -->
+  <path
+    fill="#A2A2A2"
+    fill-opacity="0.06"
+    filter="url(#circuit-glow)"
+    d="M55.1257 34C40.6277 34 34 36.52 34 44.5C34 54.16 38.9708 55 55.1257 55C78.4606 55 121.817 45.34 120.988 44.5C119.817 43.312 78.4606 34 55.1257 34Z"
+    transform="matrix(-0.96879,0.24788,-0.24788,-0.96879,369.26669,245.21627)"
+  />
+  <path
+    d="M 0,162.5 L 393,162.5 A 15.11,15.11 0 0 1 396.74,192.24 L 171,250"
+    stroke="#A2A2A2"
+    fill="none"
+    stroke-opacity="0.15"
+    stroke-width="1"
+  />
+  <path
+    d="M 0,162.5 L 393,162.5 A 15.11,15.11 0 0 1 396.74,192.24 L 171,250"
+    fill="none"
+    stroke="#A2A2A2"
+    stroke-width="1"
+    stroke-linecap="round"
+    stroke-dashoffset="-548.33"
+    stroke-dasharray="6.6963 663.033"
+  />
+</svg>
