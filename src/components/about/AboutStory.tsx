@@ -49,7 +49,7 @@ export function AboutStory({
               {values.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col gap-2"
+                  className="group flex flex-col gap-2 border-l-2 border-transparent pl-4 transition-colors duration-300 hover:border-brand motion-reduce:transition-none"
                   data-animate="right"
                 >
                   <span className="inline-flex w-fit items-center rounded bg-brand px-3 py-1.5 font-display text-sm font-medium uppercase leading-[1.2] text-white">

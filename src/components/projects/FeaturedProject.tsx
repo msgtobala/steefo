@@ -29,17 +29,21 @@ export function FeaturedProject({
 
   return (
     <article
-      className={cn('flex flex-col gap-8 md:gap-10', className)}
+      className={cn('motion-lift group flex flex-col gap-8 md:gap-10', className)}
       data-animate-section
       {...rest}
     >
       <div
-        className="motion-media h-[280px] w-full md:h-[460px] lg:h-[566px]"
+        className="motion-media relative h-[280px] w-full md:h-[460px] lg:h-[566px]"
         data-animate="scale"
       >
         <div
           {...mediaPlaceholderProps(projectsStrings.featuredMediaAriaLabel)}
           className="motion-zoom size-full bg-surface-placeholder"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-overlay-mid opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
         />
       </div>
 
@@ -65,7 +69,7 @@ export function FeaturedProject({
           </p>
           <Link
             to={href}
-            className="w-fit font-display text-sm font-medium uppercase leading-[1.5] text-brand underline decoration-solid underline-offset-4 transition-colors hover:text-brand-hover"
+            className="motion-underline w-fit font-display text-sm font-medium uppercase leading-[1.5] text-brand"
           >
             {projectsStrings.viewCaseStudy}
           </Link>

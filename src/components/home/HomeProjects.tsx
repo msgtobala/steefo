@@ -253,15 +253,20 @@ export function HomeProjects({ projects, className }: HomeProjectsProps) {
                 <div
                   data-home-project-media
                   className={cn(
-                    'relative w-full overflow-hidden bg-surface-placeholder',
-                    featured ? 'h-[540px] max-md:h-[54vw]' : 'h-[458px] max-md:h-[48vw]',
+                    'motion-media group relative w-full bg-surface-placeholder',
+                    featured
+                      ? 'h-[540px] max-md:h-[54vw]'
+                      : 'h-[458px] max-md:h-[48vw]',
                   )}
                   style={{ clipPath: mediaClip }}
-                  {...mediaPlaceholderProps(mediaAriaLabel)}
                 >
+                  <div
+                    {...mediaPlaceholderProps(mediaAriaLabel)}
+                    className="motion-zoom size-full bg-surface-placeholder"
+                  />
                   {featured ? (
                     <span
-                      className="pointer-events-none absolute right-6 bottom-6 flex size-14 items-center justify-center rounded-full border border-white/80 text-white"
+                      className="pointer-events-none absolute right-6 bottom-6 z-[1] flex size-14 origin-center items-center justify-center rounded-full border border-white/80 text-white transition-transform duration-500 group-hover:scale-110 motion-reduce:transition-none"
                       aria-hidden
                     >
                       <svg

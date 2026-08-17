@@ -54,7 +54,7 @@ export function ProductFeatures({
             {specs.map((spec) => (
               <div
                 key={spec.id}
-                className="flex flex-col gap-2 bg-surface-subtle px-8 py-5 sm:px-10"
+                className="motion-lift flex flex-col gap-2 bg-surface-subtle px-8 py-5 sm:px-10"
                 data-animate="up"
               >
                 <p className="font-display text-sm font-normal leading-[1.2] text-subtle-foreground">

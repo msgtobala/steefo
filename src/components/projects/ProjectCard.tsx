@@ -27,12 +27,19 @@ export function ProjectCard({
     `${location}${projectsStrings.metaSeparator}${year}`.toUpperCase()
 
   return (
-    <article className={cn('flex min-w-0 flex-col gap-5', className)} {...rest}>
+    <article
+      className={cn('motion-lift flex min-w-0 flex-col gap-5', className)}
+      {...rest}
+    >
       <Link to={href} className="group flex flex-col gap-5">
-        <div className="motion-media h-[220px] w-full md:h-[340px]">
+        <div className="motion-media relative h-[220px] w-full md:h-[340px]">
           <div
             {...mediaPlaceholderProps(projectsStrings.cardMediaAriaLabel)}
             className="motion-zoom size-full bg-surface-placeholder"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-overlay-mid opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
           />
         </div>
         <div className="flex flex-col gap-3">

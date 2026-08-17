@@ -137,7 +137,7 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
                 'h-10 min-w-0 flex-1 border border-r-0 border-border-input bg-transparent',
                 'px-3.5 font-display text-sm font-light leading-[1.3] text-white',
                 'placeholder:text-muted-foreground',
-                'outline-none transition-colors focus-visible:border-brand',
+                'motion-field outline-none focus-visible:border-brand',
                 'disabled:cursor-not-allowed disabled:opacity-50',
               )}
             />
@@ -155,13 +155,13 @@ export function SubscribeBanner({ className }: SubscribeBannerProps) {
         </div>
 
         <div
-          className="relative mx-auto w-full max-w-[420px] lg:max-w-none lg:justify-self-end"
+          className="motion-media relative mx-auto w-full max-w-[420px] lg:max-w-none lg:justify-self-end"
           data-subscribe-visual
         >
           <img
             src={images.subscribeBanner}
             alt={subscribe.bannerAriaLabel}
-            className="h-auto w-full object-contain object-bottom lg:max-h-[520px]"
+            className="motion-zoom h-auto w-full object-contain object-bottom lg:max-h-[520px]"
           />
         </div>
       </Container>

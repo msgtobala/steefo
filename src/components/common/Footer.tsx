@@ -191,7 +191,11 @@ export function Footer({ className }: FooterProps) {
         <Container className="mt-auto flex flex-col gap-10 pt-14 pb-10 font-sans sm:pt-20 md:pt-[180px] md:pb-12 lg:flex-row lg:justify-between lg:gap-8 lg:pb-14">
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-12 md:gap-[103px]">
             <div className="max-w-[280px] sm:max-w-[238px]" data-footer-col>
-              <Link to={routes.home} aria-label={brand.homeAriaLabel}>
+              <Link
+                to={routes.home}
+                aria-label={brand.homeAriaLabel}
+                className="inline-block transition-opacity duration-300 hover:opacity-80 motion-reduce:transition-none"
+              >
                 <img
                   src={images.logo}
                   alt={brand.logoAltShort}
@@ -217,7 +221,7 @@ export function Footer({ className }: FooterProps) {
                 <p key={phone}>
                   <a
                     href={`tel:${phone.replace(/-/g, '')}`}
-                    className="transition-colors hover:text-brand"
+                    className="motion-underline w-fit transition-colors hover:text-brand"
                   >
                     {phone}
                   </a>
@@ -227,7 +231,7 @@ export function Footer({ className }: FooterProps) {
               <p>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="break-all transition-colors hover:text-brand"
+                  className="motion-underline break-all transition-colors hover:text-brand"
                 >
                   {contact.email}
                 </a>
@@ -245,7 +249,7 @@ export function Footer({ className }: FooterProps) {
                 <Link
                   key={to}
                   to={to}
-                  className="w-fit transition-colors hover:text-brand"
+                  className="motion-underline w-fit transition-colors hover:text-brand"
                 >
                   {label}
                 </Link>
@@ -261,7 +265,7 @@ export function Footer({ className }: FooterProps) {
                 <Link
                   key={to}
                   to={to}
-                  className="w-fit transition-colors hover:text-brand"
+                  className="motion-underline w-fit transition-colors hover:text-brand"
                 >
                   {label}
                 </Link>
@@ -289,31 +293,35 @@ export function Footer({ className }: FooterProps) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={footerCopy.facebookAriaLabel}
-                className="size-7 transition-colors hover:text-brand"
-              >
-                <img
-                  src={icons.facebook}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="size-7 brightness-0 invert"
-                />
-              </a>
+                className="size-7 bg-white transition-colors duration-300 hover:bg-brand motion-reduce:transition-none"
+                style={{
+                  maskImage: `url(${icons.facebook})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${icons.facebook})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
               <a
                 href={social.instagram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={footerCopy.instagramAriaLabel}
-                className="size-7 transition-colors hover:text-brand"
-              >
-                <img
-                  src={icons.instagram}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="size-7 brightness-0 invert"
-                />
-              </a>
+                className="size-7 bg-white transition-colors duration-300 hover:bg-brand motion-reduce:transition-none"
+                style={{
+                  maskImage: `url(${icons.instagram})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${icons.instagram})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
             </div>
           </div>
         </div>

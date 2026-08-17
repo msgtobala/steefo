@@ -489,6 +489,39 @@
   transform: translateY(-4px);
 }
 
+/* Brand hairline that draws left → right */
+@utility motion-underline {
+  background-image: linear-gradient(var(--color-brand), var(--color-brand));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    background-size 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 150ms ease;
+}
+
+.motion-underline:hover,
+.motion-underline:focus-visible,
+.group:hover .motion-underline,
+.motion-underline[aria-current='page'] {
+  background-size: 100% 1px;
+}
+
+/* Focus rule that draws along the existing field border */
+@utility motion-field {
+  background-image: linear-gradient(var(--color-brand), var(--color-brand));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition:
+    background-size 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 150ms ease;
+}
+
+.motion-field:focus-visible {
+  background-size: 100% 2px;
+}
+
 /* Frosted-glass hover — capability card photo */
 .capability-gloss {
   transform: translateZ(0) scale(1);
@@ -570,6 +603,11 @@
     transition: none !important;
     transform: none !important;
     filter: none !important;
+  }
+
+  .motion-underline,
+  .motion-field {
+    transition: none;
   }
 }
 

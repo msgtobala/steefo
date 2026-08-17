@@ -25,6 +25,7 @@ export function AboutStatCard({
       className={cn(
         'flex h-40 shrink-0 flex-col px-6 pt-[30px] backdrop-blur-[37px]',
         isBrand ? 'bg-brand text-white' : 'bg-white text-foreground',
+        'motion-lift',
         className,
       )}
       {...rest}

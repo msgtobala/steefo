@@ -25,7 +25,7 @@ export function CarouselNav({
         type="button"
         aria-label={prevAriaLabel}
         onClick={onPrev}
-        className="flex size-10 items-center justify-center transition-opacity hover:opacity-70"
+        className="flex size-10 items-center justify-center transition-transform duration-200 hover:opacity-70 active:scale-90 motion-reduce:transition-none"
       >
         <img
           src={icons.left}
@@ -39,7 +39,7 @@ export function CarouselNav({
         type="button"
         aria-label={nextAriaLabel}
         onClick={onNext}
-        className="flex size-10 items-center justify-center transition-opacity hover:opacity-70"
+        className="flex size-10 items-center justify-center transition-transform duration-200 hover:opacity-70 active:scale-90 motion-reduce:transition-none"
       >
         <img
           src={icons.right}

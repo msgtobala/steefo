@@ -26,7 +26,7 @@ export type InsightCardProps = {
 
 /**
  * Insights article card — Figma 14:3343
- * Image + meta + title + excerpt + underlined Read More.
+ * Whole-card link: image + meta + title + excerpt + underlined Read More.
  */
 export function InsightCard({
   category,
@@ -43,37 +43,39 @@ export function InsightCard({
   const meta = `${category}${insightsStrings.metaSeparator}${readTime}`.toUpperCase()
 
   return (
-    <article className={cn('group flex min-w-0 flex-col gap-4', className)} {...rest}>
-      <div
-        className={cn(
-          'motion-media w-full bg-surface-placeholder',
-          imageClassName ?? IMAGE_HEIGHT[size],
-        )}
-      >
-        <img
-          src={images[image]}
-          alt=""
-          className="motion-zoom size-full object-cover"
-        />
-      </div>
-
-      <div className="flex flex-col gap-3">
-        <p className="font-display text-xs font-normal uppercase leading-[1.1] tracking-[0.02em] text-subtle-foreground">
-          {meta}
-        </p>
-        <h3 className="font-display text-base font-medium leading-[1.3] text-foreground">
-          {title}
-        </h3>
-        <p className="line-clamp-2 font-display text-sm font-normal leading-[1.3] text-subtle-foreground">
-          {excerpt}
-        </p>
-        <Link
-          to={href}
-          className="w-fit font-display text-sm font-medium leading-[1.3] text-foreground underline decoration-solid underline-offset-4 transition-colors hover:text-brand"
+    <article
+      className={cn('motion-lift group flex min-w-0 flex-col', className)}
+      {...rest}
+    >
+      <Link to={href} className="flex flex-col gap-4">
+        <div
+          className={cn(
+            'motion-media w-full bg-surface-placeholder',
+            imageClassName ?? IMAGE_HEIGHT[size],
+          )}
         >
-          {insightsStrings.readMore}
-        </Link>
-      </div>
+          <img
+            src={images[image]}
+            alt=""
+            className="motion-zoom size-full object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <p className="font-display text-xs font-normal uppercase leading-[1.1] tracking-[0.02em] text-subtle-foreground">
+            {meta}
+          </p>
+          <h3 className="font-display text-base font-medium leading-[1.3] text-foreground transition-colors group-hover:text-brand">
+            {title}
+          </h3>
+          <p className="line-clamp-2 font-display text-sm font-normal leading-[1.3] text-subtle-foreground">
+            {excerpt}
+          </p>
+          <span className="motion-underline w-fit font-display text-sm font-medium leading-[1.3] text-foreground">
+            {insightsStrings.readMore}
+          </span>
+        </div>
+      </Link>
     </article>
   )
 }

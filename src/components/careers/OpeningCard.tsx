@@ -28,14 +28,16 @@ export function OpeningCard({
   return (
     <article
       className={cn(
-        'flex flex-col gap-6 border-b border-border py-8 transition-colors hover:bg-surface-subtle',
-        'md:flex-row md:items-center md:justify-between md:gap-10 md:py-10 md:px-4',
+        'group relative flex flex-col gap-6 border-b border-border py-8 transition-colors hover:bg-surface-subtle',
+        'md:flex-row md:items-center md:justify-between md:gap-10 md:px-4 md:py-10',
+        'before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:origin-center before:scale-y-0 before:bg-brand',
+        'before:transition-transform before:duration-300 before:ease-out hover:before:scale-y-100 motion-reduce:before:transition-none',
         className,
       )}
       {...rest}
     >
-      <div className="flex min-w-0 flex-col gap-4 md:gap-5 md:max-w-[607px]">
-        <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-normal leading-[1.1] text-foreground">
+      <div className="flex min-w-0 flex-col gap-4 md:max-w-[607px] md:gap-5">
+        <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-normal leading-[1.1] text-foreground transition-colors group-hover:text-brand">
           {title}
         </h3>
         <p className="font-display text-base leading-[1.3] text-body">{meta}</p>

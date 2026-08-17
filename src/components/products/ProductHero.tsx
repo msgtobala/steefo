@@ -42,10 +42,14 @@ export function ProductHero({
         {subtitle}
       </p>
       <div
-        {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
-        className="mt-8 h-[280px] w-full bg-surface-placeholder md:mt-10 md:h-[460px] lg:h-[566px]"
+        className="motion-media group mt-8 h-[280px] w-full md:mt-10 md:h-[460px] lg:h-[566px]"
         data-animate-hero
-      />
+      >
+        <div
+          {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
+          className="motion-zoom size-full bg-surface-placeholder"
+        />
+      </div>
     </Container>
   )
 }

@@ -7,7 +7,7 @@ export const fieldControlClass = cn(
   'text-foreground placeholder:text-placeholder-faint',
   'border-0 border-b border-foreground rounded-none',
   'px-0 pb-2 pt-0',
-  'outline-none transition-colors',
+  'outline-none motion-field',
   'focus-visible:border-brand',
   'disabled:cursor-not-allowed disabled:opacity-50',
   'aria-invalid:border-brand',

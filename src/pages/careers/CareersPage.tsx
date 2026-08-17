@@ -27,9 +27,13 @@ export function CareersPage() {
       >
         {/* Banner placeholder — Figma #d9d9d9 1320×460 */}
         <div
-          {...mediaPlaceholderProps(careersStrings.bannerAriaLabel)}
-          className="mt-8 h-[280px] w-full bg-surface-placeholder md:mt-10 md:h-[460px]"
-        />
+          className="motion-media mt-8 h-[280px] w-full md:mt-10 md:h-[460px]"
+        >
+          <div
+            {...mediaPlaceholderProps(careersStrings.bannerAriaLabel)}
+            className="motion-zoom size-full bg-surface-placeholder"
+          />
+        </div>
       </PageHero>
 
       {/* Openings */}

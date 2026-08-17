@@ -19,31 +19,26 @@ const navItems = [
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-      className="size-6"
-    >
-      {open ? (
-        <path
-          d="M6 6l12 12M18 6L6 18"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      ) : (
-        <path
-          d="M4 7h16M4 12h16M4 17h16"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      )}
-    </svg>
+    <span className="relative block size-6" aria-hidden>
+      <span
+        className={cn(
+          'absolute left-1 right-1 h-px bg-current transition-transform duration-300 ease-out motion-reduce:transition-none',
+          open ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-[7px]',
+        )}
+      />
+      <span
+        className={cn(
+          'absolute top-1/2 right-1 left-1 h-px -translate-y-1/2 bg-current transition-opacity duration-200 motion-reduce:transition-none',
+          open && 'opacity-0',
+        )}
+      />
+      <span
+        className={cn(
+          'absolute left-1 right-1 h-px bg-current transition-transform duration-300 ease-out motion-reduce:transition-none',
+          open ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'top-[17px]',
+        )}
+      />
+    </span>
   )
 }
 
@@ -81,10 +76,9 @@ export function Header({ className }: HeaderProps) {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'font-display text-nav font-normal text-white',
-      'transition-colors hover:text-white/80',
-      isActive &&
-        'font-medium text-brand hover:text-brand underline decoration-brand decoration-2 underline-offset-4 lg:underline-offset-8',
+      'motion-underline font-display text-nav font-normal text-white',
+      'hover:text-white/80',
+      isActive && 'font-medium text-brand hover:text-brand',
     )
 
   return (
@@ -107,7 +101,7 @@ export function Header({ className }: HeaderProps) {
         >
           <NavLink
             to={routes.home}
-            className="shrink-0"
+            className="shrink-0 transition-opacity duration-300 hover:opacity-80 motion-reduce:transition-none"
             end
             aria-label={brand.homeAriaLabel}
           >
@@ -169,57 +163,87 @@ export function Header({ className }: HeaderProps) {
         {/* Mobile / tablet panel */}
         <div
           id={menuId}
-          hidden={!menuOpen}
           className={cn(
-            'absolute inset-x-0 top-full z-50 mt-2 lg:hidden',
-            !menuOpen && 'pointer-events-none',
+            'absolute inset-x-0 top-full z-50 mt-2 grid lg:hidden',
+            'transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none',
+            menuOpen
+              ? 'grid-rows-[1fr] opacity-100'
+              : 'pointer-events-none grid-rows-[0fr] opacity-0',
           )}
         >
-          <nav
-            aria-label={nav.mainAriaLabel}
-            className={cn(
-              'flex flex-col gap-1 bg-header px-4 py-4 backdrop-blur-[19.1px]',
-              'shadow-elevated',
-            )}
-          >
-            {navItems.map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  cn(linkClass({ isActive }), 'px-2 py-3')
-                }
-                onClick={() => setMenuOpen(false)}
+          <div className="min-h-0 overflow-hidden">
+            <nav
+              aria-label={nav.mainAriaLabel}
+              className={cn(
+                'flex flex-col gap-1 bg-header px-4 py-4 backdrop-blur-[19.1px]',
+                'shadow-elevated',
+              )}
+            >
+              {navItems.map(({ to, label }, index) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={({ isActive }) =>
+                    cn(
+                      linkClass({ isActive }),
+                      'px-2 py-3 transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none',
+                      menuOpen
+                        ? 'translate-y-0 opacity-100'
+                        : '-translate-y-2 opacity-0',
+                    )
+                  }
+                  style={{
+                    transitionDelay: menuOpen ? `${40 + index * 50}ms` : '0ms',
+                  }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </NavLink>
+              ))}
+              <div
+                className={cn(
+                  'mt-2 sm:hidden',
+                  'transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none',
+                  menuOpen
+                    ? 'translate-y-0 opacity-100'
+                    : '-translate-y-2 opacity-0',
+                )}
+                style={{
+                  transitionDelay: menuOpen
+                    ? `${40 + navItems.length * 50}ms`
+                    : '0ms',
+                }}
               >
-                {label}
-              </NavLink>
-            ))}
-            <div className="mt-2 sm:hidden">
-              <Button
-                variant="primary"
-                size="sm"
-                to={routes.contact}
-                withArrow
-                cutCorners="top-right"
-                aria-label={cta.letsTalkAriaLabel}
-                className="w-full"
-                onClick={() => setMenuOpen(false)}
-              >
-                {cta.letsTalk}
-              </Button>
-            </div>
-          </nav>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  to={routes.contact}
+                  withArrow
+                  cutCorners="top-right"
+                  aria-label={cta.letsTalkAriaLabel}
+                  className="w-full"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {cta.letsTalk}
+                </Button>
+              </div>
+            </nav>
+          </div>
         </div>
       </Container>
 
-      {menuOpen ? (
-        <button
-          type="button"
-          aria-label={nav.closeMenu}
-          className="pointer-events-auto fixed inset-0 -z-10 bg-black/40 lg:hidden"
-          onClick={() => setMenuOpen(false)}
-        />
-      ) : null}
+      <button
+        type="button"
+        aria-label={nav.closeMenu}
+        tabIndex={menuOpen ? 0 : -1}
+        aria-hidden={!menuOpen}
+        className={cn(
+          'pointer-events-auto fixed inset-0 -z-10 bg-black/40 lg:hidden',
+          'transition-opacity duration-300 motion-reduce:transition-none',
+          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+        )}
+        onClick={() => setMenuOpen(false)}
+      />
     </header>
   )
 }

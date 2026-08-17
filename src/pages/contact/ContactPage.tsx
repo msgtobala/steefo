@@ -37,10 +37,10 @@ export function ContactPage() {
                 {reachOutItems.map((item) => (
                   <li
                     key={item.id}
-                    className="border-b border-border py-3 font-display text-base leading-[1.3] text-body"
+                    className="group border-b border-border py-3 font-display text-base leading-[1.3] text-body transition-colors hover:text-brand"
                     data-animate="up"
                   >
-                    {item.label}
+                    <span className="motion-underline">{item.label}</span>
                   </li>
                 ))}
               </ul>
@@ -58,7 +58,7 @@ export function ContactPage() {
                   {contactStrings.phoneLabel}{' '}
                   <a
                     href={`tel:${officePhone.replace(/-/g, '')}`}
-                    className="transition-colors hover:text-brand"
+                    className="motion-underline transition-colors hover:text-brand"
                   >
                     {officePhone}
                   </a>
@@ -67,7 +67,7 @@ export function ContactPage() {
                   {contactStrings.emailLabel}{' '}
                   <a
                     href={`mailto:${contact.email}`}
-                    className="transition-colors hover:text-brand"
+                    className="motion-underline transition-colors hover:text-brand"
                   >
                     {contact.email}
                   </a>
