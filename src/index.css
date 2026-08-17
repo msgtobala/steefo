@@ -438,20 +438,17 @@
 }
 
 /* Circuit overlay — short dash travels the full path, then repeats */
-@keyframes circuit-flow-dash {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -100;
-  }
-}
-
 .circuit-flow-dash {
-  stroke-dasharray: 1.4 98.6;
+  stroke-dashoffset: 0;
   animation-name: circuit-flow-dash;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+@keyframes circuit-flow-dash {
+  to {
+    stroke-dashoffset: var(--circuit-len, -100);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

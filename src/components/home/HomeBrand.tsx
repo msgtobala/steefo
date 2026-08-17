@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
+import { CircuitFlow } from '../common/CircuitFlow'
 import { homeStrings } from '../../resources/home_strings'
 import { images } from '../../resources/images'
 import { cn } from '../../utils'
@@ -76,8 +77,16 @@ export function HomeBrand({ className }: HomeBrandProps) {
         className="pointer-events-none absolute inset-0 size-full max-w-none"
       />
 
+      {/* Same traveling dashes as the footer — fill to match stretched heroIntroBg */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+      >
+        <CircuitFlow fit="fill" />
+      </div>
+
       {/* Figma 41:4049 — 1440×692 circuit band, bottom tab 40px */}
-      <div className="relative z-[1] mx-auto flex aspect-[1440/692] w-full max-w-page items-center justify-center px-6 md:px-10">
+      <div className="relative z-[2] mx-auto flex aspect-[1440/692] w-full max-w-page items-center justify-center px-6 md:px-10">
         <div className="flex -translate-y-[3%] flex-col items-center text-center">
           <p
             className="font-display text-[clamp(1.5rem,3.2vw,2.5rem)] font-medium leading-[1.1] text-white/20"

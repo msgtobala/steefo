@@ -5,6 +5,7 @@ import {
   registerGsap,
   ScrollTrigger,
 } from '../../lib/gsap'
+import { CircuitFlow } from '../common/CircuitFlow'
 import { homeStrings } from '../../resources/home_strings'
 import { images } from '../../resources/images'
 import { cn } from '../../utils'
@@ -79,7 +80,14 @@ export function HomeIntro({ className }: HomeIntroProps) {
         className="pointer-events-none absolute inset-0 size-full max-w-none"
       />
 
-      <div className="relative z-[1] mx-auto aspect-[1440/692] w-full max-w-[90rem]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1]"
+      >
+        <CircuitFlow fit="fill" />
+      </div>
+
+      <div className="relative z-[2] mx-auto aspect-[1440/692] w-full max-w-[90rem]">
         <h2 className="absolute inset-x-0 top-[32%] -translate-y-1/2 px-6 text-center font-display text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.0556em] text-balance text-white md:px-10">
           <span className="block">{titleLine1}</span>
           <span className="block">{titleLine2}</span>

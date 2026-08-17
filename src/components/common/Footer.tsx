@@ -153,14 +153,14 @@ export function Footer({ className }: FooterProps) {
         aria-hidden
         className="pointer-events-none absolute inset-0 top-10 h-[min(647px,70%)] w-full opacity-60 md:top-[58px] md:h-[647px] md:opacity-100"
         style={{
-          // backgroundImage: `url(${images.pattern})`,
-          // backgroundSize: 'cover',
-          // backgroundPosition: 'center top',
-          // backgroundRepeat: 'no-repeat',
+          backgroundImage: `url(${images.pattern})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
         }}
       />
 
-      {/* Traveling dashes on SVG traces — same overlay as /svg-test */}
+      {/* Traveling dashes on the existing `_1200x800px` circuit paths */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-10 h-[min(647px,70%)] w-full md:top-[58px] md:h-[647px]"
