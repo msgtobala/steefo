@@ -6,6 +6,8 @@ export const contactStrings = {
   phoneLabel: 'Phone:',
   emailLabel: 'Email:',
   formHeading: 'Tell us about you',
+  mapHeading: 'Find us',
+  mapTitle: 'Map of Steefo Engineering Corporation, Changodar, Ahmedabad',
   fields: {
     fullName: 'Full Name',
     email: 'Email Address',

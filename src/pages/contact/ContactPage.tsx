@@ -86,6 +86,22 @@ export function ContactPage() {
             </div>
           </section>
         </div>
+
+        <section className="mt-16 md:mt-20" data-animate="up">
+          <p className="font-display text-xs font-normal uppercase leading-[1.1] text-subtle-foreground">
+            {contactStrings.mapHeading}
+          </p>
+          <div className="mt-5 overflow-hidden bg-surface-placeholder">
+            <iframe
+              title={contactStrings.mapTitle}
+              src={contact.mapsEmbedUrl}
+              className="h-[min(70vw,28rem)] w-full border-0 md:h-[450px]"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
+        </section>
       </Container>
     </div>
   )

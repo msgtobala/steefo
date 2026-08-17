@@ -21,6 +21,9 @@ export const uiConstants = {
       '495, Tajpur Road, Changodar',
       'Ahmedabad 382210, Gujarat, India',
     ] as const,
+    /** Google Maps embed — Steefo Engineering Corporation, Changodar. */
+    mapsEmbedUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.824149543888!2d72.4457188!3d22.9198561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e90dccc524883%3A0x805215a58a504fdd!2sSteefo%20Engineering%20Corporation%20-%20Rolling%20Mills%20Manufacturer!5e0!3m2!1sen!2sin!4v1786990114352!5m2!1sen!2sin',
   },
 
   social: {
