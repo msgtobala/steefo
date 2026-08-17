@@ -16,8 +16,7 @@ export type HomeIntroProps = {
 
 /**
  * Home intro band — Figma Home 33:3476
- * Flush under the hero. Title stays put; grey subtitle rises like a teleprompter.
- * No pin — scroll scrub only, so Home Mission and the hero stay stable.
+ * One sentence in the slot at a time. Scroll swaps the headline for the subtitle.
  */
 export function HomeIntro({ className }: HomeIntroProps) {
   const rootRef = useRef<HTMLElement>(null)
@@ -40,7 +39,7 @@ export function HomeIntro({ className }: HomeIntroProps) {
       }
 
       if (prefersReducedMotion()) {
-        apply(1)
+        apply(0)
         return
       }
 
@@ -48,7 +47,6 @@ export function HomeIntro({ className }: HomeIntroProps) {
 
       const trigger = ScrollTrigger.create({
         trigger: root,
-        // Rise while the band enters; finish when the section is centered.
         start: 'top 80%',
         end: 'center center',
         scrub: 0.4,
@@ -66,11 +64,14 @@ export function HomeIntro({ className }: HomeIntroProps) {
     { scope: rootRef },
   )
 
+  const slideClass =
+    'flex h-[var(--intro-slide)] w-full items-center justify-center px-6 text-center font-display text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.0556em] text-balance md:px-10'
+
   return (
     <section
       ref={rootRef}
       className={cn('relative -mt-px w-full', className)}
-      aria-label={`${titleLine1} ${titleLine2}`}
+      aria-label={`${titleLine1} ${titleLine2}. ${subtitleLine1} ${subtitleLine2} ${subtitleLine3}`}
     >
       {/* Figma 33:3476 — shaped black + circuit pattern (1440×692), notch reveals page white */}
       <img
@@ -88,23 +89,28 @@ export function HomeIntro({ className }: HomeIntroProps) {
       </div>
 
       <div className="relative z-[2] mx-auto aspect-[1440/692] w-full max-w-[90rem]">
-        <h2 className="absolute inset-x-0 top-[32%] -translate-y-1/2 px-6 text-center font-display text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.0556em] text-balance text-white md:px-10">
-          <span className="block">{titleLine1}</span>
-          <span className="block">{titleLine2}</span>
-        </h2>
-
-        {/* Tall aperture under the title — grey copy rises from below (teleprompter) */}
+        {/* Single aperture — only one sentence fits; the next slides up into place */}
         <div
           ref={windowRef}
-          className="absolute inset-x-0 top-[48%] bottom-[calc((40/692)*100%+0.25rem)] overflow-hidden px-6 md:px-10"
+          className="absolute inset-x-0 top-[42%] h-[var(--intro-slide)] -translate-y-1/2 overflow-hidden [--intro-slide:clamp(9rem,22vw,14.5rem)]"
         >
           <div
             ref={trackRef}
-            className="absolute inset-x-0 top-full px-6 text-center font-display text-[clamp(1.25rem,3vw,2.5rem)] font-medium leading-[1.15] tracking-[-0.03em] text-balance text-white/30 will-change-transform md:px-10"
+            className="will-change-transform"
           >
-            <span className="block">{subtitleLine1}</span>
-            <span className="block">{subtitleLine2}</span>
-            <span className="block">{subtitleLine3}</span>
+            <h2 className={cn(slideClass, 'text-white')}>
+              <span>
+                <span className="block">{titleLine1}</span>
+                <span className="block">{titleLine2}</span>
+              </span>
+            </h2>
+            <p className={cn(slideClass, 'text-white/30')}>
+              <span>
+                <span className="block">{subtitleLine1}</span>
+                <span className="block">{subtitleLine2}</span>
+                <span className="block">{subtitleLine3}</span>
+              </span>
+            </p>
           </div>
         </div>
       </div>
