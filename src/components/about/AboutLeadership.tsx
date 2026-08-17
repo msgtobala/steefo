@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Container } from '../common'
+import { Container, SpotlightCell } from '../common'
 import { TeamMemberCard } from './TeamMemberCard'
 import { usePlusPulse } from '../../hooks/usePlusPulse'
 import { icons } from '../../resources/icons'
@@ -66,10 +66,10 @@ export function AboutLeadership({
 
       <Container className="relative mt-12 md:mt-16">
         <div className="relative hidden lg:block">
-          <div className="relative overflow-visible px-2 py-2">
+          <div className="relative overflow-visible">
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 overflow-visible"
+              className="pointer-events-none absolute inset-0 z-10 overflow-visible"
               data-animate="scale"
             >
               {PLUS_GRID_H_LINES.map((top) => (
@@ -111,16 +111,18 @@ export function AboutLeadership({
             </div>
 
             <div
-              className="relative z-[1] grid grid-cols-3 gap-x-12 gap-y-16 px-8 py-12"
+              className="relative z-[1] grid grid-cols-3 grid-rows-2"
               data-animate-stagger
             >
               {members.map((member) => (
-                <TeamMemberCard
-                  key={member.id}
-                  name={member.name}
-                  role={member.role}
-                  data-animate="up"
-                />
+                <SpotlightCell key={member.id}>
+                  <TeamMemberCard
+                    name={member.name}
+                    role={member.role}
+                    className="h-full justify-center px-8 py-12"
+                    data-animate="up"
+                  />
+                </SpotlightCell>
               ))}
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { CarouselNav, Container } from '../common'
 import { CapabilityCard } from './CapabilityCard'
+import type { ImageKey } from '../../resources/images'
 import type { IconKey } from '../../resources/icons'
 import { aboutStrings } from '../../resources/about_strings'
 import { cn } from '../../utils'
@@ -8,6 +9,7 @@ import { cn } from '../../utils'
 export type AboutCapabilityItem = {
   id: string
   icon: IconKey
+  image: ImageKey
   title: string
   body: string
 }
@@ -82,6 +84,7 @@ export function AboutCapabilities({
             <CapabilityCard
               key={item.id}
               icon={item.icon}
+              image={item.image}
               title={item.title}
               body={item.body}
               data-animate="up"

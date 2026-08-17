@@ -39,6 +39,7 @@ export function AboutPage() {
   const capabilities = aboutCapabilities.map((item) => ({
     id: item.id,
     icon: item.icon,
+    image: item.image,
     ...aboutStrings.capabilityItems[item.id],
   }))
 

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Container } from '../common'
+import { Container, SpotlightCell } from '../common'
 import { usePlusPulse } from '../../hooks/usePlusPulse'
 import { icons } from '../../resources/icons'
 import {
@@ -104,7 +104,7 @@ export function ProductWhySteefo({
             <div className="relative min-h-[560px] overflow-visible xl:min-h-[628px]">
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 overflow-visible"
+                className="pointer-events-none absolute inset-0 z-10 overflow-visible"
                 data-animate="scale"
               >
                 {PLUS_GRID_H_LINES.map((top) => (
@@ -150,21 +150,22 @@ export function ProductWhySteefo({
                 data-animate-stagger
               >
                 {items.map((item) => (
-                  <article
-                    key={item.id}
-                    className="flex flex-col justify-center gap-4 px-10 py-10"
-                    data-animate="up"
-                  >
-                    <FeatureIcon className="size-10 shrink-0 text-brand" />
-                    <div className="flex max-w-[327px] flex-col gap-4">
-                      <h3 className="font-display text-xl font-medium leading-[1.25] text-white">
-                        {item.title}
-                      </h3>
-                      <p className="font-display text-sm font-normal leading-[1.4] text-white/60">
-                        {item.body}
-                      </p>
-                    </div>
-                  </article>
+                  <SpotlightCell key={item.id}>
+                    <article
+                      className="flex h-full flex-col justify-center gap-4 px-10 py-10"
+                      data-animate="up"
+                    >
+                      <FeatureIcon className="size-10 shrink-0 text-brand" />
+                      <div className="flex max-w-[327px] flex-col gap-4">
+                        <h3 className="font-display text-xl font-medium leading-[1.25] text-white">
+                          {item.title}
+                        </h3>
+                        <p className="font-display text-sm font-normal leading-[1.4] text-white/60">
+                          {item.body}
+                        </p>
+                      </div>
+                    </article>
+                  </SpotlightCell>
                 ))}
               </div>
             </div>

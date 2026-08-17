@@ -489,11 +489,87 @@
   transform: translateY(-4px);
 }
 
+/* Frosted-glass hover — capability card photo */
+.capability-gloss {
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  transition:
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .capability-gloss {
+  transform: translateZ(0) scale(1.18);
+  filter: blur(40px);
+}
+
+/* Cursor spotlight — 1px perimeter radial + faint interior wash */
+.spotlight-cell::before,
+.spotlight-cell::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.spotlight-cell::before {
+  z-index: 2;
+  padding: 1px;
+  background: radial-gradient(
+    220px circle at var(--mx) var(--my),
+    var(--color-brand) 0%,
+    rgb(219 37 28 / 0.35) 28%,
+    transparent 58%
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.spotlight-cell::after {
+  z-index: 0;
+  background: radial-gradient(
+    45% 45% at var(--mx) var(--my),
+    rgb(219 37 28 / 0.12) 0%,
+    transparent 70%
+  );
+}
+
+.spotlight-cell:hover::before,
+.spotlight-cell:hover::after,
+.spotlight-cell:focus-within::before,
+.spotlight-cell:focus-within::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-cell::before,
+  .spotlight-cell::after {
+    display: none;
+  }
+
+  .spotlight-cell:hover,
+  .spotlight-cell:focus-within {
+    box-shadow: inset 0 0 0 1px var(--color-brand);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-zoom,
-  .motion-lift {
+  .motion-lift,
+  .capability-gloss {
     transition: none !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 

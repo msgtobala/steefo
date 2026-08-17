@@ -13,11 +13,17 @@ import { cn } from '../../utils/cn'
  * - Pages own their own Container / section layout
  * - Shared SubscribeBanner + footer gap on every page
  * - Footer is full-bleed and stacks on mobile/tablet
- * - Scroll resets to top on every route change
+ * - Scroll always starts at top (reload + route change)
  */
 export function Layout() {
   const { pathname } = useLocation()
   const introPlayed = useRef(false)
+
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)

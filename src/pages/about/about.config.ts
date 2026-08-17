@@ -5,6 +5,7 @@ import type {
   AboutTeamId,
   AboutValueId,
 } from '../../resources/about_strings'
+import type { ImageKey } from '../../resources/images'
 import type { IconKey } from '../../resources/icons'
 
 export type AboutStatConfig = {
@@ -19,6 +20,7 @@ export type AboutValueConfig = {
 export type AboutCapabilityConfig = {
   id: AboutCapabilityId
   icon: IconKey
+  image: ImageKey
 }
 
 export type AboutTeamConfig = {
@@ -44,10 +46,10 @@ export const aboutValues: AboutValueConfig[] = [
 
 /** Capabilities row — Figma 1:3175 */
 export const aboutCapabilities: AboutCapabilityConfig[] = [
-  { id: 'custom-layout', icon: 'handyman' },
-  { id: 'efficient-commissioning', icon: 'ruleSettings' },
-  { id: 'precision-manufacturing', icon: 'designServices' },
-  { id: 'innovative-design', icon: 'verifiedUser' },
+  { id: 'custom-layout', icon: 'handyman', image: 'capability01' },
+  { id: 'efficient-commissioning', icon: 'ruleSettings', image: 'capability02' },
+  { id: 'precision-manufacturing', icon: 'designServices', image: 'capability03' },
+  { id: 'innovative-design', icon: 'verifiedUser', image: 'capability04' },
 ]
 
 /** Leadership 3×2 grid — Figma 1:3074 / 1:3090 */

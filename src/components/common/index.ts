@@ -5,6 +5,7 @@ export { Header, type HeaderProps } from './Header'
 export { IntroReveal, type IntroRevealProps } from './IntroReveal'
 export { Layout } from './Layout'
 export { PageHero, type PageHeroProps } from './PageHero'
+export { SpotlightCell, type SpotlightCellProps } from './SpotlightCell'
 export {
   SubscribeBanner,
   type SubscribeBannerProps,

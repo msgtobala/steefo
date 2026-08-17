@@ -2,6 +2,10 @@ import logo from '../assets/images/brand/logo.svg'
 import pattern from '../assets/images/brand/pattern.png'
 import patternDark from '../assets/images/brand/pattern_dark.png'
 import aboutBanner from '../assets/images/about/about_banner.svg'
+import capability01 from '../assets/images/about/capabilities/capability_01.png'
+import capability02 from '../assets/images/about/capabilities/capability_02.png'
+import capability03 from '../assets/images/about/capabilities/capability_03.png'
+import capability04 from '../assets/images/about/capabilities/capability_04.png'
 import featureImage from '../assets/images/projects/feature_image.png'
 import subscribeBanner from '../assets/images/common/subscribe_banner.svg'
 import heroBanner from '../assets/images/home/hero_banner.webp'
@@ -21,7 +25,7 @@ import insight06 from '../assets/images/insights/insight_06.png'
 import insight07 from '../assets/images/insights/insight_07.png'
 
 /**
- * Central image registry — files live under `src/assets/images/{brand,home,insights,common}`.
+ * Central image registry — files live under `src/assets/images/{brand,home,about,insights,common}`.
  * Import images only from here (never from `assets/` directly in components).
  */
 export const images = {
@@ -29,6 +33,10 @@ export const images = {
   pattern,
   patternDark,
   aboutBanner,
+  capability01,
+  capability02,
+  capability03,
+  capability04,
   featureImage,
   heroBanner,
   heroIntroBg,
