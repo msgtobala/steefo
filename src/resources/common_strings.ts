@@ -45,6 +45,9 @@ export const commonStrings = {
     legalNavAriaLabel: 'Legal',
     facebookAriaLabel: 'Facebook',
     instagramAriaLabel: 'Instagram',
+    whatsappAriaLabel: 'Chat on WhatsApp',
+    whatsappMessage:
+      'Hello Steefo Team\n\nWe would like to know more about your products and services.\n\nLooking forward to your response.\n\nThank you',
     headline: {
       before: 'Your ',
       highlight: 'next steel',

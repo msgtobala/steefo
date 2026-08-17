@@ -10,4 +10,5 @@ export {
   SubscribeBanner,
   type SubscribeBannerProps,
 } from './SubscribeBanner'
+export { WhatsAppFloat, type WhatsAppFloatProps } from './WhatsAppFloat'
 

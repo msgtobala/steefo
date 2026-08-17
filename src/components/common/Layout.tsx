@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { uiConstants } from '../../constants/ui_constants'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { WhatsAppFloat } from './WhatsAppFloat'
 import { IntroReveal } from './IntroReveal'
 import { SubscribeBanner } from './SubscribeBanner'
 import { cn } from '../../utils/cn'
@@ -13,6 +14,7 @@ import { cn } from '../../utils/cn'
  * - Pages own their own Container / section layout
  * - Shared SubscribeBanner + footer gap on every page
  * - Footer is full-bleed and stacks on mobile/tablet
+ * - WhatsApp float stays visible; opens WhatsApp Web Business in a new tab
  * - Scroll always starts at top (reload + route change)
  */
 export function Layout() {
@@ -50,6 +52,7 @@ export function Layout() {
         </div>
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   )
 }

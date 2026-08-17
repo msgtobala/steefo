@@ -26,6 +26,8 @@ export const uiConstants = {
   social: {
     facebook: 'https://www.facebook.com/SteefoEngineeringCorporation/',
     instagram: 'https://www.instagram.com/steefoengineering/',
+    /** WhatsApp Web (Business) click-to-chat — first office number, digits only. */
+    whatsapp: 'https://web.whatsapp.com/send?phone=919824032959',
   },
 
   routes: {

@@ -10,6 +10,7 @@ import ruleSettings from '../assets/icons/layout/rule-settings.svg'
 import verifiedUser from '../assets/icons/layout/verified-user.svg'
 import facebook from '../assets/icons/social/facebook.svg'
 import instagram from '../assets/icons/social/instagram.svg'
+import whatsapp from '../assets/icons/social/whatsapp.svg'
 
 /**
  * Central icon registry — files live under `src/assets/icons/{social,layout}`.
@@ -18,6 +19,7 @@ import instagram from '../assets/icons/social/instagram.svg'
 export const icons = {
   facebook,
   instagram,
+  whatsapp,
   footerNotch,
   plus,
   gridLine,
