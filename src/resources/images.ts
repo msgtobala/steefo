@@ -2,6 +2,15 @@ import logo from '../assets/images/brand/logo.svg'
 import pattern from '../assets/images/brand/pattern.png'
 import patternDark from '../assets/images/brand/pattern_dark.png'
 import aboutBanner from '../assets/images/about/about_banner.svg'
+import award01 from '../assets/images/about/awards/award_1.jpg'
+import award02 from '../assets/images/about/awards/award_2.gif'
+import award03 from '../assets/images/about/awards/award_3.jpg'
+import award04 from '../assets/images/about/awards/award_4.jpg'
+import award05 from '../assets/images/about/awards/award_5.jpg'
+import award06 from '../assets/images/about/awards/award_6.jpg'
+import award07 from '../assets/images/about/awards/award_7.jpg'
+import award08 from '../assets/images/about/awards/award_8.jpg'
+import award09 from '../assets/images/about/awards/award_9.jpg'
 import capability01 from '../assets/images/about/capabilities/capability_01.png'
 import capability02 from '../assets/images/about/capabilities/capability_02.png'
 import capability03 from '../assets/images/about/capabilities/capability_03.png'
@@ -39,6 +48,15 @@ export const images = {
   pattern,
   patternDark,
   aboutBanner,
+  award01,
+  award02,
+  award03,
+  award04,
+  award05,
+  award06,
+  award07,
+  award08,
+  award09,
   capability01,
   capability02,
   capability03,

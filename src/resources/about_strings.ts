@@ -77,24 +77,10 @@ export const aboutStrings = {
     eyebrow: 'Certifications & Awards',
     title: 'Awards & Recognitions',
     body: 'Steefo Engineering Corporation is an ISO 9001:2008-certified company, providing end-to-end solutions to the steel manufacturing industry. Recognised by the Government of India as a Star Export House, we have also earned the prestigious NSIC-CRISIL Rating 1A.',
+    prevAriaLabel: 'Previous awards',
+    nextAriaLabel: 'Next awards',
   },
-  awardItems: {
-    certification: {
-      pill: 'Certification',
-      title: 'ISO 9001:2008 Certified',
-      body: 'Integrating cutting-edge technology to drive the performance, efficiency, and long-term sustainability of your production systems.',
-    },
-    government: {
-      pill: 'Government',
-      title: 'Star Export House',
-      body: 'Recognized by the Government of India as a Star Export House — one of the highest export performance recognitions awarded to Indian exporters for sustained global trade excellence.',
-    },
-    rating: {
-      pill: 'Rating',
-      title: 'NSIC-CRISIL Rating 1A',
-      body: 'Steefo has received the prestigious NSIC-CRISIL Rating 1A — affirming our financial credibility, performance capability, and standing as a trusted partner for large-scale steel plant projects.',
-    },
-  },
+  awardMediaAriaLabel: 'Award recognition',
   quote: {
     before: 'Our commitment is to deliver world-class steel manufacturing solutions that ',
     highlight: 'empower our clients to achieve excellence',
@@ -113,4 +99,3 @@ export type AboutStatId = keyof typeof aboutStrings.stats
 export type AboutValueId = keyof typeof aboutStrings.values
 export type AboutCapabilityId = keyof typeof aboutStrings.capabilityItems
 export type AboutTeamId = keyof typeof aboutStrings.team
-export type AboutAwardId = keyof typeof aboutStrings.awardItems

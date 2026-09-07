@@ -1,5 +1,4 @@
 import type {
-  AboutAwardId,
   AboutCapabilityId,
   AboutStatId,
   AboutTeamId,
@@ -28,8 +27,8 @@ export type AboutTeamConfig = {
 }
 
 export type AboutAwardConfig = {
-  id: AboutAwardId
-  tone: 'dark' | 'brand'
+  id: string
+  image: ImageKey
 }
 
 /** Hero overlay stats — Figma About 1:3061 / 1:3064 */
@@ -62,9 +61,15 @@ export const aboutTeam: AboutTeamConfig[] = [
   { id: 'sales-3' },
 ]
 
-/** Awards row — Figma 1:3181–1:3183 */
+/** Awards gallery — award_1 … award_9 */
 export const aboutAwards: AboutAwardConfig[] = [
-  { id: 'certification', tone: 'dark' },
-  { id: 'government', tone: 'brand' },
-  { id: 'rating', tone: 'dark' },
+  { id: 'award-1', image: 'award01' },
+  { id: 'award-2', image: 'award02' },
+  { id: 'award-3', image: 'award03' },
+  { id: 'award-4', image: 'award04' },
+  { id: 'award-5', image: 'award05' },
+  { id: 'award-6', image: 'award06' },
+  { id: 'award-7', image: 'award07' },
+  { id: 'award-8', image: 'award08' },
+  { id: 'award-9', image: 'award09' },
 ]

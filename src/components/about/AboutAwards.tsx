@@ -1,13 +1,13 @@
-import { Container } from '../common'
+import { useRef } from 'react'
+import { CarouselNav, Container } from '../common'
 import { AwardCard } from './AwardCard'
+import { aboutStrings } from '../../resources/about_strings'
+import type { ImageKey } from '../../resources/images'
 import { cn } from '../../utils'
 
 export type AboutAwardItem = {
   id: string
-  pill: string
-  title: string
-  body: string
-  tone: 'dark' | 'brand'
+  image: ImageKey
 }
 
 export type AboutAwardsProps = {
@@ -18,8 +18,10 @@ export type AboutAwardsProps = {
   className?: string
 }
 
+const CARD_GAP_PX = 20
+
 /**
- * Awards & Recognitions — Figma About certifications band
+ * Awards & Recognitions — full-width image scroller, arrows below (GSAP stagger).
  */
 export function AboutAwards({
   eyebrow,
@@ -28,12 +30,23 @@ export function AboutAwards({
   items,
   className,
 }: AboutAwardsProps) {
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  function scrollByCard(direction: -1 | 1) {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+
+    const card = scroller.querySelector<HTMLElement>('[data-award-card]')
+    const amount = (card?.offsetWidth ?? 300) + CARD_GAP_PX
+    scroller.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
   return (
     <section
       className={cn('mt-16 md:mt-24', className)}
       data-animate-section
     >
-      <Container className="flex flex-col items-center text-center">
+      <Container className="mb-8 flex flex-col items-center text-center md:mb-10">
         <p className="text-eyebrow" data-animate="up">
           {eyebrow}
         </p>
@@ -51,21 +64,33 @@ export function AboutAwards({
         </p>
       </Container>
 
-      <Container
-        className="mt-10 grid grid-cols-1 gap-5 md:mt-12 md:grid-cols-3"
-        data-animate-stagger
-      >
-        {items.map((item) => (
-          <AwardCard
-            key={item.id}
-            pill={item.pill}
-            title={item.title}
-            body={item.body}
-            tone={item.tone}
-            data-animate="scale"
-          />
-        ))}
-      </Container>
+      <div data-animate-stagger>
+        <div
+          ref={scrollerRef}
+          className="scrollbar-none overflow-x-auto overscroll-x-contain touch-pan-y"
+        >
+          <div className="container-content flex w-max gap-5">
+            {items.map((item) => (
+              <AwardCard
+                key={item.id}
+                image={item.image}
+                data-animate="scale"
+              />
+            ))}
+          </div>
+        </div>
+
+        <Container className="mt-6 flex justify-center md:mt-8">
+          <div data-animate="scale">
+            <CarouselNav
+              prevAriaLabel={aboutStrings.awards.prevAriaLabel}
+              nextAriaLabel={aboutStrings.awards.nextAriaLabel}
+              onPrev={() => scrollByCard(-1)}
+              onNext={() => scrollByCard(1)}
+            />
+          </div>
+        </Container>
+      </div>
     </section>
   )
 }

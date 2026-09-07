@@ -50,8 +50,7 @@ export function AboutPage() {
 
   const awards = aboutAwards.map((item) => ({
     id: item.id,
-    tone: item.tone,
-    ...aboutStrings.awardItems[item.id],
+    image: item.image,
   }))
 
   return (
