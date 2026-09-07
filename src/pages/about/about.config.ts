@@ -24,6 +24,7 @@ export type AboutCapabilityConfig = {
 
 export type AboutTeamConfig = {
   id: AboutTeamId
+  image?: ImageKey
 }
 
 export type AboutAwardConfig = {
@@ -51,14 +52,11 @@ export const aboutCapabilities: AboutCapabilityConfig[] = [
   { id: 'innovative-design', icon: 'verifiedUser', image: 'capability04' },
 ]
 
-/** Leadership 3×2 grid — Figma 1:3074 / 1:3090 */
+/** Leadership single row — 3 tiles (sales row removed) */
 export const aboutTeam: AboutTeamConfig[] = [
-  { id: 'founder' },
-  { id: 'director' },
+  { id: 'suresh-agrawal', image: 'innovatorSureshAgrawal' },
+  { id: 'suril-agarwal', image: 'innovatorSurilAgarwal' },
   { id: 'engineering' },
-  { id: 'sales-1' },
-  { id: 'sales-2' },
-  { id: 'sales-3' },
 ]
 
 /** Awards gallery — award_1 … award_9 */

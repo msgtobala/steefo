@@ -3,6 +3,8 @@ import pattern from '../assets/images/brand/pattern.png'
 import patternDark from '../assets/images/brand/pattern_dark.png'
 import aboutBanner from '../assets/images/about/about_banner.svg'
 import aboutCapabilities from '../assets/images/about/about_capabilities.png'
+import innovatorSureshAgrawal from '../assets/images/about/innovators/suresh_agrawal.png'
+import innovatorSurilAgarwal from '../assets/images/about/innovators/suril_agarwal.jpeg'
 import award01 from '../assets/images/about/awards/award_1.jpg'
 import award02 from '../assets/images/about/awards/award_2.gif'
 import award03 from '../assets/images/about/awards/award_3.jpg'
@@ -50,6 +52,8 @@ export const images = {
   patternDark,
   aboutBanner,
   aboutCapabilities,
+  innovatorSureshAgrawal,
+  innovatorSurilAgarwal,
   award01,
   award02,
   award03,

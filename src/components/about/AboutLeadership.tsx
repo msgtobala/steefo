@@ -3,9 +3,9 @@ import { Container, SpotlightCell } from '../common'
 import { TeamMemberCard } from './TeamMemberCard'
 import { usePlusPulse } from '../../hooks/usePlusPulse'
 import { icons } from '../../resources/icons'
+import type { ImageKey } from '../../resources/images'
 import {
   cn,
-  PLUS_GRID_H_LINES,
   PLUS_GRID_V_LINES,
   plusGridHLineStyle,
   plusGridPlusStyle,
@@ -16,6 +16,7 @@ export type AboutTeamMember = {
   id: string
   name: string
   role: string
+  image?: ImageKey
 }
 
 export type AboutLeadershipProps = {
@@ -28,6 +29,8 @@ export type AboutLeadershipProps = {
 }
 
 const LINE_OVERHANG_PX = 48
+/** Single-row leadership grid (3 tiles). */
+const LEADERSHIP_H_LINES = ['0%', '100%'] as const
 
 /**
  * Leadership grid — Figma About 1:3053 / team cards + plus grid
@@ -72,7 +75,7 @@ export function AboutLeadership({
               className="pointer-events-none absolute inset-0 z-10 overflow-visible"
               data-animate="scale"
             >
-              {PLUS_GRID_H_LINES.map((top) => (
+              {LEADERSHIP_H_LINES.map((top) => (
                 <img
                   key={`h-${top}`}
                   src={icons.gridLine}
@@ -90,7 +93,7 @@ export function AboutLeadership({
                   style={plusGridVLineStyle(left, LINE_OVERHANG_PX)}
                 />
               ))}
-              {PLUS_GRID_H_LINES.flatMap((top) =>
+              {LEADERSHIP_H_LINES.flatMap((top) =>
                 PLUS_GRID_V_LINES.map((left) => (
                   <div
                     key={`plus-${left}-${top}`}
@@ -111,7 +114,7 @@ export function AboutLeadership({
             </div>
 
             <div
-              className="relative z-[1] grid grid-cols-3 grid-rows-2"
+              className="relative z-[1] grid grid-cols-3"
               data-animate-stagger
             >
               {members.map((member) => (
@@ -119,6 +122,7 @@ export function AboutLeadership({
                   <TeamMemberCard
                     name={member.name}
                     role={member.role}
+                    image={member.image}
                     className="h-full justify-center px-8 py-12"
                     data-animate="up"
                   />
@@ -137,6 +141,7 @@ export function AboutLeadership({
               key={member.id}
               name={member.name}
               role={member.role}
+              image={member.image}
               data-animate="up"
             />
           ))}

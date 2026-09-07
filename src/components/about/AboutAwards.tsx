@@ -64,31 +64,26 @@ export function AboutAwards({
         </p>
       </Container>
 
-      <div data-animate-stagger>
+      {/* One reveal target — carousel + arrows enter together (look unchanged). */}
+      <div data-animate="scale">
         <div
           ref={scrollerRef}
           className="scrollbar-none overflow-x-auto overscroll-x-contain touch-pan-y"
         >
           <div className="container-content flex w-max gap-5">
             {items.map((item) => (
-              <AwardCard
-                key={item.id}
-                image={item.image}
-                data-animate="scale"
-              />
+              <AwardCard key={item.id} image={item.image} />
             ))}
           </div>
         </div>
 
         <Container className="mt-6 flex justify-center md:mt-8">
-          <div data-animate="scale">
-            <CarouselNav
-              prevAriaLabel={aboutStrings.awards.prevAriaLabel}
-              nextAriaLabel={aboutStrings.awards.nextAriaLabel}
-              onPrev={() => scrollByCard(-1)}
-              onNext={() => scrollByCard(1)}
-            />
-          </div>
+          <CarouselNav
+            prevAriaLabel={aboutStrings.awards.prevAriaLabel}
+            nextAriaLabel={aboutStrings.awards.nextAriaLabel}
+            onPrev={() => scrollByCard(-1)}
+            onNext={() => scrollByCard(1)}
+          />
         </Container>
       </div>
     </section>

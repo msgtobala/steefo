@@ -45,6 +45,7 @@ export function AboutPage() {
 
   const members = aboutTeam.map((item) => ({
     id: item.id,
+    image: item.image,
     ...aboutStrings.team[item.id],
   }))
 

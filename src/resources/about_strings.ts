@@ -66,12 +66,9 @@ export const aboutStrings = {
     titleHighlight: 'tech & engineering.',
   },
   team: {
-    founder: { name: 'Name', role: 'Founder & Chairman' },
-    director: { name: 'Name', role: 'Director' },
+    'suresh-agrawal': { name: 'Suresh Agrawal', role: 'Founder & Chairman' },
+    'suril-agarwal': { name: 'Suril Agarwal', role: 'Director' },
     engineering: { name: 'Name', role: 'Engineering' },
-    'sales-1': { name: 'Name', role: 'Global Sales' },
-    'sales-2': { name: 'Name', role: 'Global Sales' },
-    'sales-3': { name: 'Name', role: 'Global Sales' },
   },
   awards: {
     eyebrow: 'Certifications & Awards',

@@ -1,10 +1,12 @@
 import type { HTMLAttributes } from 'react'
 import { aboutStrings } from '../../resources/about_strings'
+import { images, type ImageKey } from '../../resources/images'
 import { cn, mediaPlaceholderProps } from '../../utils'
 
 export type TeamMemberCardProps = {
   name: string
   role: string
+  image?: ImageKey
   className?: string
 } & HTMLAttributes<HTMLElement>
 
@@ -14,6 +16,7 @@ export type TeamMemberCardProps = {
 export function TeamMemberCard({
   name,
   role,
+  image,
   className,
   ...rest
 }: TeamMemberCardProps) {
@@ -23,10 +26,18 @@ export function TeamMemberCard({
       {...rest}
     >
       <div className="motion-media aspect-[330/270] w-full max-w-[330px]">
-        <div
-          {...mediaPlaceholderProps(aboutStrings.teamMediaAriaLabel)}
-          className="motion-zoom size-full bg-surface-placeholder"
-        />
+        {image ? (
+          <img
+            src={images[image]}
+            alt={name}
+            className="motion-zoom size-full object-cover"
+          />
+        ) : (
+          <div
+            {...mediaPlaceholderProps(aboutStrings.teamMediaAriaLabel)}
+            className="motion-zoom size-full bg-surface-placeholder"
+          />
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="font-display text-2xl font-normal leading-[1.1] text-foreground">
