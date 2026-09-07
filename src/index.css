@@ -578,14 +578,11 @@
     rgb(219 37 28 / 0.35) 28%,
     transparent 58%
   );
+  /* Unprefixed only — manual -webkit-mask* pairing makes Lightning CSS drop mask-composite:exclude */
   mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
 }
 
 .spotlight-cell::after {
