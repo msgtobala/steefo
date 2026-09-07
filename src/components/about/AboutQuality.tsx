@@ -1,6 +1,7 @@
 import { Container } from '../common'
 import { aboutStrings } from '../../resources/about_strings'
-import { cn, mediaPlaceholderProps } from '../../utils'
+import { images } from '../../resources/images'
+import { cn } from '../../utils'
 
 export type AboutQualityProps = {
   eyebrow: string
@@ -47,9 +48,10 @@ export function AboutQuality({
           className="motion-media mt-10 h-[280px] w-full md:mt-12 md:h-[480px] lg:h-[600px]"
           data-animate="scale"
         >
-          <div
-            {...mediaPlaceholderProps(aboutStrings.qualityMediaAriaLabel)}
-            className="motion-zoom size-full bg-surface-placeholder"
+          <img
+            src={images.aboutCapabilities}
+            alt={aboutStrings.qualityMediaAriaLabel}
+            className="motion-zoom size-full object-cover"
           />
         </div>
       </Container>

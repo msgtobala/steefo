@@ -89,7 +89,7 @@ export const aboutStrings = {
     company: 'Steefo Engineering Corporation',
   },
   heroMediaAriaLabel: 'Steefo Engineering manufacturing facility',
-  qualityMediaAriaLabel: 'Quality section media placeholder',
+  qualityMediaAriaLabel: 'Steel manufacturers and quality partners',
   teamMediaAriaLabel: 'Team member photo placeholder',
   capabilityMediaAriaLabel: 'Capability image placeholder',
 } as const
