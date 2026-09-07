@@ -296,41 +296,37 @@ export function Footer({ className }: FooterProps) {
             >
               {footerCopy.copyright}
             </p>
-            <div className="flex items-center gap-[14px] text-white" data-footer-bar>
+            <div className="flex items-center gap-[14px]" data-footer-bar>
               <a
                 href={social.facebook}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={footerCopy.facebookAriaLabel}
-                className="size-7 bg-white transition-colors duration-300 hover:bg-brand motion-reduce:transition-none"
-                style={{
-                  maskImage: `url(${icons.facebook})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${icons.facebook})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
+                className="inline-flex size-7 items-center justify-center transition-opacity duration-300 hover:opacity-70 motion-reduce:transition-none"
+              >
+                <img
+                  src={icons.facebook}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="size-7 brightness-0 invert"
+                />
+              </a>
               <a
                 href={social.instagram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={footerCopy.instagramAriaLabel}
-                className="size-7 bg-white transition-colors duration-300 hover:bg-brand motion-reduce:transition-none"
-                style={{
-                  maskImage: `url(${icons.instagram})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${icons.instagram})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
+                className="inline-flex size-7 items-center justify-center transition-opacity duration-300 hover:opacity-70 motion-reduce:transition-none"
+              >
+                <img
+                  src={icons.instagram}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="size-7 brightness-0 invert"
+                />
+              </a>
             </div>
           </div>
         </div>

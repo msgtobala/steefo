@@ -1,23 +1,22 @@
-import type { HomeDeliverItemId } from '../../resources/home_strings'
 import type { ImageKey } from '../../resources/images'
 
-export type HomeDeliverItemConfig = {
-  id: HomeDeliverItemId
+export type HomeDeliverItem = {
+  id: string
+  name: string
   /** Optional media from `images` registry; gray placeholder when omitted. */
   image?: ImageKey
 }
 
 /**
  * Home “What we deliver” steps — Figma 40:4048.
- * Add `image` keys as assets land under `src/assets/images/home/`.
  */
-export const homeDeliverItems: HomeDeliverItemConfig[] = [
-  { id: 'design' },
-  { id: 'standards' },
-  { id: 'turnkey' },
-  { id: 'configurable' },
-  { id: 'support' },
-  { id: 'proven' },
+export const homeDeliverItems: HomeDeliverItem[] = [
+  { id: 'turnkey', name: 'Turnkey- concept to commissioning', image: 'deliver03' },
+  { id: 'design', name: 'In-house design & manufacturing', image: 'deliver01' },
+  // { id: 'standards', name: 'Built to European standards', image: 'deliver02' },
+  { id: 'configurable', name: 'Configurable to your production', image: 'deliver04' },
+  { id: 'support', name: 'After-sales support & spares', image: 'deliver05' },
+  { id: 'proven', name: 'Proven across 20+ countries', image: 'deliver06' },
 ]
 
 export type HomePartnerLogo = {
@@ -75,8 +74,8 @@ export type HomeTestimonialTheme = 'brand' | 'light' | 'dark'
 export type HomeTestimonial = {
   id: string
   name: string
-  role: string
-  company: string
+  role?: string
+  company?: string
   quote: string
   avatar: ImageKey
   theme: HomeTestimonialTheme
@@ -88,42 +87,35 @@ export type HomeTestimonial = {
  */
 export const homeTestimonials: HomeTestimonial[] = [
   {
-    id: 'bilal-siddique-1',
-    name: 'Bilal Siddique',
-    role: 'Operations Director',
-    company: 'Asian Steel Corp',
+    id: 'bilal-siddique',
+    name: 'Mr. Bilal Siddique',
     quote:
-      'One of the best manufacturers of steel rolling mills & plants in comprehensive design. Their turnkey solutions and after-sales support are outstanding.',
+      'Steefo Engineering Corporation is a Government-recognized Star Export House and one of the best manufacturers of steel rolling mills, plants, and accessories with comprehensive design capabilities.',
     avatar: 'testimonial01',
     theme: 'brand',
   },
   {
-    id: 'sayed-ali-iraqi',
-    name: 'Sayed Ali Iraqi',
-    role: 'Plant Manager',
-    company: 'Middle East Steel Industries',
+    id: 'abu-baker-rizvi',
+    name: 'Mr. Abu Baker Rizvi',
     quote:
-      'Superior quality rolling mills and plant manufacturer in India. They offer export quality products with exceptional engineering standards. Highly recommended for any steel manufacturing setup.',
+      'When we talk about quality rolling mills, I strongly recommend Steefo Engineering Corporation as one of the top rolling mill manufacturers in India.',
     avatar: 'testimonial02',
     theme: 'light',
   },
   {
-    id: 'bilal-siddique-2',
-    name: 'Bilal Siddique',
-    role: 'Operations Director',
-    company: 'Asian Steel Corp',
+    id: 'faisal-al-mansoori',
+    name: 'Mr. Faisal Al Mansoori',
     quote:
-      'One of the best manufacturers of steel rolling mills & plants in comprehensive design. Their turnkey solutions and after-sales support are outstanding.',
+      'Steefo Engineering Corporation has delivered exceptional rolling mill solutions with excellent engineering expertise and reliable after-sales support. Their commitment to quality and timely execution makes them a trusted partner in the steel industry.',
     avatar: 'testimonial03',
     theme: 'dark',
   },
   {
-    id: 'abu-baker-rizvi',
-    name: 'Abu Baker Rizvi',
-    role: 'CEO',
-    company: 'Global Metal Solutions',
+    id: 'ahmed-al-rashid',
+    name: 'Mr. Ahmed Al Rashid',
+    company: 'Saudi Arabia',
     quote:
-      'I strongly recommend Steefo Engineering Corporation as one of the top Rolling Mill Manufacturers. Their technical expertise and commitment to quality is unmatched in the industry.',
+      'Working with Steefo Engineering Corporation has been a great experience. Their advanced technology, customised solutions, and professional approach have helped us achieve efficient and consistent rolling mill operations.',
     avatar: 'testimonial04',
     theme: 'light',
   },

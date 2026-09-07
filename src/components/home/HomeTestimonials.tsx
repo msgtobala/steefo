@@ -7,7 +7,6 @@ import type {
 } from '../../pages/home/home.config'
 import { gsap, prefersReducedMotion, registerGsap } from '../../lib/gsap'
 import { homeStrings } from '../../resources/home_strings'
-import { images } from '../../resources/images'
 import { cn } from '../../utils'
 
 export type HomeTestimonialsProps = {
@@ -132,31 +131,28 @@ export function HomeTestimonials({ items, className }: HomeTestimonialsProps) {
                   theme.card,
                 )}
               >
-                <div className="flex items-start gap-3">
-                  <img
-                    src={images[item.avatar]}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="size-10 shrink-0 rounded-full object-cover"
-                  />
-                  <div className="min-w-0 font-sans text-xs leading-[1.4]">
-                    <p className="font-semibold whitespace-normal">
-                      <span>{item.name}</span>
-                      <span className="font-semibold">{`  |  `}</span>
-                      <span className={cn('font-semibold', theme.role)}>
-                        {item.role}
-                      </span>
-                    </p>
+                <div className="min-w-0 font-sans text-sm leading-[1.4]">
+                  <p className="font-semibold whitespace-normal">
+                    <span>{item.name}</span>
+                    {item.role ? (
+                      <>
+                        <span className="font-semibold">{`  |  `}</span>
+                        <span className={cn('font-semibold', theme.role)}>
+                          {item.role}
+                        </span>
+                      </>
+                    ) : null}
+                  </p>
+                  {item.company ? (
                     <p className={cn('font-normal', theme.body)}>
                       {item.company}
                     </p>
-                  </div>
+                  ) : null}
                 </div>
 
                 <p
                   className={cn(
-                    'max-w-[22rem] font-sans text-sm font-normal leading-[1.3]',
+                    'font-sans text-base font-normal leading-[1.35]',
                     theme.body,
                   )}
                 >

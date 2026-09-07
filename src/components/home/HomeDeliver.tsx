@@ -7,17 +7,13 @@ import {
   registerGsap,
   ScrollTrigger,
 } from '../../lib/gsap'
-import {
-  homeStrings,
-  type HomeDeliverItemId,
-} from '../../resources/home_strings'
+import { homeStrings } from '../../resources/home_strings'
 import { images, type ImageKey } from '../../resources/images'
 import { cn } from '../../utils'
 
 export type HomeDeliverItem = {
-  id: HomeDeliverItemId
-  index: string
-  title: string
+  id: string
+  name: string
   image?: ImageKey
 }
 
@@ -144,7 +140,7 @@ export function HomeDeliver({ items, className }: HomeDeliverProps) {
                           : 'rgba(0,0,0,0.2)',
                       }}
                     >
-                      {item.index}
+                      {String(index + 1).padStart(2, '0')}
                     </span>
                     <p
                       className="max-w-[18rem] font-display text-[clamp(1.25rem,2.2vw,1.75rem)] font-normal leading-[1.2]"
@@ -153,7 +149,7 @@ export function HomeDeliver({ items, className }: HomeDeliverProps) {
                         color: active ? '#000000' : 'rgba(0,0,0,0.3)',
                       }}
                     >
-                      {item.title}
+                      {item.name}
                     </p>
                   </li>
                 )

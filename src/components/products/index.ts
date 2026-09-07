@@ -1,5 +1,11 @@
 export { ProductHero, type ProductHeroProps } from './ProductHero'
 export {
+  ProductCard,
+  type ProductCardProps,
+  type ProductCardSize,
+} from './ProductCard'
+export { ProductsGrid, type ProductsGridProps } from './ProductsGrid'
+export {
   ProductFeatures,
   type ProductFeaturesProps,
   type ProductSpecItem,

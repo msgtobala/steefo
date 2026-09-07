@@ -15,6 +15,7 @@ const navItems = [
   { to: routes.products, label: nav.productsAndSolutions },
   { to: routes.projects, label: nav.projects },
   { to: routes.insights, label: nav.insights },
+  { to: routes.careers, label: nav.career },
 ] as const
 
 function MenuIcon({ open }: { open: boolean }) {

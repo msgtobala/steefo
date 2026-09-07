@@ -2,10 +2,10 @@ export const aboutStrings = {
   hero: {
     eyebrow: 'About Steefo',
     titleLine1: 'A new standard',
-    titleHighlight: 'since 1982.',
+    titleHighlight: 'since 45+ years.',
     leadBefore: 'Four decades of',
     leadHighlight: 'engineering excellence.',
-    body: 'Steefo Engineering Corporation is a Government-recognized Star Export House and ISO 9001 certified manufacturer. We design, manufacture, and export rolling mill plants, equipment, and components that meet global standards — built in India, delivered worldwide.',
+    body: 'Steefo Engineering Corporation is a Government-recognized Star Export House and ISO 9001 certified manufacturer. We design, manufacture and supply steel plants that meet global standards - built in India, delivered worldwide.',
   },
   stats: {
     founded: { label: 'Founded', value: '1982' },
@@ -76,7 +76,7 @@ export const aboutStrings = {
   awards: {
     eyebrow: 'Certifications & Awards',
     title: 'Awards & Recognitions',
-    body: 'Steefo Engineering Corporation is committed to maintaining the highest standards of quality, credibility, and industry recognition.',
+    body: 'Steefo Engineering Corporation is an ISO 9001:2008-certified company, providing end-to-end solutions to the steel manufacturing industry. Recognised by the Government of India as a Star Export House, we have also earned the prestigious NSIC-CRISIL Rating 1A.',
   },
   awardItems: {
     certification: {

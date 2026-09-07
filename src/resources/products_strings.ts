@@ -1,4 +1,8 @@
 export const productsStrings = {
+  listing: {
+    eyebrow: 'Products',
+    title: 'Built for scale.',
+  },
   hero: {
     productNumber: 'PRODUCT 01',
     title: 'Rolling Mill for TMT Bar',
@@ -55,10 +59,22 @@ export const productsStrings = {
     title: 'You may also need',
   },
   relatedItems: {
-    'rolling-mill-sections': { title: 'Rolling Mill for Sections' },
-    'induction-furnaces': { title: 'Induction Furnaces' },
-    'continuous-casting': { title: 'Continuous Casting Machines' },
+    'rolling-mill-sections': {
+      title: 'Rolling Mill for Sections',
+      excerpt:
+        'Flexible section mills configured for beams, channels, and angles.',
+    },
+    'induction-furnaces': {
+      title: 'Induction Furnaces',
+      excerpt: 'Energy-efficient melting with precision temperature control.',
+    },
+    'continuous-casting': {
+      title: 'Continuous Casting Machines',
+      excerpt: 'Reliable casting systems built for uptime and consistent quality.',
+    },
   },
+  readMore: 'Read More',
+  cardMediaAriaLabel: 'Product image placeholder',
   heroMediaAriaLabel: 'Product hero image placeholder',
   featuresMediaAriaLabel: 'Product features image',
   galleryMediaAriaLabel: 'Product gallery image placeholder',

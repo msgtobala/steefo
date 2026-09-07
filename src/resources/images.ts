@@ -7,11 +7,17 @@ import capability02 from '../assets/images/about/capabilities/capability_02.png'
 import capability03 from '../assets/images/about/capabilities/capability_03.png'
 import capability04 from '../assets/images/about/capabilities/capability_04.png'
 import featureImage from '../assets/images/projects/feature_image.png'
-import subscribeBanner from '../assets/images/common/subscribe_banner.svg'
+import subscribeBanner from '../assets/images/common/subscribe_banner.jpg'
 import heroBanner from '../assets/images/home/hero_banner.webp'
 import heroIntroBg from '../assets/images/home/hero_intro_bg.svg'
 import homePresenceBg from '../assets/images/home/home_presence_bg.svg'
 import homeStatsBg from '../assets/images/home/home_stats_bg.svg'
+import deliver01 from '../assets/images/home/what_we_deliver/what_we_deliver_01.png'
+import deliver02 from '../assets/images/home/what_we_deliver/what_we_deliver_02.png'
+import deliver03 from '../assets/images/home/what_we_deliver/what_we_deliver_03.png'
+import deliver04 from '../assets/images/home/what_we_deliver/what_we_deliver_04.png'
+import deliver05 from '../assets/images/home/what_we_deliver/what_we_deliver_05.png'
+import deliver06 from '../assets/images/home/what_we_deliver/what_we_deliver_06.png'
 import testimonial01 from '../assets/images/home/testimonials/testimonial_01.png'
 import testimonial02 from '../assets/images/home/testimonials/testimonial_02.png'
 import testimonial03 from '../assets/images/home/testimonials/testimonial_03.png'
@@ -42,6 +48,12 @@ export const images = {
   heroIntroBg,
   homePresenceBg,
   homeStatsBg,
+  deliver01,
+  deliver02,
+  deliver03,
+  deliver04,
+  deliver05,
+  deliver06,
   subscribeBanner,
   testimonial01,
   testimonial02,

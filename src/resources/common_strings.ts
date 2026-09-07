@@ -15,6 +15,7 @@ export const commonStrings = {
     productsAndSolutions: 'Products & Solutions',
     projects: 'Projects',
     insights: 'Insights',
+    career: 'Career',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
   },

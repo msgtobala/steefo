@@ -8,7 +8,7 @@ import { DisclaimerPage } from './pages/disclaimer/DisclaimerPage'
 import { HomePage } from './pages/home/HomePage'
 import { InsightsPage } from './pages/insights/InsightsPage'
 import { PrivacyPage } from './pages/privacy/PrivacyPage'
-import { ProductDetailsPage } from './pages/products/ProductDetailsPage'
+import { ProductDetailPage } from './pages/products/ProductDetailPage'
 import { ProductsPage } from './pages/products/ProductsPage'
 import { ProjectsPage } from './pages/projects/ProjectsPage'
 import { SvgTestPage } from './pages/svg-test/SvgTestPage'
@@ -26,7 +26,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="products" element={<ProductsPage />} />
-          <Route path="products/:productId" element={<ProductDetailsPage />} />
+          <Route path="products/:productId" element={<ProductDetailPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="insights" element={<InsightsPage />} />
           <Route path="careers" element={<CareersPage />} />

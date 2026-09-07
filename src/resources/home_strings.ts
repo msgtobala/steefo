@@ -25,40 +25,14 @@ export const homeStrings = {
     ariaLabel: 'Steefo by the numbers',
     items: [
       { value: '45+', label: 'YEARS OF LEGACY' },
-      { value: '15+', label: 'COUNTRIES SERVED' },
-      { value: '200+', label: 'PLANTS DELIVERED' },
+      { value: '20+', label: 'COUNTRIES SERVED' },
+      { value: '50M', label: 'TONS PRODUCED ANNUALLY' },
       { value: 'ISO', label: '9001 • STAR EXPORT' },
     ],
   },
   deliver: {
     eyebrow: 'WHAT WE DELIVER',
     mediaAriaLabel: 'Delivery capability visual',
-    items: {
-      design: {
-        index: '01',
-        title: 'In-house design & manufacturing',
-      },
-      standards: {
-        index: '02',
-        title: 'Built to European standards',
-      },
-      turnkey: {
-        index: '03',
-        title: 'Turnkey — layout to commissioning',
-      },
-      configurable: {
-        index: '04',
-        title: 'Configurable to your production',
-      },
-      support: {
-        index: '05',
-        title: 'After-sales support & spares',
-      },
-      proven: {
-        index: '06',
-        title: 'Proven across 15+ countries',
-      },
-    },
   },
   brand: {
     lead: 'That’s',
@@ -84,7 +58,7 @@ export const homeStrings = {
   },
   presence: {
     eyebrow: 'GLOBAL PRESENCE',
-    titleLine1: 'From Ahmedabad',
+    titleLine1: 'From India',
     titleHighlight: 'to the world.',
     mapAriaLabel: 'World map of Steefo market presence',
   },
@@ -104,4 +78,3 @@ export const homeStrings = {
 } as const
 
 export type HomeStrings = typeof homeStrings
-export type HomeDeliverItemId = keyof typeof homeStrings.deliver.items
