@@ -68,7 +68,7 @@ export function ProductDetailPage() {
         productNumber={product.productNumber}
         title={product.title}
         subtitle={product.excerpt}
-        image={product.image}
+        image={product.banner ?? product.image}
       />
 
       <ProductFeatures

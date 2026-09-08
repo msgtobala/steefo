@@ -51,6 +51,10 @@ export type CatalogProduct = {
   excerpt: string
   href: string
   image: ImageKey
+  /** Product detail hero/banner media — empty until assets are registered. */
+  banner: ImageKey | null
+  /** Product gallery media — empty until assets are registered. */
+  gallery: ImageKey[]
   size: ProductCardSize
 }
 
@@ -58,31 +62,43 @@ const CATALOG: Array<{
   id: ProductCatalogId
   image: ImageKey
   size: ProductCardSize
+  banner?: ImageKey | null
+  gallery?: ImageKey[]
 }> = [
   {
     id: 'rolling-mill-tmt-bar',
     image: 'productRollingMillTmt',
     size: 'third',
+    banner: 'productRollingMillTmtBanner',
+    gallery: [],
   },
   {
     id: 'rolling-mill-section',
     image: 'productRollingMillSection',
     size: 'twoThirds',
+    banner: null,
+    gallery: [],
   },
   {
     id: 'induction-furnaces',
     image: 'productInductionFurnace',
     size: 'third',
+    banner: null,
+    gallery: [],
   },
   {
     id: 'wire-rod-lines',
     image: 'productWireRodLines',
     size: 'third',
+    banner: 'productWireRodLinesBanner',
+    gallery: [],
   },
   {
     id: 'turnkey-solutions-for-steel-plants',
     image: 'productTurnkeySolutions',
     size: 'third',
+    banner: 'productTurnkeySolutionsBanner',
+    gallery: [],
   },
 ]
 
@@ -98,6 +114,8 @@ export const products: CatalogProduct[] = CATALOG.map((item, index) => {
     excerpt: copy.excerpt,
     href: `${productsRoute}/${item.id}`,
     image: item.image,
+    banner: item.banner ?? null,
+    gallery: item.gallery ?? [],
     size: item.size,
   }
 })
