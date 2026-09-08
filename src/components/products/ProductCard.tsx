@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import { Link } from 'react-router-dom'
+import { images, type ImageKey } from '../../resources/images'
 import { productsStrings } from '../../resources/products_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
 
@@ -15,19 +16,21 @@ export type ProductCardProps = {
   title: string
   excerpt: string
   href: string
+  image?: ImageKey
   size: ProductCardSize
   className?: string
 } & HTMLAttributes<HTMLElement>
 
 /**
  * Product listing card — Insights grid 14:3343
- * Whole-card link: placeholder media + product number + title + excerpt + Read More.
+ * Whole-card link: media + product number + title + excerpt + Read More.
  */
 export function ProductCard({
   productNumber,
   title,
   excerpt,
   href,
+  image,
   size,
   className,
   ...rest
@@ -44,10 +47,18 @@ export function ProductCard({
             IMAGE_HEIGHT[size],
           )}
         >
-          <div
-            {...mediaPlaceholderProps(productsStrings.cardMediaAriaLabel)}
-            className="motion-zoom size-full bg-surface-placeholder"
-          />
+          {image ? (
+            <img
+              src={images[image]}
+              alt={title}
+              className="motion-zoom size-full object-cover"
+            />
+          ) : (
+            <div
+              {...mediaPlaceholderProps(productsStrings.cardMediaAriaLabel)}
+              className="motion-zoom size-full bg-surface-placeholder"
+            />
+          )}
         </div>
 
         <div className="flex flex-col gap-3">

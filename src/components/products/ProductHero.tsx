@@ -1,4 +1,5 @@
 import { Container } from '../common'
+import { images, type ImageKey } from '../../resources/images'
 import { productsStrings } from '../../resources/products_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
 
@@ -6,17 +7,19 @@ export type ProductHeroProps = {
   productNumber: string
   title: string
   subtitle: string
+  image?: ImageKey
   className?: string
 }
 
 /**
  * Product hero — Figma 1:3251
- * Eyebrow + title + subtitle + full-width image placeholder (no video).
+ * Eyebrow + title + subtitle + full-width media.
  */
 export function ProductHero({
   productNumber,
   title,
   subtitle,
+  image,
   className,
 }: ProductHeroProps) {
   return (
@@ -45,10 +48,18 @@ export function ProductHero({
         className="motion-media group mt-8 h-[280px] w-full md:mt-10 md:h-[460px] lg:h-[566px]"
         data-animate-hero
       >
-        <div
-          {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
-          className="motion-zoom size-full bg-surface-placeholder"
-        />
+        {image ? (
+          <img
+            src={images[image]}
+            alt={title}
+            className="motion-zoom size-full object-cover"
+          />
+        ) : (
+          <div
+            {...mediaPlaceholderProps(productsStrings.heroMediaAriaLabel)}
+            className="motion-zoom size-full bg-surface-placeholder"
+          />
+        )}
       </div>
     </Container>
   )

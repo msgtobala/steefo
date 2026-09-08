@@ -51,6 +51,18 @@ export const homeStrings = {
     nextAriaLabel: 'Next projects',
     mediaAriaLabel: 'Project image placeholder',
   },
+  products: {
+    eyebrow: 'OUR PRODUCTS',
+    titleBefore: 'Core ',
+    titleHighlight: 'Product ',
+    titleAfter: 'Line',
+    body: 'Explore rolling mills, furnaces, and casting systems engineered for reliable, high-throughput steel production.',
+    viewAll: 'View All',
+    knowMore: 'Know More',
+    prevAriaLabel: 'Previous products',
+    nextAriaLabel: 'Next products',
+    mediaAriaLabel: 'Product image placeholder',
+  },
   partners: {
     eyebrow: 'ABOUT OUR GLOBAL IMPACT',
     titleBefore: 'Trusted by steel manufacturers',

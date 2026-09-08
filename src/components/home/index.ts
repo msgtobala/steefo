@@ -14,6 +14,11 @@ export {
   type HomeProjectItem,
 } from './HomeProjects'
 export {
+  HomeProducts,
+  type HomeProductsProps,
+  type HomeProductItem,
+} from './HomeProducts'
+export {
   HomePartners,
   type HomePartnersProps,
   type HomePartnerItem,

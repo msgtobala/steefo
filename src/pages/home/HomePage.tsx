@@ -7,13 +7,13 @@ import {
   HomeMission,
   // HomePartners,
   HomePresence,
-  HomeProjects,
+  HomeProducts,
   HomeStats,
   HomeTestimonials,
 } from '../../components/home'
 import { usePageRevealRef } from '../../hooks/usePageReveal'
 import { insightArticles } from '../insights/insights.config'
-import { getTopProjects } from '../projects/projects.config'
+import { getTopProducts } from '../products/products.config'
 import {
   homeDeliverItems,
   // homePartnerLogos,
@@ -28,7 +28,7 @@ import {
 export function HomePage() {
   const rootRef = usePageRevealRef({ withHero: false })
 
-  const topProjects = getTopProjects(5)
+  const topProducts = getTopProducts(5)
   const homeInsightArticles = insightArticles.slice(0, 4)
 
   return (
@@ -39,7 +39,7 @@ export function HomePage() {
       <HomeStats />
       <HomeDeliver items={homeDeliverItems} />
       <HomeBrand />
-      <HomeProjects projects={topProjects} />
+      <HomeProducts products={topProducts} />
       {/* <HomePartners logos={homePartnerLogos} /> */}
       <HomePresence markets={homePresenceMarkets} />
       <HomeInsights articles={homeInsightArticles} />

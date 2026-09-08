@@ -1,8 +1,9 @@
 import type { ProductCardSize } from '../../components/products/ProductCard'
 import { uiConstants } from '../../constants/ui_constants'
+import type { ImageKey } from '../../resources/images'
 import { productsStrings } from '../../resources/products_strings'
 import type {
-  ProductRelatedItemId,
+  ProductCatalogId,
   ProductSpecId,
   ProductWhyItemId,
 } from '../../resources/products_strings'
@@ -15,11 +16,6 @@ export type ProductSpecConfig = {
 
 export type ProductWhyItemConfig = {
   id: ProductWhyItemId
-}
-
-export type ProductRelatedItemConfig = {
-  id: ProductRelatedItemId
-  href: string
 }
 
 /** Spec order for the features 2×2 grid — Figma Product Page 1:3251 */
@@ -40,22 +36,6 @@ export const productWhyItems: ProductWhyItemConfig[] = [
   { id: 'global-compliance' },
 ]
 
-/** Related products carousel/grid — Figma “You may also need” */
-export const productRelatedItems: ProductRelatedItemConfig[] = [
-  {
-    id: 'rolling-mill-sections',
-    href: `${productsRoute}/rolling-mill-sections`,
-  },
-  {
-    id: 'induction-furnaces',
-    href: `${productsRoute}/induction-furnaces`,
-  },
-  {
-    id: 'continuous-casting',
-    href: `${productsRoute}/continuous-casting`,
-  },
-]
-
 /** Gallery placeholder count (layout: 1 + 2 + 3). */
 export const productGallerySlots = 6
 
@@ -64,38 +44,63 @@ export const productInterestLinks = {
   contactUs: contact,
 } as const
 
-const RELATED_SIZES: ProductCardSize[] = ['twoThirds', 'third', 'third']
-
 export type CatalogProduct = {
-  id: string
+  id: ProductCatalogId
   productNumber: string
   title: string
   excerpt: string
   href: string
+  image: ImageKey
   size: ProductCardSize
 }
 
-/**
- * Listing catalog — flagship TMT mill plus the existing related-products array.
- */
-export const products: CatalogProduct[] = [
+const CATALOG: Array<{
+  id: ProductCatalogId
+  image: ImageKey
+  size: ProductCardSize
+}> = [
   {
     id: 'rolling-mill-tmt-bar',
-    productNumber: productsStrings.hero.productNumber,
-    title: productsStrings.hero.title,
-    excerpt: productsStrings.hero.subtitle,
-    href: `${productsRoute}/rolling-mill-tmt-bar`,
+    image: 'productRollingMillTmt',
     size: 'third',
   },
-  ...productRelatedItems.map((item, index) => ({
-    id: item.id,
-    productNumber: `PRODUCT 0${index + 2}`,
-    title: productsStrings.relatedItems[item.id].title,
-    excerpt: productsStrings.relatedItems[item.id].excerpt,
-    href: item.href,
-    size: RELATED_SIZES[index],
-  })),
+  {
+    id: 'rolling-mill-section',
+    image: 'productRollingMillSection',
+    size: 'twoThirds',
+  },
+  {
+    id: 'induction-furnaces',
+    image: 'productInductionFurnace',
+    size: 'third',
+  },
+  {
+    id: 'wire-rod-lines',
+    image: 'productWireRodLines',
+    size: 'third',
+  },
+  {
+    id: 'turnkey-solutions-for-steel-plants',
+    image: 'productTurnkeySolutions',
+    size: 'third',
+  },
 ]
+
+/**
+ * Products catalog — 5 core offerings with registered media.
+ */
+export const products: CatalogProduct[] = CATALOG.map((item, index) => {
+  const copy = productsStrings.catalog[item.id]
+  return {
+    id: item.id,
+    productNumber: `PRODUCT 0${index + 1}`,
+    title: copy.title,
+    excerpt: copy.excerpt,
+    href: `${productsRoute}/${item.id}`,
+    image: item.image,
+    size: item.size,
+  }
+})
 
 export function getProductById(id: string) {
   return products.find((product) => product.id === id)
@@ -103,4 +108,9 @@ export function getProductById(id: string) {
 
 export function getRelatedProducts(id: string) {
   return products.filter((product) => product.id !== id)
+}
+
+/** Catalog products for the home showcase carousel. */
+export function getTopProducts(count = 5) {
+  return products.slice(0, count)
 }

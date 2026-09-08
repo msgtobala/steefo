@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { CarouselNav, Container } from '../common'
 import { prefersReducedMotion } from '../../lib/gsap'
+import { images, type ImageKey } from '../../resources/images'
 import { productsStrings } from '../../resources/products_strings'
 import { cn, mediaPlaceholderProps } from '../../utils'
 
@@ -9,6 +10,7 @@ export type ProductRelatedItem = {
   id: string
   title: string
   href: string
+  image?: ImageKey
 }
 
 export type ProductRelatedProps = {
@@ -79,10 +81,20 @@ export function ProductRelated({
               data-animate="up"
             >
               <div className="motion-media h-[220px] w-full md:h-[340px]">
-                <div
-                  {...mediaPlaceholderProps(productsStrings.relatedMediaAriaLabel)}
-                  className="motion-zoom size-full bg-surface-placeholder"
-                />
+                {item.image ? (
+                  <img
+                    src={images[item.image]}
+                    alt={item.title}
+                    className="motion-zoom size-full object-cover"
+                  />
+                ) : (
+                  <div
+                    {...mediaPlaceholderProps(
+                      productsStrings.relatedMediaAriaLabel,
+                    )}
+                    className="motion-zoom size-full bg-surface-placeholder"
+                  />
+                )}
               </div>
               <h3 className="font-display text-xl font-medium leading-[1.3] text-foreground transition-colors group-hover:text-brand md:text-[26px] md:leading-[26px]">
                 {item.title}

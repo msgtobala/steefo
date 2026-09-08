@@ -19,6 +19,11 @@ import capability02 from '../assets/images/about/capabilities/capability_02.png'
 import capability03 from '../assets/images/about/capabilities/capability_03.png'
 import capability04 from '../assets/images/about/capabilities/capability_04.png'
 import featureImage from '../assets/images/projects/feature_image.png'
+import productInductionFurnace from '../assets/images/products/induction_furnace.png'
+import productRollingMillSection from '../assets/images/products/rolling_mill_for_section.png'
+import productRollingMillTmt from '../assets/images/products/rolling_mill_for_TMT_bars.jpg'
+import productTurnkeySolutions from '../assets/images/products/turnkey_solutions_for_steel_plants.png'
+import productWireRodLines from '../assets/images/products/wire_rod_lines.png'
 import subscribeBanner from '../assets/images/common/subscribe_banner.jpg'
 import heroBanner from '../assets/images/home/hero_banner.webp'
 import heroIntroBg from '../assets/images/home/hero_intro_bg.svg'
@@ -68,6 +73,11 @@ export const images = {
   capability03,
   capability04,
   featureImage,
+  productRollingMillTmt,
+  productRollingMillSection,
+  productInductionFurnace,
+  productWireRodLines,
+  productTurnkeySolutions,
   heroBanner,
   heroIntroBg,
   homePresenceBg,

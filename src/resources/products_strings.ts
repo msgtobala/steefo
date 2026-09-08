@@ -3,10 +3,31 @@ export const productsStrings = {
     eyebrow: 'Products',
     title: 'Built for scale.',
   },
-  hero: {
-    productNumber: 'PRODUCT 01',
-    title: 'Rolling Mill for TMT Bar',
-    subtitle: 'High speed, automated lines for premium TMT bars production.',
+  catalog: {
+    'rolling-mill-tmt-bar': {
+      title: 'Rolling Mill for TMT Bar',
+      excerpt:
+        'High speed, automated lines for premium TMT bars production.',
+    },
+    'rolling-mill-section': {
+      title: 'Rolling Mill for Section',
+      excerpt:
+        'Flexible section mills configured for beams, channels, and angles.',
+    },
+    'induction-furnaces': {
+      title: 'Induction Furnaces',
+      excerpt: 'Energy-efficient melting with precision temperature control.',
+    },
+    'wire-rod-lines': {
+      title: 'Wire Rod Lines',
+      excerpt:
+        'High-speed wire rod production with consistent metallurgical quality.',
+    },
+    'turnkey-solutions-for-steel-plants': {
+      title: 'Turnkey Solutions For Steel Plants',
+      excerpt:
+        'End-to-end plant solutions from layout planning to commissioning.',
+    },
   },
   features: {
     eyebrow: 'OVERVIEW',
@@ -58,27 +79,12 @@ export const productsStrings = {
     eyebrow: 'Related Products',
     title: 'You may also need',
   },
-  relatedItems: {
-    'rolling-mill-sections': {
-      title: 'Rolling Mill for Sections',
-      excerpt:
-        'Flexible section mills configured for beams, channels, and angles.',
-    },
-    'induction-furnaces': {
-      title: 'Induction Furnaces',
-      excerpt: 'Energy-efficient melting with precision temperature control.',
-    },
-    'continuous-casting': {
-      title: 'Continuous Casting Machines',
-      excerpt: 'Reliable casting systems built for uptime and consistent quality.',
-    },
-  },
   readMore: 'Read More',
-  cardMediaAriaLabel: 'Product image placeholder',
-  heroMediaAriaLabel: 'Product hero image placeholder',
+  cardMediaAriaLabel: 'Product image',
+  heroMediaAriaLabel: 'Product hero image',
   featuresMediaAriaLabel: 'Product features image',
   galleryMediaAriaLabel: 'Product gallery image placeholder',
-  relatedMediaAriaLabel: 'Related product image placeholder',
+  relatedMediaAriaLabel: 'Related product image',
   relatedPrevAriaLabel: 'Previous related products',
   relatedNextAriaLabel: 'Next related products',
   requestQuote: 'Request a Quote →',
@@ -90,6 +96,6 @@ export const productsStrings = {
 } as const
 
 export type ProductsStrings = typeof productsStrings
+export type ProductCatalogId = keyof typeof productsStrings.catalog
 export type ProductSpecId = keyof typeof productsStrings.specs
 export type ProductWhyItemId = keyof typeof productsStrings.whyItems
-export type ProductRelatedItemId = keyof typeof productsStrings.relatedItems

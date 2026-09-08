@@ -54,10 +54,11 @@ export function ProductDetailPage() {
   }))
 
   const relatedItems = getRelatedProducts(product.id).map(
-    ({ id, href, title }) => ({
+    ({ id, href, title, image }) => ({
       id,
       href,
       title,
+      image,
     }),
   )
 
@@ -67,6 +68,7 @@ export function ProductDetailPage() {
         productNumber={product.productNumber}
         title={product.title}
         subtitle={product.excerpt}
+        image={product.image}
       />
 
       <ProductFeatures
